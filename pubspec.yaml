@@ -1,0 +1,36 @@
+name: projet2cp
+description: A new Flutter application.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+
+  fonts:
+    - family: Acme
+      fonts:
+        - asset: fonts/Acme-Regular.ttf
+    - family: Open Sans
+      fonts:
+        - asset: fonts/OpenSans-Bold.ttf
+        - asset: fonts/OpenSans-Regular.ttf
+        - asset: fonts/OpenSans-Light.ttf
+        - asset: fonts/OpenSans-ExtraBold.ttf
+        - asset: fonts/OpenSans-SemiBold.ttf

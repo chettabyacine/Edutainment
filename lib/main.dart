@@ -4,8 +4,6 @@ import 'screens/sign_up/page.dart';
 import 'screens/menu_1/page.dart';
 import 'utils/constants.dart';
 
-//main fonction
-
 void main() {
   runApp(MyApp());
 }

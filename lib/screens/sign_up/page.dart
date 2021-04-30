@@ -1,9 +1,10 @@
-import 'package:edutainment/screens/log_in/page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:edutainment/utils/constants.dart';
-import 'package:edutainment/utils/theme_constants.dart';
+import '../../utils/constants.dart';
+import '../../utils/theme_constants.dart';
+import '../sign_up/app_bar.dart';
+import '../log_in/page.dart';
+import '../sign_up/input_widget.dart';
 
 class PageSignUp extends StatefulWidget {
   static const String _pageName = kPageNameMenu1;
@@ -16,7 +17,8 @@ class PageSignUp extends StatefulWidget {
 }
 
 class _PageSignUpState extends State<PageSignUp> {
-  String noun, date, email, password1, password2;
+  String name, birthDay, email, password1, password2;
+  UserLogIn user;
   bool _checkbox = false;
 
   @override
@@ -27,200 +29,141 @@ class _PageSignUpState extends State<PageSignUp> {
         //appBar: AppBar(),
         body: Column(
           children: [
+            AppBarWidget(height: 170.0),
             Expanded(
-              child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.all(25.0),
-                color: kBlueColor,
-                child: Center(
-                  child: Column(
-                    children: [
-                      SvgPicture.asset('assets/bird.svg'),
-                      Text(
-                        'Edutainment',
-                        style: kTitleTextStyle,
-                      )
-                    ],
+              child: ListView(
+                children: [
+                  SizedBox(
+                    height: 10.0,
                   ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
-              child: ListTile(
-                trailing: Icon(
-                  Icons.person,
-                  color: kBlueColor,
-                ),
-                title: TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    noun = value;
-                  },
-                  style: kTextFieldStyle,
-                  decoration: InputDecoration(
-                    hintText: 'Nom et Prénom',
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  InputWidget(
+                    data: name,
+                    icon: Icons.person,
+                    label: 'Nom Prénom',
                   ),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
-              child: ListTile(
-                trailing: Icon(
-                  Icons.calendar_today,
-                  color: kBlueColor,
-                ),
-                title: TextField(
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    date = value;
-                  },
-                  style: kTextFieldStyle,
-                  decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Date de naissance'),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
-              child: ListTile(
-                trailing: Icon(
-                  Icons.email,
-                  color: kBlueColor,
-                ),
-                title: TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    email = value;
-                  },
-                  style: kTextFieldStyle,
-                  decoration:
-                      kTextFieldDecoration.copyWith(hintText: 'Adresse email'),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
-              child: ListTile(
-                trailing: Icon(
-                  Icons.lock,
-                  color: kBlueColor,
-                ),
-                title: TextField(
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    password1 = value;
-                  },
-                  style: kTextFieldStyle,
-                  decoration:
-                      kTextFieldDecoration.copyWith(hintText: 'Mot de passe'),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
-              child: ListTile(
-                trailing: Icon(
-                  Icons.lock,
-                  color: kBlueColor,
-                ),
-                title: TextField(
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  onChanged: (value) {
-                    password2 = value;
-                  },
-                  style: kTextFieldStyle,
-                  decoration: kTextFieldDecoration.copyWith(
-                      hintText: 'Confirmer mot de passe'),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
-              child: ListTile(
-                leading: Transform.scale(
-                  scale: 0.75,
-                  child: Checkbox(
-                    onChanged: (value) {
-                      setState(() {
-                        _checkbox = !_checkbox;
-                      });
+                  InputWidget(
+                    data: birthDay,
+                    icon: Icons.calendar_today,
+                    label: 'Date de naissance',
+                  ),
+                  InputWidget(
+                    data: email,
+                    icon: Icons.email,
+                    label: 'Adresse email',
+                  ),
+                  InputWidget(
+                    data: password1,
+                    icon: Icons.lock,
+                    label: 'Mot de passe',
+                  ),
+                  InputWidget(
+                    data: password2,
+                    icon: Icons.lock,
+                    label: 'Confirmer mot de passe',
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
+                    child: ListTile(
+                      leading: Transform.scale(
+                        scale: 0.75,
+                        child: Checkbox(
+                          onChanged: (value) {
+                            setState(() {
+                              _checkbox = !_checkbox;
+                            });
+                          },
+                          value: _checkbox,
+                          checkColor: kBlueColor,
+                          activeColor: Colors.white,
+                        ),
+                      ),
+                      title: Text(
+                        'J’accepte la réglemation.',
+                        style: kLabelTextStyle,
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      //TODO: Opération d'inscription (Traitement en BDD)
+                      user = UserLogIn(
+                        name: name,
+                        birthDay: birthDay,
+                        email: email,
+                        password1: password1,
+                        password2: password2,
+                      );
                     },
-                    value: _checkbox,
-                    checkColor: kBlueColor,
-                    activeColor: Colors.white,
-                  ),
-                ),
-                title: Text(
-                  'J’accepte la réglemation.',
-                  style: kLabelTextStyle,
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                //TODO: Opération d'inscription (Traitement en BDD)
-              },
-              child: Container(
-                child: Text(
-                  'S\'inscrire',
-                  style: TextStyle(
-                    fontFamily: 'Acme',
-                    fontSize: 20.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
-                margin: EdgeInsets.all(10.0),
-                decoration: BoxDecoration(
-                  color: kBlueColor,
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
-            RichText(
-              text: TextSpan(
-                text: 'Vous avez déja un compte? ',
-                style: kLabelTextStyle,
-                children: [
-                  TextSpan(
-                    text: 'S\'identifier',
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Navigator.pushNamed(context, PageLogIn.getPageName());
-                      },
-                    style: TextStyle(
-                      color: kBlueColor,
+                    child: Container(
+                      child: Text(
+                        'S\'inscrire',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Acme',
+                          fontSize: 20.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 25.0, vertical: 10.0),
+                      margin: EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        color: kBlueColor,
+                        borderRadius: BorderRadius.circular(50.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black54,
+                            blurRadius: 2.0,
+                            spreadRadius: 0.0,
+                            offset: Offset(1.0, 2.0),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Mot de passe oublié?',
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        //TODO: Confirmation de l'identité + Modifier mot de passe
-                      },
-                    style: kLabelTextStyle.copyWith(
-                      color: kBlueColor,
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      text: 'Vous avez déja un compte? ',
+                      style: kLabelTextStyle,
+                      children: [
+                        TextSpan(
+                          text: 'S\'identifier',
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.pushNamed(
+                                  context, PageLogIn.getPageName());
+                            },
+                          style: TextStyle(
+                            color: kBlueColor,
+                          ),
+                        ),
+                      ],
                     ),
+                  ),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Mot de passe oublié?',
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              //TODO: Confirmation de l'identité + Modifier mot de passe
+                            },
+                          style: kLabelTextStyle.copyWith(
+                            color: kBlueColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.0,
                   ),
                 ],
               ),
@@ -230,4 +173,10 @@ class _PageSignUpState extends State<PageSignUp> {
       ),
     );
   }
+}
+
+class UserLogIn {
+  String name, birthDay, email, password1, password2;
+  UserLogIn(
+      {this.name, this.birthDay, this.email, this.password1, this.password2});
 }

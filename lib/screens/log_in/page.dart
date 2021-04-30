@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:edutainment/utils/constants.dart';
+import '../../utils/constants.dart';
 
 class PageLogIn extends StatelessWidget {
   static const String _pageName = kPageNameLogIn;

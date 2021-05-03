@@ -80,7 +80,7 @@ class _PageHomeState extends State<PageHome> {
                         text: 'Animeaux',
                         colour: Color(0xFFEDAE1D),
                         icon: SvgPicture.asset(
-                          'assets/icon animaux.svg',
+                          'assets/icon_animaux.svg',
                         ),
                       ),
                       HomeButton(

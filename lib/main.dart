@@ -1,9 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'screens/log_in/page.dart';
 import 'screens/sign_up/page.dart';
 import 'screens/menu_1/page.dart';
 import 'screens/home/page.dart';
 import 'utils/constants.dart';
+import 'screens/score_page/page.dart';
 
 import 'screens/testing_screen/page.dart';
 
@@ -25,6 +27,7 @@ class MyApp extends StatelessWidget {
         PageSignUp.getPageName(): (context) => PageSignUp(),
         PageLogIn.getPageName(): (context) => PageLogIn(),
         PageHome.getPageName(): (context) => PageHome(),
+        PageScore.getPageName(): (context) => PageScore(),
 
         TestingPage.getPageName(): (context) =>
             TestingPage(), // To delete after

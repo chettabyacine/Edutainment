@@ -6,6 +6,7 @@ class AppBarWidget extends StatelessWidget {
   final double height;
   final SvgPicture logo;
   final String title;
+
   AppBarWidget({this.title, this.logo, this.height});
 
   @override

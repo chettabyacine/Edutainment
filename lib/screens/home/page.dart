@@ -64,6 +64,7 @@ class _PageHomeState extends State<PageHome> {
                           'assets/icon calculs.svg',
                         ),
                       ),
+                      SizedBox(width: 10.0),
                       HomeButton(
                         text: 'Géométrie',
                         colour: Color(0xFF2CBAA4),
@@ -73,16 +74,18 @@ class _PageHomeState extends State<PageHome> {
                       ),
                     ],
                   ),
+                  SizedBox(height: 10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       HomeButton(
-                        text: 'Animeaux',
+                        text: 'Animaux',
                         colour: Color(0xFFEDAE1D),
                         icon: SvgPicture.asset(
                           'assets/icon_animaux.svg',
                         ),
                       ),
+                      SizedBox(width: 10.0),
                       HomeButton(
                         text: 'Evaluation',
                         colour: Color(0xFFFF6868),
@@ -140,32 +143,51 @@ class HomeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 135,
-      width: 135,
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: colour,
-        borderRadius: BorderRadius.circular(20.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black38,
-            blurRadius: 2.0,
-            spreadRadius: 1.0,
-            offset: Offset(1.0, 1.0),
-          ),
-        ],
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          icon,
-          SizedBox(height: 15.0),
-          Text(
-            text,
-            style: kHomeButtonTextStyle,
-          )
-        ],
+    return TextButton(
+      onPressed: () {
+        switch (text) {
+          case 'Calculs':
+            //TODO: Go to PageNiveauxCalculs
+            break;
+          case 'Géométrie':
+            //TODO: Go to PageNiveauxGeometry
+            break;
+          case 'Animaux':
+            //TODO: Go to PageNiveauxAnimals
+            break;
+          case 'Evaluation':
+            //TODO: Go to PageEvaluation
+            break;
+          default:
+            break;
+        }
+      },
+      child: Container(
+        height: 135,
+        width: 135,
+        decoration: BoxDecoration(
+          color: colour,
+          borderRadius: BorderRadius.circular(20.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black38,
+              blurRadius: 2.0,
+              spreadRadius: 1.0,
+              offset: Offset(1.0, 1.0),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            icon,
+            SizedBox(height: 15.0),
+            Text(
+              text,
+              style: kHomeButtonTextStyle,
+            )
+          ],
+        ),
       ),
     );
   }

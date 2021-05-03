@@ -20,7 +20,7 @@ class InputWidget extends StatelessWidget {
           onChanged: (value) {
             data = value;
           },
-          style: kTextFieldStyle,
+          style: kSignUpTextFieldStyle,
           decoration: kTextFieldDecoration.copyWith(hintText: label),
         ),
       ),

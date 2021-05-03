@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: PageMenu1.getPageName(),
+      //initialRoute: PageMenu1.getPageName(),
+      initialRoute: PageScore.getPageName(),
       routes: {
         PageMenu1.getPageName(): (context) => PageMenu1(),
         PageSignUp.getPageName(): (context) => PageSignUp(),

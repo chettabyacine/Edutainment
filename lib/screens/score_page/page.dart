@@ -21,6 +21,7 @@ class PageScore extends StatefulWidget {
 }
 
 class _PageScoreState extends State<PageScore> {
+  //TODO: MAKE LIST DYNAMIC
   List<Icon> ScoreList = [
     Icon(
       Icons.check,
@@ -115,7 +116,7 @@ class _PageScoreState extends State<PageScore> {
                     colors: [
                       Color(0xFF1490F5),
                       Color(0xFF127FD7),
-                      Color(0xF1062137),
+                      Color(0xC5062137),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20),

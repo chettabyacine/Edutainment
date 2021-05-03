@@ -17,6 +17,15 @@ class InputWidget extends StatelessWidget {
         ),
         title: TextField(
           textAlign: TextAlign.start,
+          keyboardType:
+              label == 'Adresse email' ? TextInputType.emailAddress : null,
+          textCapitalization: label == 'Nom Prénom'
+              ? TextCapitalization.words
+              : TextCapitalization.none,
+          obscureText:
+              (label == 'Mot de passe' || label == 'Confirmer mot de passe')
+                  ? true
+                  : false,
           onChanged: (value) {
             data = value;
           },

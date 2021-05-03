@@ -11,14 +11,15 @@ const kSignUpTitleTextStyle = TextStyle(
   fontWeight: FontWeight.w400,
 );
 const kSignUpTextFieldStyle = TextStyle(
+  color: Color(0xFF666666),
   fontFamily: 'Open Sans',
   fontWeight: FontWeight.w400,
-  fontSize: 13.0,
+  fontSize: 14.0,
 );
 const kSignUpLabelTextStyle = TextStyle(
   fontFamily: 'Open Sans',
   color: Color(0xFF000000),
-  fontSize: 11.0,
+  fontSize: 12.0,
 );
 
 const kHomeButtonTextStyle = TextStyle(

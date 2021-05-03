@@ -5,6 +5,8 @@ import 'screens/menu_1/page.dart';
 import 'screens/home/page.dart';
 import 'utils/constants.dart';
 
+import 'screens/testing_screen/page.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -23,6 +25,9 @@ class MyApp extends StatelessWidget {
         PageSignUp.getPageName(): (context) => PageSignUp(),
         PageLogIn.getPageName(): (context) => PageLogIn(),
         PageHome.getPageName(): (context) => PageHome(),
+
+        TestingPage.getPageName(): (context) =>
+            TestingPage(), // To delete after
       },
     );
   }

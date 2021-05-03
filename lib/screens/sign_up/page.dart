@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import '../../utils/constants.dart';
 import '../../utils/theme_constants.dart';
 import '../sign_up/app_bar.dart';
@@ -19,9 +20,10 @@ class PageSignUp extends StatefulWidget {
 }
 
 class _PageSignUpState extends State<PageSignUp> {
-  String name, birthDay, email, password1, password2;
-  UserLogIn user;
+  String name, email, password1, password2;
+  String birthDay = 'Date de naissance';
   bool _checkbox = false;
+  SignUpUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +48,42 @@ class _PageSignUpState extends State<PageSignUp> {
                     icon: Icons.person,
                     label: 'Nom Prénom',
                   ),
-                  InputWidget(
-                    data: birthDay,
-                    icon: Icons.calendar_today,
-                    label: 'Date de naissance',
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
+                    padding: EdgeInsets.only(left: 10.0),
+                    child: ListTile(
+                      trailing: Icon(
+                        Icons.calendar_today,
+                        color: kBlueColor,
+                      ),
+                      title: TextButton(
+                          onPressed: () {
+                            DatePicker.showDatePicker(context,
+                                showTitleActions: true,
+                                minTime: DateTime(2000, 1, 1),
+                                maxTime: DateTime(2020, 12, 31),
+                                onConfirm: (date) {
+                              setState(() {
+                                List<String> ls;
+                                birthDay = date.toString();
+                                ls = birthDay.split(' ');
+                                birthDay = ls[0];
+                                birthDay =
+                                    birthDay.split('-').reversed.join('-');
+                              });
+                            },
+                                currentTime:
+                                    DateTime.utc(2020, 12, 31, 23, 00, 00),
+                                locale: LocaleType.fr);
+                          },
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              birthDay,
+                              style: kSignUpTextFieldStyle,
+                            ),
+                          )),
+                    ),
                   ),
                   InputWidget(
                     data: email,
@@ -91,7 +125,7 @@ class _PageSignUpState extends State<PageSignUp> {
                   TextButton(
                     onPressed: () {
                       //TODO: Opération d'inscription (Traitement en BDD)
-                      user = UserLogIn(
+                      user = SignUpUser(
                         name: name,
                         birthDay: birthDay,
                         email: email,
@@ -181,8 +215,8 @@ class _PageSignUpState extends State<PageSignUp> {
   }
 }
 
-class UserLogIn {
+class SignUpUser {
   String name, birthDay, email, password1, password2;
-  UserLogIn(
+  SignUpUser(
       {this.name, this.birthDay, this.email, this.password1, this.password2});
 }

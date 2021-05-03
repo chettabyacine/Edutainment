@@ -4,7 +4,9 @@ import '../../utils/theme_constants.dart';
 
 class AppBarWidget extends StatelessWidget {
   final double height;
-  AppBarWidget({this.height});
+  final SvgPicture logo;
+  final String title;
+  AppBarWidget({this.title, this.logo, this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +28,11 @@ class AppBarWidget extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SvgPicture.asset('assets/bird.svg'),
+                    logo,
                     Container(
                       child: Text(
-                        'Edutainment',
-                        style: kTitleTextStyle,
+                        title,
+                        style: kSignUpTitleTextStyle,
                       ),
                     )
                   ],

@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../utils/constants.dart';
 import '../../utils/theme_constants.dart';
 import '../sign_up/app_bar.dart';
 import '../log_in/page.dart';
+import '../home/page.dart';
 import '../sign_up/input_widget.dart';
 
 class PageSignUp extends StatefulWidget {
@@ -26,10 +28,13 @@ class _PageSignUpState extends State<PageSignUp> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        //appBar: AppBar(),
         body: Column(
           children: [
-            AppBarWidget(height: 170.0),
+            AppBarWidget(
+              height: 170.0,
+              logo: SvgPicture.asset('assets/bird.svg'),
+              title: kProjectName,
+            ),
             Expanded(
               child: ListView(
                 children: [
@@ -79,7 +84,7 @@ class _PageSignUpState extends State<PageSignUp> {
                       ),
                       title: Text(
                         'J’accepte la réglemation.',
-                        style: kLabelTextStyle,
+                        style: kSignUpLabelTextStyle,
                       ),
                     ),
                   ),
@@ -93,6 +98,7 @@ class _PageSignUpState extends State<PageSignUp> {
                         password1: password1,
                         password2: password2,
                       );
+                      Navigator.pushNamed(context, PageHome.getPageName());
                     },
                     child: Container(
                       child: Text(
@@ -129,7 +135,7 @@ class _PageSignUpState extends State<PageSignUp> {
                     textAlign: TextAlign.center,
                     text: TextSpan(
                       text: 'Vous avez déja un compte? ',
-                      style: kLabelTextStyle,
+                      style: kSignUpLabelTextStyle,
                       children: [
                         TextSpan(
                           text: 'S\'identifier',
@@ -155,7 +161,7 @@ class _PageSignUpState extends State<PageSignUp> {
                             ..onTap = () {
                               //TODO: Confirmation de l'identité + Modifier mot de passe
                             },
-                          style: kLabelTextStyle.copyWith(
+                          style: kSignUpLabelTextStyle.copyWith(
                             color: kBlueColor,
                           ),
                         ),

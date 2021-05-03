@@ -1,14 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import '../../utils/theme_constants.dart';
 import '../sign_up/app_bar.dart';
-import '../log_in/page.dart';
-import '../sign_up/input_widget.dart';
-
 
 class PageLogIn extends StatefulWidget {
-
   static const String _pageName = kPageNameLogIn;
   static String getPageName() {
     return _pageName;
@@ -66,7 +61,8 @@ class _PageLogInState extends State<PageLogIn> {
         minWidth: 100.0,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         onPressed: () {},
-        child: Text("Allons-y!",
+        child: Text(
+          "Allons-y!",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontFamily: 'Acme',
@@ -88,13 +84,22 @@ class _PageLogInState extends State<PageLogIn> {
               child: ListView(
                 children: <Widget>[
                   SizedBox(height: 70.0),
-                  Padding(child: emailField,padding: EdgeInsets.symmetric(horizontal: 40.0),),
+                  Padding(
+                    child: emailField,
+                    padding: EdgeInsets.symmetric(horizontal: 40.0),
+                  ),
                   SizedBox(height: 25.0),
-                  Padding(child: passwordField,padding: EdgeInsets.symmetric(horizontal: 40.0),),
+                  Padding(
+                    child: passwordField,
+                    padding: EdgeInsets.symmetric(horizontal: 40.0),
+                  ),
                   SizedBox(
                     height: 35.0,
                   ),
-                  Padding(child: loginButon,padding: EdgeInsets.symmetric(horizontal:110.0),),
+                  Padding(
+                    child: loginButon,
+                    padding: EdgeInsets.symmetric(horizontal: 110.0),
+                  ),
                   SizedBox(
                     height: 127.0,
                   ),
@@ -102,7 +107,7 @@ class _PageLogInState extends State<PageLogIn> {
                     textAlign: TextAlign.center,
                     text: TextSpan(
                       text: 'Vous avez déja un compte? ',
-                      style: kLabelTextStyle,
+                      style: kSignUpLabelTextStyle,
                       children: [
                         TextSpan(
                           text: 'S\'identifier',
@@ -130,14 +135,13 @@ class _PageLogInState extends State<PageLogIn> {
                                  ..onTap = () {
                                    //TODO: Confirmation de l'identité + Modifier mot de passe
                                  },*/
-                          style: kLabelTextStyle.copyWith(
+                          style: kSignUpLabelTextStyle.copyWith(
                             color: kBlueColor,
                           ),
                         ),
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -145,7 +149,5 @@ class _PageLogInState extends State<PageLogIn> {
         ),
       ),
     );
-
   }
 }
-

@@ -80,15 +80,15 @@ class _PageScoreState extends State<PageScore> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(""),//TODO : ADD THE LINK HERE
+                  image: AssetImage("assets/background math.jpg"),
                   fit: BoxFit.cover)
           ),
           child: Column(
             children: [
               App_Bar(
-                //TODO / JUST MODIFIE THE UPPER SHAPE PICTURE
                 title: 'Calculs', // to change
                 height: 135,
+                domaine: 1,
               ),
               SizedBox(
                 height: 70,

@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import '../../utils/constants.dart';
 import '../../utils/theme_constants.dart';
-import 'local_widgets/WidgetAppBar.dart';
+import '../../widgets/WidgetAppBar.dart';
 import '../log_in/page.dart';
 import '../home/page.dart';
 import 'local_widgets/WidgetInputSignUp.dart';
@@ -13,7 +13,7 @@ import 'package:edutainment/widgets/WidgetFooterText.dart';
 import 'local_widgets/ClassUser.dart';
 
 class PageSignUp extends StatefulWidget {
-  static const String _pageName = kPageNameMenu1;
+  static const String _pageName = kPageNameSignUp;
   static String getPageName() {
     return _pageName;
   }

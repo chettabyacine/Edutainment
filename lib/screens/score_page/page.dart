@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:edutainment/screens/score_page/App_Bar_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../sign_up/app_bar.dart';
-import '../../utils/theme_constants.dart';
+
 import '../../utils/constants.dart';
 import 'App_Bar_widget.dart';
 
@@ -80,9 +77,10 @@ class _PageScoreState extends State<PageScore> {
         body: Container(
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/background math.jpg"),
-                  fit: BoxFit.cover)
+            image: DecorationImage(
+              image: AssetImage("assets/background math.jpg"),
+              fit: BoxFit.cover,
+            ),
           ),
           child: Column(
             children: [
@@ -98,13 +96,13 @@ class _PageScoreState extends State<PageScore> {
                 padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -138,7 +136,8 @@ class _PageScoreState extends State<PageScore> {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [//TODO: CREATE METHOD RETURN THE STARS OF SCORE
+                      children: [
+                        //TODO: CREATE METHOD RETURN THE STARS OF SCORE
                         SvgPicture.asset('assets/star full.svg'),
                         SvgPicture.asset('assets/star full.svg'),
                         SvgPicture.asset('assets/star full.svg'),

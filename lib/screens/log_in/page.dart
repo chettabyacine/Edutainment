@@ -4,7 +4,7 @@ import 'package:edutainment/widgets/WidgetActionButton.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import '../../utils/theme_constants.dart';
-import '../sign_up/local_widgets/WidgetAppBar.dart';
+import '../../widgets/WidgetAppBar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'local_widgets/EmailInput.dart';
 import '../../widgets/WidgetFooterPasswordForgot.dart';

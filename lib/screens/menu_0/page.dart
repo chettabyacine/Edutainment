@@ -1,5 +1,5 @@
 import 'package:edutainment/screens/log_in/page.dart';
-import 'package:edutainment/screens/sign_up/local_widgets/WidgetAppBar.dart';
+import 'file:///D:/Mobile/Flutter/edutainment/lib/widgets/WidgetAppBar.dart';
 import 'package:edutainment/screens/sign_up/page.dart';
 import 'package:edutainment/widgets/WidgetActionButton.dart';
 import 'package:flutter/material.dart';

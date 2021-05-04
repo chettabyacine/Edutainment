@@ -27,7 +27,6 @@ class MyApp extends StatelessWidget {
         PageHome.getPageName(): (context) => PageHome(),
         PageMenu0.getPageName(): (context) => PageMenu0(),
         PageScore.getPageName(): (context) => PageScore(),
-
       },
     );
   }

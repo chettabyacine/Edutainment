@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../sign_up/local_widgets/WidgetAppBar.dart';
+import '../../widgets/WidgetAppBar.dart';
 import '../../utils/theme_constants.dart';
 import '../../utils/constants.dart';
 import 'local_widgets/WidgetHomeButton.dart';

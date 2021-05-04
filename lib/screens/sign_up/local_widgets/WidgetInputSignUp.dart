@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../utils/theme_constants.dart';
+import '../../../utils/theme_constants.dart';
 
+// ignore: must_be_immutable
 class InputWidget extends StatelessWidget {
-  String data, label;
+  String data;
+  final String label;
   final IconData icon;
+
   InputWidget({this.data, this.icon, this.label});
 
   @override
@@ -13,9 +16,10 @@ class InputWidget extends StatelessWidget {
       child: ListTile(
         trailing: Icon(
           icon,
-          color: kBlueColor,
+          color: kVioletColor,
         ),
         title: TextField(
+          textInputAction: TextInputAction.next,
           textAlign: TextAlign.start,
           keyboardType:
               label == 'Adresse email' ? TextInputType.emailAddress : null,

@@ -1,7 +1,16 @@
+import 'package:edutainment/screens/home/page.dart';
+import 'package:edutainment/screens/sign_up/page.dart';
+import 'package:edutainment/widgets/WidgetActionButton.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import '../../utils/theme_constants.dart';
-import '../sign_up/app_bar.dart';
+import '../sign_up/local_widgets/WidgetAppBar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'local_widgets/EmailInput.dart';
+import '../../widgets/WidgetFooterPasswordForgot.dart';
+import '../../widgets/WidgetFooterText.dart';
+
+import 'local_widgets/PasswordInput.dart';
 
 class PageLogIn extends StatefulWidget {
   static const String _pageName = kPageNameLogIn;
@@ -14,134 +23,53 @@ class PageLogIn extends StatefulWidget {
 }
 
 class _PageLogInState extends State<PageLogIn> {
-  TextStyle style = TextStyle(fontSize: 20.0);
+  TextStyle style = kSignUpLabelTextStyle;
 
   @override
   Widget build(BuildContext context) {
-    final emailField = TextField(
-      obscureText: false,
-      style: style,
-      decoration: InputDecoration(
-        prefixIcon: Icon(
-          Icons.email,
-          color: Color(0xFF3347FF),
-        ),
-        contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        hintText: "Adresse email",
-        hintStyle: TextStyle(color: Color(0xFF3347FF)),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-          borderSide: BorderSide(color: Color(0xFF3347FF), width: 2),
-        ),
-      ),
-    );
-    final passwordField = TextField(
-      obscureText: true,
-      style: style,
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        prefixIcon: Icon(
-          Icons.lock,
-          color: Color(0xFF3347FF),
-        ),
-        hintText: "Mot de passe",
-        hintStyle: TextStyle(color: Color(0xFF3347FF)),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30.0)),
-          borderSide: BorderSide(color: Color(0xFF3347FF), width: 2),
-        ),
-      ),
-    );
-
-    final loginButon = Material(
-      elevation: 10.0,
-      borderRadius: BorderRadius.circular(30.0),
-      color: Color(0xff3347FF),
-      child: MaterialButton(
-        minWidth: 100.0,
-        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {},
-        child: Text(
-          "Allons-y!",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontFamily: 'Acme',
-            color: Colors.white,
-            fontSize: 25.0,
-          ),
-        ),
-      ),
-    );
-
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
-        //appBar: AppBar(),
         body: Column(
           children: [
-            AppBarWidget(height: 250.0),
+            AppBarWidget(
+              height: 250.0,
+              logo: SvgPicture.asset('assets/bird.svg'),
+              title: kProjectName,
+            ),
             Expanded(
-              child: ListView(
+              child: Column(
                 children: <Widget>[
                   SizedBox(height: 70.0),
                   Padding(
-                    child: emailField,
+                    child: EmailInput(),
                     padding: EdgeInsets.symmetric(horizontal: 40.0),
                   ),
                   SizedBox(height: 25.0),
                   Padding(
-                    child: passwordField,
+                    child: PasswordInput(),
                     padding: EdgeInsets.symmetric(horizontal: 40.0),
                   ),
                   SizedBox(
                     height: 35.0,
                   ),
                   Padding(
-                    child: loginButon,
-                    padding: EdgeInsets.symmetric(horizontal: 110.0),
-                  ),
-                  SizedBox(
-                    height: 127.0,
-                  ),
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      text: 'Vous avez déja un compte? ',
-                      style: kSignUpLabelTextStyle,
-                      children: [
-                        TextSpan(
-                          text: 'S\'identifier',
-                          //TODO : ADD TapGestureRecognizer
-                          /*recognizer: TapGestureRecognizer()
-                                 ..onTap = () {
-                                   Navigator.pushNamed(
-                                       context, PageLogIn.getPageName());
-                                 },*/
-                          style: TextStyle(
-                            color: kBlueColor,
-                          ),
-                        ),
-                      ],
+                    padding: EdgeInsets.symmetric(horizontal: 0.0),
+                    child: WidgetActionButton(
+                      text: 'S\'identifier',
+                      destination: PageHome.getPageName(),
+                      isFilled: true,
                     ),
                   ),
-                  RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Mot de passe oublié?',
-                          //TODO : ADD TapGestureRecognizer
-                          /*recognizer: TapGestureRecognizer()
-                                 ..onTap = () {
-                                   //TODO: Confirmation de l'identité + Modifier mot de passe
-                                 },*/
-                          style: kSignUpLabelTextStyle.copyWith(
-                            color: kBlueColor,
-                          ),
-                        ),
-                      ],
-                    ),
+                  Expanded(
+                    child: Container(),
                   ),
+                  FooterText(
+                      text1: 'Vous n\'avez pas un compte? ',
+                      text2: 'S\'inscrire',
+                      destination: PageSignUp.getPageName()),
+                  FooterPasswordForgot(),
                 ],
               ),
             ),

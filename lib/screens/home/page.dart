@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../sign_up/app_bar.dart';
+import '../sign_up/local_widgets/WidgetAppBar.dart';
 import '../../utils/theme_constants.dart';
 import '../../utils/constants.dart';
+import 'local_widgets/WidgetHomeButton.dart';
 
 class PageHome extends StatefulWidget {
   static const String _pageName = kPageNameHome;
@@ -59,7 +60,7 @@ class _PageHomeState extends State<PageHome> {
                     children: [
                       HomeButton(
                         text: 'Calculs',
-                        colour: Color(0xFF1490F5),
+                        colour: kBlueColor,
                         icon: SvgPicture.asset(
                           'assets/icon calculs.svg',
                         ),
@@ -67,7 +68,7 @@ class _PageHomeState extends State<PageHome> {
                       SizedBox(width: 10.0),
                       HomeButton(
                         text: 'Géométrie',
-                        colour: Color(0xFF2CBAA4),
+                        colour: kGreenColor,
                         icon: SvgPicture.asset(
                           'assets/icon geometry.svg',
                         ),
@@ -80,15 +81,15 @@ class _PageHomeState extends State<PageHome> {
                     children: [
                       HomeButton(
                         text: 'Animaux',
-                        colour: Color(0xFFEDAE1D),
+                        colour: kYellowColor,
                         icon: SvgPicture.asset(
-                          'assets/icon_animaux.svg',
+                          'assets/icon animaux.svg',
                         ),
                       ),
                       SizedBox(width: 10.0),
                       HomeButton(
                         text: 'Evaluation',
-                        colour: Color(0xFFFF6868),
+                        colour: kRedColor,
                         icon: SvgPicture.asset(
                           'assets/icon evaluation.svg',
                         ),
@@ -108,85 +109,27 @@ class _PageHomeState extends State<PageHome> {
                 color: Colors.white,
               ),
               label: 'Home',
-              backgroundColor: kBlueColor,
+              backgroundColor: kVioletColor,
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset('assets/icon rank.svg'),
               label: 'Rang',
-              backgroundColor: kBlueColor,
+              backgroundColor: kVioletColor,
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset('assets/icon stats.svg'),
               label: 'Statistiques',
-              backgroundColor: kBlueColor,
+              backgroundColor: kVioletColor,
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
               label: 'Paramètres',
-              backgroundColor: kBlueColor,
+              backgroundColor: kVioletColor,
             ),
           ],
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.white,
           onTap: _onItemTapped,
-        ),
-      ),
-    );
-  }
-}
-
-class HomeButton extends StatelessWidget {
-  final String text;
-  final Color colour;
-  final SvgPicture icon;
-  HomeButton({this.text, this.colour, this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        switch (text) {
-          case 'Calculs':
-            //TODO: Go to PageNiveauxCalculs
-            break;
-          case 'Géométrie':
-            //TODO: Go to PageNiveauxGeometry
-            break;
-          case 'Animaux':
-            //TODO: Go to PageNiveauxAnimals
-            break;
-          case 'Evaluation':
-            //TODO: Go to PageEvaluation
-            break;
-          default:
-            break;
-        }
-      },
-      child: Container(
-        height: 135,
-        width: 135,
-        decoration: BoxDecoration(
-          color: colour,
-          borderRadius: BorderRadius.circular(20.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black38,
-              blurRadius: 2.0,
-              spreadRadius: 1.0,
-              offset: Offset(1.0, 1.0),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            icon,
-            SizedBox(height: 15.0),
-            Text(
-              text,
-              style: kHomeButtonTextStyle,
-            )
-          ],
         ),
       ),
     );

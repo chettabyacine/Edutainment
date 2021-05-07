@@ -13,12 +13,12 @@ class LevelCalculs extends Level {
       int domainIndex,
       int highestScore,
       int currentScore,
-      int numbreOfStars,
+      int numberOfStars,
       int indexOfDataBase,
       List<QuestionCalculs> waitingQuestions,
       int timeLeft)
       : super(id:id, userId:userId, domainIndex:domainIndex, highestScore:highestScore, currentScore:currentScore,
-      numbreOfStars:numbreOfStars, indexOfDataBase:indexOfDataBase) {
+      numberOfStars:numberOfStars, indexOfDataBase:indexOfDataBase) {
     this._waitingQuestions = waitingQuestions;
     this._timeLeft = timeLeft;
   }

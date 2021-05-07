@@ -11,11 +11,11 @@ class LevelGeometry extends Level {
       int domainIndex,
       int highestScore,
       int currentScore,
-      int numbreOfStars,
+      int numberOfStars,
       int indexOfDataBase,
       List<QuestionGeometry> waitingQuestions)
       : super(id:id, userId:userId, domainIndex:domainIndex, highestScore:highestScore, currentScore:currentScore,
-      numbreOfStars:numbreOfStars, indexOfDataBase:indexOfDataBase) {
+      numberOfStars:numberOfStars, indexOfDataBase:indexOfDataBase) {
     this._waitingQuestions = waitingQuestions;
   }
 

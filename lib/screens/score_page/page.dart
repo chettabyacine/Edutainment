@@ -1,13 +1,16 @@
-import 'package:edutainment/screens/score_page/App_Bar_widget.dart';
+import 'package:edutainment/models/DomainNames.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../utils/constants.dart';
-import 'App_Bar_widget.dart';
+import 'package:edutainment/widgets/WidgetAppBarDynamic.dart';
+import 'package:edutainment/widgets/WidgetJouerMaintenantButton.dart';
 
 class PageScore extends StatefulWidget {
   static const String _pageName = kPageNameScore;
+  @required DomainNames domain;
+  PageScore({this.domain});
+
 
   static String getPageName() {
     return _pageName;
@@ -78,16 +81,16 @@ class _PageScoreState extends State<PageScore> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/background math.jpg"),
+              image: AssetImage("assets/background ${domainIndex[widget.domain]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
-              App_Bar(
-                title: 'Calculs', // to change
+              AppBarDynamicWidget(
+                title: domainString[widget.domain], // to change
                 height: 135,
-                domaine: 1,
+                domaine: domainIndex[widget.domain],
               ),
               SizedBox(
                 height: 70,
@@ -165,26 +168,7 @@ class _PageScoreState extends State<PageScore> {
             ],
           ),
         ),
-        bottomNavigationBar: Material(
-          elevation: 10.0,
-          borderRadius: BorderRadius.circular(0.0),
-          color: Color(0xff1490F5),
-          child: MaterialButton(
-            minWidth: 130.0,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed:
-                () {}, //TODO : WHEN WE PRESS THE BUTTON WE MOVE TO ANOTHER PAGE
-            child: Text(
-              "Continuer",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Acme',
-                color: Colors.white,
-                fontSize: 25.0,
-              ),
-            ),
-          ),
-        ),
+        bottomNavigationBar: WidgetJouerMaintenantButton(domain: widget.domain,),
       ),
     );
   }

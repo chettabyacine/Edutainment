@@ -1,3 +1,5 @@
+import 'package:edutainment/models/DomainNames.dart';
+import 'package:edutainment/screens/road/page.dart';
 import 'package:flutter/material.dart';
 import 'screens/log_in/page.dart';
 import 'screens/sign_up/page.dart';
@@ -6,7 +8,6 @@ import 'screens/home/page.dart';
 import 'utils/constants.dart';
 import 'utils/theme_constants.dart';
 import 'screens/score_page/page.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -20,13 +21,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kVioletColor,
       ),
-      initialRoute: PageMenu0.getPageName(),
+      initialRoute: PageRoad.getPageName(),
       routes: {
         PageSignUp.getPageName(): (context) => PageSignUp(),
         PageLogIn.getPageName(): (context) => PageLogIn(),
         PageHome.getPageName(): (context) => PageHome(),
         PageMenu0.getPageName(): (context) => PageMenu0(),
-        PageScore.getPageName(): (context) => PageScore(),
+        PageScore.getPageName(): (context) => PageScore(domain: DomainNames.animals,),
+        PageRoad.getPageName() : (context) => PageRoad(domain: DomainNames.animals,),
       },
     );
   }

@@ -1,15 +1,14 @@
-import 'package:edutainment/screens/home/page.dart';
-import 'package:edutainment/screens/score_page/page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../utils/theme_constants.dart';
+import 'package:edutainment/utils/theme_constants.dart';
 
-class App_Bar extends StatelessWidget {
+
+class AppBarDynamicWidget extends StatelessWidget {
   final double height;
   final String title;
   final int domaine;
 
-  App_Bar({this.title,  this.height,this.domaine});
+  AppBarDynamicWidget({this.title,  this.height,this.domaine});
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +38,14 @@ class App_Bar extends StatelessWidget {
                             icon: Icon(
                               Icons.arrow_back_ios,
                               color: Colors.white,
-                               size: 30.0,
-                           ),
-                            onPressed: () { //TODO : CHANGE THE ROUTE FOR ISLAM
-                          Navigator.pushNamed(context, PageHome.getPageName());
-                          },
-                         ),
-                         ),
+                              size: 30.0,
+                            ),
+                            onPressed: () { //TODO : CHANGE THE ROUTE
+                              //Navigator.pushNamed(context, PageHome.getPageName());
+                              //TODO : deal with navigation (islam)
+                            },
+                          ),
+                        ),
                       ],
                     ),
                     Row(

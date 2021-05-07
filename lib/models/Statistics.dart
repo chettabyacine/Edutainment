@@ -5,20 +5,7 @@ class Statistics{
    Map<DateTime, int> _animals;
    Map<DateTime, int> all;
 
-    Map<DateTime, int> domain(int index) {
-     if (index == 1)
-       return this._calculs;
-     if (index == 2)
-       return this._geometry;
-     if (index == 3)
-       return this._animals;
-
-     return null;
-   }
-   Statistics();
-
-
-    Map<DateTime, int> domain2(DomainNames name) {
+    Map<DateTime, int> domain(DomainNames name) {
      if (name == DomainNames.calculs)
        return this._calculs;
      if (name == DomainNames.geometry)

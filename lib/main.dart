@@ -1,4 +1,5 @@
 import 'package:edutainment/models/DomainNames.dart';
+import 'package:edutainment/screens/question_qcm_text_text//page.dart';
 import 'package:edutainment/screens/road/page.dart';
 import 'package:flutter/material.dart';
 import 'screens/log_in/page.dart';
@@ -21,14 +22,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kVioletColor,
       ),
-      initialRoute: PageRoad.getPageName(),
+      initialRoute: PageQuestionQcmTextText.getPageName(),
       routes: {
         PageSignUp.getPageName(): (context) => PageSignUp(),
         PageLogIn.getPageName(): (context) => PageLogIn(),
         PageHome.getPageName(): (context) => PageHome(),
         PageMenu0.getPageName(): (context) => PageMenu0(),
         PageScore.getPageName(): (context) => PageScore(domain: DomainNames.animals,),
-        PageRoad.getPageName() : (context) => PageRoad(domain: DomainNames.animals,),
+        PageRoad.getPageName() : (context) => PageRoad(domain: DomainNames.geometry,),
+        PageQuestionQcmTextText.getPageName(): (context) => PageQuestionQcmTextText(),
       },
     );
   }

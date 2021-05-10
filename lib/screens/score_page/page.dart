@@ -9,7 +9,8 @@ import 'package:edutainment/widgets/WidgetJouerMaintenantButton.dart';
 class PageScore extends StatefulWidget {
   static const String _pageName = kPageNameScore;
   @required DomainNames domain;
-  PageScore({this.domain});
+  @required int stars;
+  PageScore({this.domain,this.stars});
 
 
   static String getPageName() {
@@ -73,6 +74,9 @@ class _PageScoreState extends State<PageScore> {
     ),
   ];
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -115,9 +119,9 @@ class _PageScoreState extends State<PageScore> {
                       0.9,
                     ],
                     colors: [
-                      Color(0xFF1490F5),
-                      Color(0xFF127FD7),
-                      Color(0xC5062137),
+                      scoreColor[widget.domain][0],
+                      scoreColor[widget.domain][1],
+                      scoreColor[widget.domain][2],
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20),
@@ -137,15 +141,42 @@ class _PageScoreState extends State<PageScore> {
                     SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    if( widget.stars == 0)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/star empty.svg'),
+                          SvgPicture.asset('assets/star empty.svg'),
+                          SvgPicture.asset('assets/star empty.svg'),
+                        ],
+                      ),
+                    if( widget.stars == 1)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        //TODO: CREATE METHOD RETURN THE STARS OF SCORE
-                        SvgPicture.asset('assets/star full.svg'),
-                        SvgPicture.asset('assets/star full.svg'),
-                        SvgPicture.asset('assets/star full.svg'),
-                      ],
-                    ),
+                       SvgPicture.asset('assets/star full.svg'),
+                       SvgPicture.asset('assets/star empty.svg'),
+                       SvgPicture.asset('assets/star empty.svg'),
+                     ],
+                     ),
+                    if( widget.stars == 2)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/star full.svg'),
+                          SvgPicture.asset('assets/star full.svg'),
+                          SvgPicture.asset('assets/star empty.svg'),
+                        ],
+                      ),
+                    if( widget.stars == 3)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/star full.svg'),
+                          SvgPicture.asset('assets/star full.svg'),
+                          SvgPicture.asset('assets/star full.svg'),
+                        ],
+                      ),
                     SizedBox(
                       height: 10,
                     ),

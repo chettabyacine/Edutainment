@@ -7,3 +7,5 @@ const String kPagePasswordForgot = "PagePasswordForgot";
 const String kPageNameScore = "PageScore";
 const String kPageRoad = "PageRoad";
 const String kPageQuestionQcmTextText = "PageQuestionQcmTextText";
+const String kPageQuestionQcmImageText = "PageQuestionQcmImageText";
+const String kPageQuestionQcmTextImage = "PageQuestionQcmTextImage";

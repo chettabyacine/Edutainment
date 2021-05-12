@@ -7,13 +7,13 @@ class User {
    String _password;
    int _globalRank;
    List<Domain> _domains;
-  DateTime _birthDate;
+   DateTime _birthDate;
    DateTime _signUpDate;
    Statistics _statistics;
    bool _private;
 
-  User(int id, String name, String emailString, String password, int globalRank, DateTime birthDate , DateTime signUpDate,
-   List<Domain> domains, String birthdate , Statistics statistics , bool prive ) {
+  User({int id, String name, String emailString, String password, int globalRank, DateTime birthDate , DateTime signUpDate,
+   List<Domain> domains , Statistics statistics , bool private} ) {
     this._id = id;
     this._name = name;
     this._emailString = emailString;
@@ -23,7 +23,7 @@ class User {
     this._birthDate = birthDate;
     this._signUpDate= signUpDate;
     this._statistics = statistics ;
-    this._private = prive ;
+    this._private = private ;
   }
 
   int getId(int Id ) {
@@ -34,7 +34,7 @@ class User {
     this._id = id;
   }
 
-  String getname(String name ) {
+  String getName(String name ) {
     return this._name;
   }
 
@@ -89,13 +89,28 @@ class User {
   void setPrivate(bool private) {
     this._private = private;
   }
-  void chooseDomain(){
-
+  DateTime getSignUpDate(){
+    return this._signUpDate;
   }
-  void Deconnexion(){
-
+  void setSignUpDate(DateTime signUpDate){
+    this._signUpDate=signUpDate;
   }
-  void Synchroniser(){
 
+  List<Domain> getDomains(){
+    return this._domains;
   }
+  void setDomains(List<Domain> domains){
+    this._domains=domains;
+  }
+
+  //TODO : DEFINE THESE FUNCTIONS???
+   void chooseDomain(){
+
+   }
+   void Deconnexion(){
+
+   }
+   void Synchroniser(){
+
+   }
 }

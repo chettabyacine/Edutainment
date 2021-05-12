@@ -9,6 +9,10 @@ const String kPageNameHome = "PageHome";
 const String kPageEntryPoint = "PageEntryPoint";
 const String kPagePasswordForgot = "PagePasswordForgot";
 const String kPageNameScore = "PageScore";
+const String kPageRoad = "PageRoad";
+const String kPageQuestionQcmTextText = "PageQuestionQcmTextText";
+const String kPageQuestionQcmImageText = "PageQuestionQcmImageText";
+const String kPageQuestionQcmTextImage = "PageQuestionQcmTextImage";
 const String kPageCalculsGame = "PageCalculsGame";
 
 const List<Icon> kIcons = [

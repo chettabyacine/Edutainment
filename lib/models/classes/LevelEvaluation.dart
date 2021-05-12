@@ -17,13 +17,13 @@ import 'NumberQuestions.dart';
     List<QuestionCalculs> incorrectlyAnsweredCalculs;
 
     NumberQuestions questionsNumber;
-     LevelEvaluation(int id, int userId, int highestScore, int currentScore, int numbreOfStars, int indexOfDataBase,
+     LevelEvaluation(int id, int userId, int highestScore, int currentScore, int numberOfStars, int indexOfDataBase,
         List<QuestionAnimals> waitingQuestionsAnimals, List<QuestionAnimals> correctlyAnsweredAnimals,
         List<QuestionAnimals> incorrectlyAnsweredAnimals, List<QuestionGeometry> waitingQuestionsGeometry,
         List<QuestionGeometry> correctlyAnsweredGeometry, List<QuestionGeometry> incorrectlyAnsweredGeometry,
         List<QuestionCalculs> waitingQuestionsCalculs, List<QuestionCalculs> correctlyAnsweredCalculs,
         List<QuestionCalculs> incorrectlyAnsweredCalculs, NumberQuestions questionsNumber) :
-      super(id:id, userId:userId, highestScore:highestScore, currentScore:currentScore, numbreOfStars:numbreOfStars, indexOfDataBase:indexOfDataBase){
+      super(id:id, userId:userId, highestScore:highestScore, currentScore:currentScore, numberOfStars:numberOfStars, indexOfDataBase:indexOfDataBase){
       this.waitingQuestionsAnimals = waitingQuestionsAnimals;
       this.correctlyAnsweredAnimals = correctlyAnsweredAnimals;
       this.incorrectlyAnsweredAnimals = incorrectlyAnsweredAnimals;

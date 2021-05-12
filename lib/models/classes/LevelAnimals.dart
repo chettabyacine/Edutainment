@@ -10,7 +10,7 @@ class LevelAnimals extends Level {
       int domainIndex,
       int highestScore,
       int currentScore,
-      int numbreOfStars,
+      int numberOfStars,
       int indexOfDataBase,
       List<QuestionAnimals> waitingQuestions)
       : super(
@@ -19,7 +19,7 @@ class LevelAnimals extends Level {
       domainIndex:domainIndex,
       highestScore:highestScore,
       currentScore:currentScore,
-      numbreOfStars:numbreOfStars,
+      numberOfStars:numberOfStars,
       indexOfDataBase : indexOfDataBase) {
     this._waitingQuestions = waitingQuestions;
   }

@@ -8,6 +8,8 @@ const kGreenColor = Color(0xFF2CBAA4);
 const kYellowColor = Color(0xFFEDAE1D);
 const kRedColor = Color(0xFFFF6868);
 
+const double kHeightAppBar = 135;
+
 const kFontWeight1 = FontWeight.w500;
 
 const kSignUpTitleTextStyle = TextStyle(
@@ -16,12 +18,14 @@ const kSignUpTitleTextStyle = TextStyle(
   fontSize: 36.0,
   fontWeight: kFontWeight1,
 );
+
 const kSignUpTextFieldStyle = TextStyle(
   color: Color(0xFF666666),
   fontFamily: 'Open Sans',
   fontWeight: kFontWeight1,
   fontSize: 14.0,
 );
+
 const kSignUpLabelTextStyle = TextStyle(
   fontFamily: 'Open Sans',
   color: Color(0xFF000000),

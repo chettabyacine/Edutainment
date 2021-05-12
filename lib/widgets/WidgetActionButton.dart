@@ -33,7 +33,7 @@ class WidgetActionButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(50.0),
         border: Border.all(
           color: kVioletColor,
-          width: 2,
+          width: 1,
         ),
         boxShadow: [
           BoxShadow(

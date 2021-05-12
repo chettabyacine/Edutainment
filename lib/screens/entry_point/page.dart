@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class PageMenu0 extends StatelessWidget {
-  static const String _pageName = kPageNameMenu0;
+class PageEntryPoint extends StatelessWidget {
+  static const String _pageName = kPageEntryPoint;
 
   static String getPageName() {
     return _pageName;

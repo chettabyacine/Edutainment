@@ -1,14 +1,17 @@
+import 'package:flutter/material.dart';
+
 import 'Level.dart';
 import 'QuestionCalculs.dart';
+
 class LevelCalculs extends Level {
   List<QuestionCalculs> _waitingQuestions;
   List<QuestionCalculs> _correctlyAnswered;
   List<QuestionCalculs> _incorrectlyAnswered;
-  static int _Duration;
+  int _duration;
   int _timeLeft;
 
   LevelCalculs(
-      int id,
+      {int id,
       int userId,
       int domainIndex,
       int highestScore,
@@ -16,11 +19,22 @@ class LevelCalculs extends Level {
       int numbreOfStars,
       int indexOfDataBase,
       List<QuestionCalculs> waitingQuestions,
-      int timeLeft)
-      : super(id:id, userId:userId, domainIndex:domainIndex, highestScore:highestScore, currentScore:currentScore,
-      numbreOfStars:numbreOfStars, indexOfDataBase:indexOfDataBase) {
+      int duration,
+      Color color,
+      int timeLeft})
+      : super(
+          id: id,
+          userId: userId,
+          domainIndex: domainIndex,
+          highestScore: highestScore,
+          currentScore: currentScore,
+          numbreOfStars: numbreOfStars,
+          indexOfDataBase: indexOfDataBase,
+          color: color,
+        ) {
     this._waitingQuestions = waitingQuestions;
     this._timeLeft = timeLeft;
+    this._duration = duration;
   }
 
   List<QuestionCalculs> getWaitingQuestions() {
@@ -47,11 +61,19 @@ class LevelCalculs extends Level {
     this._incorrectlyAnswered = incorrectlyAnswered;
   }
 
-  static int getDuration() {
-    return LevelCalculs._Duration;
+  int getDuration() {
+    return this._duration;
   }
 
-  static void setDuration(int duration) {
-    LevelCalculs._Duration = duration;
+  void setDuration(int duration) {
+    this._duration = duration;
+  }
+
+  void setTimeLeft(int time) {
+    this._timeLeft = time;
+  }
+
+  int getTimeLeft() {
+    return this._timeLeft;
   }
 }

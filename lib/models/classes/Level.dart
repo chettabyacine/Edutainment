@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Level {
   int _id;
   int _userId;
@@ -6,10 +8,18 @@ class Level {
   int _currentScore = 8;
   int _numbreOfStars;
   int _indexOfDataBase;
+  Color _color;
   static int _averageScore;
 
-  Level({int id, int userId, int domainIndex, int highestScore, int currentScore,
-      int numbreOfStars, int indexOfDataBase}) {
+  Level(
+      {int id,
+      int userId,
+      int domainIndex,
+      int highestScore,
+      int currentScore,
+      int numbreOfStars,
+      int indexOfDataBase,
+      Color color}) {
     this._id = id;
     this._userId = userId;
     this._domainIndex = domainIndex;
@@ -17,6 +27,7 @@ class Level {
     this._currentScore = currentScore;
     this._numbreOfStars = numbreOfStars;
     this._indexOfDataBase = indexOfDataBase;
+    this._color = color;
   }
 
   int getId() {
@@ -73,6 +84,14 @@ class Level {
 
   static void setAverageScore(int averageScore) {
     Level._averageScore = averageScore;
+  }
+
+  void setColor(Color color) {
+    this._color = color;
+  }
+
+  Color getColor() {
+    return this._color;
   }
 
   void incrementCurrentScore() {

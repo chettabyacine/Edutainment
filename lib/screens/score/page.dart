@@ -1,10 +1,9 @@
-import 'package:edutainment/screens/score_page/App_Bar_widget.dart';
+import 'package:edutainment/utils/theme_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../utils/constants.dart';
-import 'App_Bar_widget.dart';
+import '../../widgets/WidgetAppBarDomain.dart';
 
 class PageScore extends StatefulWidget {
   static const String _pageName = kPageNameScore;
@@ -19,56 +18,8 @@ class PageScore extends StatefulWidget {
 
 class _PageScoreState extends State<PageScore> {
   //TODO: MAKE LIST DYNAMIC
-  List<Icon> ScoreList = [
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-  ];
+  List<Icon> ScoreList =
+      kIcons; //TODO: elle est dans les constantes !! à supprimer !! (yacine)
 
   @override
   Widget build(BuildContext context) {
@@ -84,10 +35,10 @@ class _PageScoreState extends State<PageScore> {
           ),
           child: Column(
             children: [
-              App_Bar(
-                title: 'Calculs', // to change
-                height: 135,
-                domaine: 1,
+              WidgetAppBarDomain(
+                title: "Calculs", //TODO: to change
+                height: kHeightAppBar,
+                domain: 1,
               ),
               SizedBox(
                 height: 70,
@@ -100,7 +51,7 @@ class _PageScoreState extends State<PageScore> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: Offset(0, 3), //TODO: changes position of shadow
                     ),
                   ],
                   gradient: LinearGradient(
@@ -118,7 +69,7 @@ class _PageScoreState extends State<PageScore> {
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20),
-                  // color: Colors.lightBlueAccent, // to change
+                  // color: Colors.lightBlueAccent, //TODO: to change
                 ),
                 width: 300.0,
                 height: 180.0,

@@ -1,3 +1,4 @@
+import 'package:edutainment/screens/calculs_game/page.dart';
 import 'package:flutter/material.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,6 +16,7 @@ class HomeButton extends StatelessWidget {
         switch (text) {
           case 'Calculs':
             //TODO: Go to PageNiveauxCalculs
+            Navigator.pushNamed(context, PageCalculsGame.getPageName());
             break;
           case 'Géométrie':
             //TODO: Go to PageNiveauxGeometry

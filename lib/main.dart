@@ -1,11 +1,15 @@
+import 'package:edutainment/models/classes/AnswerCalculs.dart';
+import 'package:edutainment/models/classes/LevelCalculs.dart';
+import 'package:edutainment/models/classes/QuestionCalculs.dart';
+import 'package:edutainment/screens/calculs_game/page.dart';
 import 'package:flutter/material.dart';
 import 'screens/log_in/page.dart';
 import 'screens/sign_up/page.dart';
-import 'screens/menu_0/page.dart';
+import 'screens/entry_point/page.dart';
 import 'screens/home/page.dart';
 import 'utils/constants.dart';
 import 'utils/theme_constants.dart';
-import 'screens/score_page/page.dart';
+import 'screens/score/page.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,19 +18,39 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    QuestionCalculs q1 = QuestionCalculs(
+        "khtaaa", 1, "numberA-1", "numberB-1", "+*", AnswerCalculs.equals);
+    QuestionCalculs q2 = QuestionCalculs(
+        "khs", 5, "numberA-2", "numberB-2", "+*", AnswerCalculs.equals);
+    QuestionCalculs q3 = QuestionCalculs(
+        "zmer", 6, "numberA-3", "numberB-3", "+*", AnswerCalculs.equals);
+
+    LevelCalculs leveCalculs1 = LevelCalculs(
+      duration: 30000,
+      color: kBlueColor,
+      waitingQuestions: [
+        q1,
+        q2,
+        q3,
+      ],
+    ); //todo: will get this from database (yacine)
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: kProjectName,
       theme: ThemeData(
         primaryColor: kVioletColor,
       ),
-      initialRoute: PageMenu0.getPageName(),
+      initialRoute: PageEntryPoint.getPageName(),
       routes: {
         PageSignUp.getPageName(): (context) => PageSignUp(),
         PageLogIn.getPageName(): (context) => PageLogIn(),
         PageHome.getPageName(): (context) => PageHome(),
-        PageMenu0.getPageName(): (context) => PageMenu0(),
+        PageEntryPoint.getPageName(): (context) => PageEntryPoint(),
         PageScore.getPageName(): (context) => PageScore(),
+        PageCalculsGame.getPageName(): (context) => PageCalculsGame(
+              levelCalculs: leveCalculs1,
+            ),
       },
     );
   }

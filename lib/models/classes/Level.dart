@@ -6,7 +6,7 @@ class Level {
   int _domainIndex;
   int _highestScore;
   int _currentScore = 8;
-  int _numbreOfStars;
+  int _numberOfStars;
   int _indexOfDataBase;
   Color _color;
   static int _averageScore;
@@ -17,7 +17,7 @@ class Level {
       int domainIndex,
       int highestScore,
       int currentScore,
-      int numbreOfStars,
+      int numberOfStars,
       int indexOfDataBase,
       Color color}) {
     this._id = id;
@@ -25,7 +25,7 @@ class Level {
     this._domainIndex = domainIndex;
     this._highestScore = highestScore;
     this._currentScore = currentScore;
-    this._numbreOfStars = numbreOfStars;
+    this._numberOfStars = numberOfStars;
     this._indexOfDataBase = indexOfDataBase;
     this._color = color;
   }
@@ -63,11 +63,11 @@ class Level {
   }
 
   int getNumbreOfStars() {
-    return this._numbreOfStars;
+    return this._numberOfStars;
   }
 
-  void setNumbreOfStars(int numbreOfStars) {
-    this._numbreOfStars = numbreOfStars;
+  void setNumbreOfStars(int numberOfStars) {
+    this._numberOfStars = numberOfStars;
   }
 
   int getIndexOfDataBase() {

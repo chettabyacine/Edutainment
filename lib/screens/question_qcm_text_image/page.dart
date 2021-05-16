@@ -1,15 +1,15 @@
 import 'package:edutainment/utils/theme_constants.dart';
-import 'package:edutainment/models/DomainNames.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:flutter/material.dart';
-import 'package:edutainment/widgets/WidgetAppBarDynamic.dart';
+import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
 import 'package:edutainment/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PageQuestionQcmTextImage extends StatefulWidget {
   static const String _pageName = kPageQuestionQcmTextImage;
-  @required DomainNames domain;
+  @required
+  DomainNames domain;
   PageQuestionQcmTextImage({this.domain});
-
 
   @override
   _PageQuestionQcmTextImageState createState() =>
@@ -35,9 +35,9 @@ class _PageQuestionQcmTextImageState extends State<PageQuestionQcmTextImage> {
           ),
           child: Column(
             children: [
-              AppBarDynamicWidget(
+              WidgetAppBarDomain(
                 title: domainString[widget.domain], // to change
-                domaine: domainIndex[widget.domain],
+                domain: domainIndex[widget.domain],
                 height: 140,
               ),
               SizedBox(
@@ -105,15 +105,16 @@ class _PageQuestionQcmTextImageState extends State<PageQuestionQcmTextImage> {
                     onPressed: () {},
                     child: SvgPicture.asset('assets/trapezoid.svg'),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                        minimumSize: MaterialStateProperty.all<Size>(Size(130, 70)),
-                        elevation: MaterialStateProperty.all<double>(6), shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            side: BorderSide(color: Colors.white)
-                        )
-                      )
-                    ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        minimumSize:
+                            MaterialStateProperty.all<Size>(Size(130, 70)),
+                        elevation: MaterialStateProperty.all<double>(6),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    side: BorderSide(color: Colors.white)))),
                   ),
                   SizedBox(
                     width: 15,
@@ -122,15 +123,16 @@ class _PageQuestionQcmTextImageState extends State<PageQuestionQcmTextImage> {
                     onPressed: () {},
                     child: SvgPicture.asset('assets/circle.svg'),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                        minimumSize: MaterialStateProperty.all<Size>(Size(130, 70)),
-                        elevation: MaterialStateProperty.all<double>(6), shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            side: BorderSide(color: Colors.white)
-                        )
-                      )
-                    ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        minimumSize:
+                            MaterialStateProperty.all<Size>(Size(130, 70)),
+                        elevation: MaterialStateProperty.all<double>(6),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    side: BorderSide(color: Colors.white)))),
                   ),
                 ],
               ),
@@ -144,15 +146,16 @@ class _PageQuestionQcmTextImageState extends State<PageQuestionQcmTextImage> {
                     onPressed: () {},
                     child: SvgPicture.asset('assets/triangle.svg'),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                        minimumSize: MaterialStateProperty.all<Size>(Size(130, 70)),
-                        elevation: MaterialStateProperty.all<double>(6), shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            side: BorderSide(color: Colors.white)
-                        )
-                    )
-                    ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        minimumSize:
+                            MaterialStateProperty.all<Size>(Size(130, 70)),
+                        elevation: MaterialStateProperty.all<double>(6),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    side: BorderSide(color: Colors.white)))),
                   ),
                   SizedBox(
                     width: 15,
@@ -161,28 +164,29 @@ class _PageQuestionQcmTextImageState extends State<PageQuestionQcmTextImage> {
                     onPressed: () {},
                     child: SvgPicture.asset('assets/star.svg'),
                     style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                        minimumSize: MaterialStateProperty.all<Size>(Size(130, 70)),
-                        elevation: MaterialStateProperty.all<double>(6), shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            side: BorderSide(color: Colors.white)
-                        )
-                     )
-                    ),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        minimumSize:
+                            MaterialStateProperty.all<Size>(Size(130, 70)),
+                        elevation: MaterialStateProperty.all<double>(6),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    side: BorderSide(color: Colors.white)))),
                   ),
                 ],
               ),
               Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(right: 70),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        SvgPicture.asset('assets/bird.svg'),
-                      ],
-                    ),
-                  )),
+                padding: const EdgeInsets.only(right: 70),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SvgPicture.asset('assets/bird.svg'),
+                  ],
+                ),
+              )),
             ],
           ),
         ),

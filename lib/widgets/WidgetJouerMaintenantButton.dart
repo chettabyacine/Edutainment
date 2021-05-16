@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:edutainment/models/DomainNames.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
 
 class WidgetJouerMaintenantButton extends StatelessWidget {
-
   final DomainNames domain;
   WidgetJouerMaintenantButton({this.domain});
   @override
@@ -14,7 +13,7 @@ class WidgetJouerMaintenantButton extends StatelessWidget {
       child: MaterialButton(
         minWidth: 130.0,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {},//TODO : implement navigation (islam)
+        onPressed: () {}, //TODO : implement navigation (islam)
         child: Text(
           'Jouer maintenant!',
           textAlign: TextAlign.center,

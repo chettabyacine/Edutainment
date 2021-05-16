@@ -1,5 +1,6 @@
-import 'package:edutainment/models/DomainNames.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:flutter/material.dart';
+
 class BottomText extends StatelessWidget {
   final DomainNames domain;
   BottomText({this.domain});

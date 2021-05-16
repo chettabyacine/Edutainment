@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:edutainment/models/DomainNames.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
+
 class LevelButton extends StatelessWidget {
   final int levelNumber;
   final bool isOnTheRight;
   final Widget bottom;
   final DomainNames domain;
 
-  LevelButton({this.levelNumber,this.isOnTheRight,this.bottom,this.domain});
+  LevelButton({this.levelNumber, this.isOnTheRight, this.bottom, this.domain});
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: isOnTheRight? CrossAxisAlignment.end:CrossAxisAlignment.start,
+      crossAxisAlignment:
+          isOnTheRight ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         ElevatedButton(
           onPressed: () {
@@ -27,4 +29,3 @@ class LevelButton extends StatelessWidget {
     );
   }
 }
-

@@ -1,15 +1,17 @@
-import 'package:edutainment/models/classes/AnswerCalculs.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
-import 'package:edutainment/models/classes/QuestionCalculs.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'local_widgets/WidgetCalculsAnswerBox.dart';
+import 'local_widgets/WidgetCalculsTheNumberBox.dart';
+import 'package:edutainment/models/data_state_managment/DataCalculsGame.dart';
 
 // ignore: must_be_immutable
-class PageCalculsGame extends StatefulWidget {
+class PageCalculsGame extends StatelessWidget {
   static const String _pageName = kPageCalculsGame;
   LevelCalculs levelCalculs;
   PageCalculsGame({this.levelCalculs});
@@ -18,13 +20,39 @@ class PageCalculsGame extends StatefulWidget {
     return _pageName;
   }
 
-  @override
-  _PageCalculsGameState createState() => _PageCalculsGameState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<DataCalculsGame>(
+      create: (context) => DataCalculsGame(levelCalculs: levelCalculs),
+      child: WidgetPageCalculsGame(),
+    );
+  }
 }
 
-class _PageCalculsGameState extends State<PageCalculsGame> {
+/** ****************************************/
+
+class WidgetPageCalculsGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final data = Provider.of<DataCalculsGame>(context);
+    Widget WidgetTimeBar({LevelCalculs level}) {
+      return LinearPercentIndicator(
+        width: MediaQuery.of(context).size.width - 100,
+        animation: true,
+        alignment: MainAxisAlignment.center,
+        animationDuration: level.getDuration(),
+        lineHeight: 16.0,
+        percent: 1,
+        linearStrokeCap: LinearStrokeCap.roundAll,
+        progressColor: Color(0xffE4B94A),
+        backgroundColor: Color(0x10000000),
+        restartAnimation: true,
+        onAnimationEnd: () {
+          //todo: level ends
+          Navigator.pop(context);
+        },
+      );
+    }
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -32,7 +60,7 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/background math.jpg"),
+              image: AssetImage("assets/background math.svg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -50,7 +78,7 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                 child: Container(),
               ),
               WidgetTimeBar(
-                level: widget.levelCalculs,
+                level: data.levelCalculs,
               ),
               SizedBox(
                 height: 10,
@@ -62,10 +90,10 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      "Score: ${widget.levelCalculs.getCurrentScore()}",
+                      "Score: ${data.getCurrentScore()}",
                     ),
                     Text(
-                      "data2",
+                      "${data.getNumberOfStars()}",
                     ),
                   ],
                 ),
@@ -90,23 +118,15 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                       children: [
                         Expanded(
                           child: WidgetCalculsTheNumberBox(
-                            number: widget.levelCalculs
-                                .getWaitingQuestions()
-                                .first
-                                .getNumberA(),
+                            number: data.currentQuestion().getNumberA(),
                           ),
                         ),
                         Expanded(
-                          child: WidgetCalculsAnswerBox(
-                            level: widget.levelCalculs,
-                          ),
+                          child: WidgetCalculsAnswerBox(),
                         ),
                         Expanded(
                           child: WidgetCalculsTheNumberBox(
-                            number: widget.levelCalculs
-                                .getWaitingQuestions()
-                                .first
-                                .getNumberA(),
+                            number: data.currentQuestion().getNumberB(),
                           ),
                         ),
                       ],
@@ -126,190 +146,6 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
               )
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget WidgetTimeBar({LevelCalculs level}) {
-    return LinearPercentIndicator(
-      width: MediaQuery.of(context).size.width - 100,
-      animation: true,
-      alignment: MainAxisAlignment.center,
-      animationDuration: level.getDuration(),
-      lineHeight: 16.0,
-      percent: 1,
-      linearStrokeCap: LinearStrokeCap.roundAll,
-      progressColor: Color(0xffE4B94A),
-      backgroundColor: Color(0x10000000),
-      restartAnimation: true,
-      onAnimationEnd: () {
-        //todo: level ends
-        Navigator.pop(context);
-      },
-    );
-  }
-}
-
-class WidgetCalculsAnswerBox extends StatelessWidget {
-  final LevelCalculs level;
-
-  const WidgetCalculsAnswerBox({@required this.level});
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: SizedBox(
-            height: 10,
-          ),
-        ),
-        Expanded(
-          flex: 9,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              WidgetCalculsAnswerButton(
-                text: ">",
-                level: level,
-              ),
-              WidgetCalculsAnswerButton(
-                text: "=",
-                level: level,
-              ),
-              WidgetCalculsAnswerButton(
-                text: "<",
-                level: level,
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: SizedBox(
-            height: 10,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class WidgetCalculsTheNumberBox extends StatelessWidget {
-  const WidgetCalculsTheNumberBox({
-    this.number,
-  });
-  final String number;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Container(),
-          ),
-          Expanded(
-            flex: 5,
-            child: WidgetCalculsTheNumber(
-              number: number,
-            ),
-          ),
-          Expanded(
-            child: Container(),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class WidgetCalculsTheNumber extends StatelessWidget {
-  const WidgetCalculsTheNumber({
-    this.number,
-  });
-
-  final String number;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Color(0xffD0E5F7),
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: kBlueColor,
-          width: 1.6,
-          style: BorderStyle.solid,
-        ),
-      ),
-      child: Text(
-        number,
-        style: TextStyle(
-          color: kBlueColor,
-          fontWeight: FontWeight.w900,
-        ),
-      ),
-    );
-  }
-}
-
-class WidgetCalculsAnswerButton extends StatefulWidget {
-  WidgetCalculsAnswerButton({@required this.text, @required this.level});
-  final String text;
-  final LevelCalculs level;
-
-  @override
-  _WidgetCalculsAnswerButtonState createState() =>
-      _WidgetCalculsAnswerButtonState();
-}
-
-class _WidgetCalculsAnswerButtonState extends State<WidgetCalculsAnswerButton> {
-  AnswerCalculs userAnswer() {
-    if (widget.text == "=") return AnswerCalculs.equals;
-    if (widget.text == "<") return AnswerCalculs.less;
-    if (widget.text == ">") return AnswerCalculs.greater;
-    return AnswerCalculs.equals;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: TextButton(
-        onPressed: () {
-          //todo: checking the user"s anwers
-          setState() {
-            List<QuestionCalculs> questions =
-                widget.level.getWaitingQuestions();
-            QuestionCalculs question = questions.first;
-            questions.removeAt(0);
-
-            if (question.getCorrectAnswer() == userAnswer()) {
-              widget.level.getCorrectlyAnswered().add(question);
-              widget.level.incrementCurrentScore();
-              print("bonne réponse");
-            } else {
-              widget.level.getIncorrectlyAnswered().add(question);
-              print("mauvaise réponse");
-            }
-          }
-        },
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Text(
-          widget.text,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
-          ),
-        ),
-      ),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          width: 1.6,
-          style: BorderStyle.solid,
-          color: kBlueColor,
         ),
       ),
     );

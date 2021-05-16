@@ -16,7 +16,7 @@ class LevelCalculs extends Level {
       int domainIndex,
       int highestScore,
       int currentScore,
-      int numbreOfStars,
+      int numberOfStars,
       int indexOfDataBase,
       List<QuestionCalculs> waitingQuestions,
       int duration,
@@ -28,7 +28,7 @@ class LevelCalculs extends Level {
           domainIndex: domainIndex,
           highestScore: highestScore,
           currentScore: currentScore,
-          numbreOfStars: numbreOfStars,
+          numberOfStars: numberOfStars,
           indexOfDataBase: indexOfDataBase,
           color: color,
         ) {
@@ -75,5 +75,13 @@ class LevelCalculs extends Level {
 
   int getTimeLeft() {
     return this._timeLeft;
+  }
+
+  void addCorrectAnswer(QuestionCalculs questionCalculs) {
+    this._correctlyAnswered.add(questionCalculs);
+  }
+
+  void addIncorrectAnswer(QuestionCalculs questionCalculs) {
+    _incorrectlyAnswered.add(questionCalculs);
   }
 }

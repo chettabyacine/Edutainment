@@ -4,6 +4,7 @@ import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:edutainment/models/classes/QuestionCalculs.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
+import 'file:///C:/Android/AndroidStudioProjects/projet/lib/screens/geometry_animals_game/page.dart';
 import 'package:edutainment/screens/question_qcm_image_text/page.dart';
 import 'package:edutainment/screens/question_qcm_text_image/page.dart';
 import 'package:edutainment/screens/question_qcm_text_text/page.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kVioletColor,
       ),
-      initialRoute: PageEntryPoint.getPageName(),
+      initialRoute: PageLevelAnimalsOrGeometry.getPageName(),
       routes: {
         PageSignUp.getPageName(): (context) => PageSignUp(),
         PageLogIn.getPageName(): (context) => PageLogIn(),
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
             PageQuestionQcmImageText(),
         PageQuestionQcmTextImage.getPageName(): (context) =>
             PageQuestionQcmTextImage(),
+        PageLevelAnimalsOrGeometry.getPageName() : (context)=>PageLevelAnimalsOrGeometry(domain: DomainNames.animals,),
       },
     );
   }

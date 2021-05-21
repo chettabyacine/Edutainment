@@ -4,6 +4,7 @@ import '../../widgets/WidgetAppBar.dart';
 import '../../utils/theme_constants.dart';
 import '../../utils/constants.dart';
 import 'local_widgets/WidgetHomeButton.dart';
+import 'package:edutainment/widgets/WidgetAppBarHome.dart';
 
 class PageHome extends StatefulWidget {
   static const String _pageName = kPageNameHome;
@@ -46,10 +47,9 @@ class _PageHomeState extends State<PageHome> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            AppBarWidget(
-              title: kProjectName,
-              logo: SvgPicture.asset(''),
-              height: 120,
+            AppBarHome(
+              title: 'Edutainment',
+              height: 140,
             ),
             Expanded(
               child: Column(

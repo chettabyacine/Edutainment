@@ -1,3 +1,7 @@
+import 'package:edutainment/screens/calculs_game/page.dart';
+import 'package:edutainment/screens/question_qcm_image_text/page.dart';
+import 'package:edutainment/screens/question_qcm_text_image/page.dart';
+import 'package:edutainment/screens/question_qcm_text_text/page.dart';
 import 'package:flutter/material.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
 
@@ -13,7 +17,16 @@ class WidgetJouerMaintenantButton extends StatelessWidget {
       child: MaterialButton(
         minWidth: 130.0,
         padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {}, //TODO : implement navigation (islam)
+        onPressed: () {
+          //TODO : implement navigation (islam)
+          Navigator.pushNamed(
+            context,
+            domain == DomainNames.calculs
+                ? PageCalculsGame.getPageName()
+                : PageQuestionQcmTextText.getPageName(),
+            arguments: domain,
+          );
+        },
         child: Text(
           'Jouer maintenant!',
           textAlign: TextAlign.center,

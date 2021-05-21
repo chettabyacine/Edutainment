@@ -1,7 +1,13 @@
 import 'package:edutainment/models/classes/AnswerCalculs.dart';
+import 'package:edutainment/models/classes/Domain.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:edutainment/models/classes/QuestionCalculs.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
+import 'package:edutainment/screens/question_qcm_image_text/page.dart';
+import 'package:edutainment/screens/question_qcm_text_image/page.dart';
+import 'package:edutainment/screens/question_qcm_text_text/page.dart';
+import 'package:edutainment/screens/road/page.dart';
 import 'package:flutter/material.dart';
 import 'screens/log_in/page.dart';
 import 'screens/sign_up/page.dart';
@@ -51,6 +57,13 @@ class MyApp extends StatelessWidget {
         PageCalculsGame.getPageName(): (context) => PageCalculsGame(
               levelCalculs: leveCalculs1,
             ),
+        PageRoad.getPageName(): (context) => PageRoad(),
+        PageQuestionQcmTextText.getPageName(): (context) =>
+            PageQuestionQcmTextText(),
+        PageQuestionQcmImageText.getPageName(): (context) =>
+            PageQuestionQcmImageText(),
+        PageQuestionQcmTextImage.getPageName(): (context) =>
+            PageQuestionQcmTextImage(),
       },
     );
   }

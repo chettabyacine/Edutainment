@@ -14,6 +14,7 @@ const String kPageQuestionQcmTextText = "PageQuestionQcmTextText";
 const String kPageQuestionQcmImageText = "PageQuestionQcmImageText";
 const String kPageQuestionQcmTextImage = "PageQuestionQcmTextImage";
 const String kPageCalculsGame = "PageCalculsGame";
+const String kPageSettings = "PageSettings";
 
 const List<Icon> kIcons = [
   Icon(

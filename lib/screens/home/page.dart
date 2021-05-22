@@ -4,6 +4,7 @@ import '../../widgets/WidgetAppBar.dart';
 import '../../utils/theme_constants.dart';
 import '../../utils/constants.dart';
 import 'local_widgets/WidgetHomeButton.dart';
+import 'package:edutainment/screens/settings/page.dart';
 
 class PageHome extends StatefulWidget {
   static const String _pageName = kPageNameHome;
@@ -31,7 +32,10 @@ class _PageHomeState extends State<PageHome> {
           //TODO: Go to statistics page
           break;
         case 3:
-          //TODO: Go to settings page
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PageSettings(email: 'jy_ghodbane@esi.dz',prenom: 'Islam',nom: 'Ghodbane',profile: Colors.red,)),
+          );
           break;
         default:
           break;

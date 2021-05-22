@@ -10,6 +10,7 @@ import 'screens/home/page.dart';
 import 'utils/constants.dart';
 import 'utils/theme_constants.dart';
 import 'screens/score/page.dart';
+import 'screens/settings/page.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kVioletColor,
       ),
-      initialRoute: PageEntryPoint.getPageName(),
+      initialRoute: PageSettings.getPageName(),
       routes: {
         PageSignUp.getPageName(): (context) => PageSignUp(),
         PageLogIn.getPageName(): (context) => PageLogIn(),
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
         PageCalculsGame.getPageName(): (context) => PageCalculsGame(
               levelCalculs: leveCalculs1,
             ),
+        PageSettings.getPageName(): (context) => PageSettings( email: 'ja_manaa@esi.dz', prenom: 'Adam', nom: 'Manaa',profile: Colors.blue,),
       },
     );
   }

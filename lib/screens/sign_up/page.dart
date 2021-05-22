@@ -45,7 +45,7 @@ class _PageSignUpState extends State<PageSignUp> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 30.0,
+                    height: 28.0,
                   ),
                   InputWidget(
                     data: name,

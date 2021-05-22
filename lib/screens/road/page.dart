@@ -1,3 +1,4 @@
+import 'package:edutainment/models/classes/Domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:edutainment/utils/constants.dart';
@@ -8,12 +9,11 @@ import 'local widgets/WidgetLevelButton.dart';
 import 'package:edutainment/screens/road/local widgets/WidgetBottomText.dart';
 import 'package:edutainment/screens/road/local widgets/WidgetThreeStars.dart';
 import 'package:edutainment/widgets/WidgetJouerMaintenantButton.dart';
+import 'package:edutainment/utils/enums.dart';
 
 class PageRoad extends StatefulWidget {
   @required
-  DomainNames domain;
   static const String _pageName = kPageRoad;
-  PageRoad({this.domain});
   static String getPageName() {
     return _pageName;
   }
@@ -30,57 +30,57 @@ class _PageRoadState extends State<PageRoad> {
     super.initState();
     buttonList = [
       //TODO : MAKE LIST DYNAMIC (islam)
-      LevelButton(
-        levelNumber: 1,
-        isOnTheRight: true,
-        bottom: ThreeStars(
-          isOnTheRight: true,
-          numberOfColored: 2,
-        ),
-        domain: widget.domain,
-      ),
-      SizedBox(
-        height: 20,
-      ),
-      LevelButton(
-        levelNumber: 2,
-        isOnTheRight: false,
-        bottom: ThreeStars(
-          isOnTheRight: false,
-          numberOfColored: 3,
-        ),
-        domain: widget.domain,
-      ),
-      SizedBox(
-        height: 20,
-      ),
-      LevelButton(
-        levelNumber: 3,
-        isOnTheRight: true,
-        bottom: BottomText(),
-        domain: widget.domain,
-      ),
+      // LevelButton(
+      //   levelNumber: 1,
+      //   isOnTheRight: true,
+      //   bottom: ThreeStars(
+      //     isOnTheRight: true,
+      //     numberOfColored: 2,
+      //   ),
+      //   domain: widget.domain,
+      // ),
+      // SizedBox(
+      //   height: 20,
+      // ),
+      // LevelButton(
+      //   levelNumber: 2,
+      //   isOnTheRight: false,
+      //   bottom: ThreeStars(
+      //     isOnTheRight: false,
+      //     numberOfColored: 3,
+      //   ),
+      //   domain: widget.domain,
+      // ),
+      // SizedBox(
+      //   height: 20,
+      // ),
+      // LevelButton(
+      //   levelNumber: 3,
+      //   isOnTheRight: true,
+      //   bottom: BottomText(),
+      //   domain: widget.domain,
+      // ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
+    final DomainNames domain = ModalRoute.of(context).settings.arguments;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(
-                  "assets/background ${domainIndex[widget.domain]}.jpg"),
+              image: AssetImage("assets/background ${domainIndex[domain]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
               WidgetAppBarDomain(
-                title: '${domainString[widget.domain]}', // to change
-                domain: domainIndex[widget.domain],
+                title: '${domainString[domain]}', // to change
+                domain: domainIndex[domain],
                 height: 140,
               ),
               Expanded(
@@ -88,7 +88,54 @@ class _PageRoadState extends State<PageRoad> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 80, vertical: 50),
                   child: ListView(
-                    children: buttonList,
+                    children: [
+                      LevelButton(
+                        levelNumber: 1,
+                        isOnTheRight: true,
+                        state: LevelStates.passed,
+                        bottom: ThreeStars(
+                          isOnTheRight: true,
+                          numberOfColored: 2,
+                        ),
+                        domain: domain,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      LevelButton(
+                        levelNumber: 2,
+                        isOnTheRight: false,
+                        state: LevelStates.passed,
+                        bottom: ThreeStars(
+                          isOnTheRight: false,
+                          numberOfColored: 3,
+                        ),
+                        domain: domain,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      LevelButton(
+                        levelNumber: 3,
+                        isOnTheRight: true,
+                        state: LevelStates.current,
+                        bottom: BottomText(
+                          text: 'Vous êtes là!',
+                          domain: domain,
+                        ),
+                        domain: domain,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      LevelButton(
+                        levelNumber: 4,
+                        isOnTheRight: false,
+                        state: LevelStates.waiting,
+                        bottom: BottomText(text: ''),
+                        domain: domain,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -96,7 +143,7 @@ class _PageRoadState extends State<PageRoad> {
           ),
         ),
         //TODO: refactor the bottom button
-        bottomNavigationBar: WidgetJouerMaintenantButton(domain: widget.domain),
+        bottomNavigationBar: WidgetJouerMaintenantButton(domain: domain),
       ),
     );
   }

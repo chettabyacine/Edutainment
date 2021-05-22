@@ -1,4 +1,8 @@
+import 'package:edutainment/screens/calculs_game/page.dart';
+import 'package:edutainment/screens/question_qcm_text_image/page.dart';
+import 'package:edutainment/screens/question_qcm_text_text/page.dart';
 import 'package:edutainment/utils/theme_constants.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,13 +27,14 @@ class _PageScoreState extends State<PageScore> {
 
   @override
   Widget build(BuildContext context) {
+    final DomainNames domain = ModalRoute.of(context).settings.arguments;
     return SafeArea(
       child: Scaffold(
         body: Container(
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/background math.jpg"),
+              image: AssetImage("assets/background 1.jpg"),
               fit: BoxFit.cover,
             ),
           ),
@@ -123,8 +128,16 @@ class _PageScoreState extends State<PageScore> {
           child: MaterialButton(
             minWidth: 130.0,
             padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed:
-                () {}, //TODO : WHEN WE PRESS THE BUTTON WE MOVE TO ANOTHER PAGE
+            onPressed: () {
+              //TODO : WHEN WE PRESS THE BUTTON WE MOVE TO ANOTHER PAGE
+              Navigator.pushNamed(
+                context,
+                domain == DomainNames.calculs
+                    ? PageCalculsGame.getPageName()
+                    : PageQuestionQcmTextText.getPageName(),
+                arguments: domain,
+              );
+            },
             child: Text(
               "Continuer",
               textAlign: TextAlign.center,

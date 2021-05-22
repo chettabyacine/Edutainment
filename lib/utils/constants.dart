@@ -13,8 +13,11 @@ const String kPageRoad = "PageRoad";
 const String kPageQuestionQcmTextText = "PageQuestionQcmTextText";
 const String kPageQuestionQcmImageText = "PageQuestionQcmImageText";
 const String kPageQuestionQcmTextImage = "PageQuestionQcmTextImage";
+const String kPageQuestionQcmAudioText = "PageQuestionQcmAudioText";
 const String kPageCalculsGame = "PageCalculsGame";
 const String kPageSettings = "PageSettings";
+const String kPageLevelAnimalsOrGeometry = "PageAnimalsOrGeometryGame";
+
 
 const List<Icon> kIcons = [
   Icon(

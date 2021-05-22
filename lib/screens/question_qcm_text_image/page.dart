@@ -7,6 +7,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class PageQuestionQcmTextImage extends StatefulWidget {
   static const String _pageName = kPageQuestionQcmTextImage;
+  @required
+  DomainNames domain;
+  PageQuestionQcmTextImage({this.domain});
 
   @override
   _PageQuestionQcmTextImageState createState() =>
@@ -19,22 +22,22 @@ class PageQuestionQcmTextImage extends StatefulWidget {
 class _PageQuestionQcmTextImageState extends State<PageQuestionQcmTextImage> {
   @override
   Widget build(BuildContext context) {
-    final DomainNames domain = ModalRoute.of(context).settings.arguments;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/background ${domainIndex[domain]}.jpg"),
+              image: AssetImage(
+                  "assets/background ${domainIndex[widget.domain]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
               WidgetAppBarDomain(
-                title: domainString[domain], // to change
-                domain: domainIndex[domain],
+                title: domainString[widget.domain], // to change
+                domain: domainIndex[widget.domain],
                 height: 140,
               ),
               SizedBox(
@@ -48,7 +51,7 @@ class _PageQuestionQcmTextImageState extends State<PageQuestionQcmTextImage> {
                     style: TextStyle(
                       fontFamily: 'Open Sans',
                       fontWeight: FontWeight.bold,
-                      color: domainColor[domain],
+                      color: domainColor[widget.domain],
                     ),
                   ),
                   SizedBox(

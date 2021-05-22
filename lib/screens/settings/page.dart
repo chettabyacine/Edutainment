@@ -30,19 +30,28 @@ class _PageSettingsState extends State<PageSettings> {
 
   bool isSwitched1=false;
   bool isSwitched2=false;
-  int _selectedIndex = 1;
+  int _selectedIndex = 3;
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       switch (index) {
         case 0:
-        //TODO: Go to ranks page
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PageHome()),
+          );
           break;
         case 1:
-        //TODO: Go to settings page
+        //TODO: Go to ranks page
           break;
         case 2:
-        //TODO: Go to statistics page
+        //TODO: Go to settings page
+          break;
+        case 3:
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PageSettings(email: 'ji_hamouda@esi.dz',prenom: 'Ilyes',nom: 'Hamouda',profile: Colors.green,)),
+          );
           break;
         default:
           break;

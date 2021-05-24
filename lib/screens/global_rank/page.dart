@@ -64,10 +64,10 @@ class _PageGlobalRankState extends State<PageGlobalRank> {
               children: [
                 SizedBox(height: 40),
                 WidgetUserScore(user: publicUsers[0]),
-                //SizedBox(height: 5),
-                //WidgetUserScore(user: publicUsers[1]),
-               // SizedBox(height: 5),
-               // WidgetUserScore(user: publicUsers[2]),
+                SizedBox(height: 5),
+                WidgetUserScore(user: publicUsers[1]),
+                SizedBox(height: 5),
+                WidgetUserScore(user: publicUsers[2]),
               ],
             ),
           ),
@@ -96,7 +96,7 @@ class WidgetUserScore extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-         user.rank.toString(),
+         user.rank.toString() ?? '',
           style: TextStyle(
             color: Color(0xFF1B1B1C),
             fontFamily: 'OpenSans',
@@ -116,7 +116,7 @@ class WidgetUserScore extends StatelessWidget {
                 radius: 30.0,
                 backgroundColor: kVioletColor,
                 child: Text(
-                  user.userID,
+                  user.userID ?? '',
                   style: TextStyle(
                     color: kWhiteColor,
                     fontWeight: FontWeight.w500,
@@ -126,7 +126,7 @@ class WidgetUserScore extends StatelessWidget {
               ),
               SizedBox(width: 8.0),
               Text(
-                user.userName,
+                user.userName ?? '',
                 style: TextStyle(
                   color: Color(0xFF1B1B1C),
                   fontFamily: 'OpenSans',
@@ -136,7 +136,7 @@ class WidgetUserScore extends StatelessWidget {
               ),
               SizedBox(width: 40.0),
               Text(
-                user.score.toString(),
+                user.score.toString() ?? '',
                 style: TextStyle(
                   color: Color(0xFF1B1B1C),
                   fontFamily: 'OpenSans',

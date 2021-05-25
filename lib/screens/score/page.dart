@@ -3,10 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../utils/constants.dart';
-import '../../widgets/WidgetAppBarDomain.dart';
+import '../../widgets/WidgetJouerMaintenantButton.dart';
+import '../../widgets/AppBarDynamicWidget.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
 
 class PageScore extends StatefulWidget {
   static const String _pageName = kPageNameScore;
+
+  @required DomainNames domain;
+  @required int stars;
+  PageScore({this.domain,this.stars});
 
   static String getPageName() {
     return _pageName;
@@ -29,16 +35,16 @@ class _PageScoreState extends State<PageScore> {
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/background math.jpg"),
+              image: AssetImage("assets/background ${domainIndex[widget.domain]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
-              WidgetAppBarDomain(
-                title: "Calculs", //TODO: to change
-                height: kHeightAppBar,
-                domain: 1,
+              AppBarDynamicWidget(
+                title: domainString[widget.domain], // to change
+                height: 135,
+                domaine: domainIndex[widget.domain],
               ),
               SizedBox(
                 height: 70,
@@ -51,7 +57,7 @@ class _PageScoreState extends State<PageScore> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3), //TODO: changes position of shadow
+                      offset: Offset(0, 3), // changes position of shadow
                     ),
                   ],
                   gradient: LinearGradient(
@@ -63,13 +69,13 @@ class _PageScoreState extends State<PageScore> {
                       0.9,
                     ],
                     colors: [
-                      Color(0xFF1490F5),
-                      Color(0xFF127FD7),
-                      Color(0xC5062137),
+                      scoreColor[widget.domain][0],
+                      scoreColor[widget.domain][1],
+                      scoreColor[widget.domain][2],
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20),
-                  // color: Colors.lightBlueAccent, //TODO: to change
+                  // color: Colors.lightBlueAccent, // to change
                 ),
                 width: 300.0,
                 height: 180.0,
@@ -85,15 +91,42 @@ class _PageScoreState extends State<PageScore> {
                     SizedBox(
                       height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        //TODO: CREATE METHOD RETURN THE STARS OF SCORE
-                        SvgPicture.asset('assets/star full.svg'),
-                        SvgPicture.asset('assets/star full.svg'),
-                        SvgPicture.asset('assets/star full.svg'),
-                      ],
-                    ),
+                    if( widget.stars == 0)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/star empty.svg'),
+                          SvgPicture.asset('assets/star empty.svg'),
+                          SvgPicture.asset('assets/star empty.svg'),
+                        ],
+                      ),
+                    if( widget.stars == 1)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/star full.svg'),
+                          SvgPicture.asset('assets/star empty.svg'),
+                          SvgPicture.asset('assets/star empty.svg'),
+                        ],
+                      ),
+                    if( widget.stars == 2)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/star full.svg'),
+                          SvgPicture.asset('assets/star full.svg'),
+                          SvgPicture.asset('assets/star empty.svg'),
+                        ],
+                      ),
+                    if( widget.stars == 3)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset('assets/star full.svg'),
+                          SvgPicture.asset('assets/star full.svg'),
+                          SvgPicture.asset('assets/star full.svg'),
+                        ],
+                      ),
                     SizedBox(
                       height: 10,
                     ),
@@ -116,27 +149,10 @@ class _PageScoreState extends State<PageScore> {
             ],
           ),
         ),
-        bottomNavigationBar: Material(
-          elevation: 10.0,
-          borderRadius: BorderRadius.circular(0.0),
-          color: Color(0xff1490F5),
-          child: MaterialButton(
-            minWidth: 130.0,
-            padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-            onPressed:
-                () {}, //TODO : WHEN WE PRESS THE BUTTON WE MOVE TO ANOTHER PAGE
-            child: Text(
-              "Continuer",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Acme',
-                color: Colors.white,
-                fontSize: 25.0,
-              ),
-            ),
-          ),
-        ),
+        bottomNavigationBar: WidgetJouerMaintenantButton(domain: widget.domain,),
       ),
     );
   }
 }
+
+

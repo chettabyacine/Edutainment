@@ -78,9 +78,6 @@ class _PageSettingsState extends State<PageSettings> {
                   },
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
               Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +112,7 @@ class _PageSettingsState extends State<PageSettings> {
                 ),
               ),
               SizedBox(
-                  height : 35.0,
+                  height : 25.0,
                   ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20 ),
@@ -132,46 +129,48 @@ class _PageSettingsState extends State<PageSettings> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 7,
               ),
-              Container(
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Icon(
-                      Icons.lock_open,
-                      color: Colors.black,
-                      size: 23,
-                    ),
-                    SizedBox(
-                      width: 18,
-                    ),
-                    Text(
-                      'Password',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+              Expanded(
+                child: Container(
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 20,
                       ),
-                    ),
-                    SizedBox(
-                      width: 190,
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.arrow_forward_ios,color: Colors.black,size: 23,),
-                     /* onPressed: () {  //TODO: CHANGE THE USER PASSWORD ( ADAM )
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => PageHome()),
-                        );
-                      },*/
-                    ),
-                  ],
+                      Icon(
+                        Icons.lock_open,
+                        color: Colors.black,
+                        size: 23,
+                      ),
+                      SizedBox(
+                        width: 18,
+                      ),
+                      Text(
+                        'Password',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 160,
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.arrow_forward_ios,color: Colors.black,size: 23,),
+                       /* onPressed: () {  //TODO: CHANGE THE USER PASSWORD ( ADAM )
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => PageHome()),
+                          );
+                        },*/
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 7,
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20 ),
@@ -212,7 +211,7 @@ class _PageSettingsState extends State<PageSettings> {
                       ),
                     ),
                     SizedBox(
-                      width: 50,
+                      width: 27,
                     ),
                     Switch(
                       value: isSwitched1,
@@ -227,9 +226,6 @@ class _PageSettingsState extends State<PageSettings> {
                     ),
                   ],
                 ),
-              ),
-              SizedBox(
-                height: 1,
               ),
               Container(
                 child: Row(
@@ -253,7 +249,7 @@ class _PageSettingsState extends State<PageSettings> {
                       ),
                     ),
                     SizedBox(
-                      width: 150,
+                      width: 125,
                     ),
                     Switch(
                       value: isSwitched2,
@@ -268,9 +264,6 @@ class _PageSettingsState extends State<PageSettings> {
                     ),
                   ],
                 ),
-              ),
-              SizedBox(
-                height: 0,
               ),
               Container(
                 child: TextButton(

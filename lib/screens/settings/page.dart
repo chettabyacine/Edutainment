@@ -128,49 +128,39 @@ class _PageSettingsState extends State<PageSettings> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 7,
-              ),
               Expanded(
                 child: Container(
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Icon(
-                        Icons.lock_open,
-                        color: Colors.black,
-                        size: 23,
-                      ),
-                      SizedBox(
-                        width: 18,
-                      ),
-                      Text(
-                        'Password',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                  child: TextButton(
+                    onPressed: () {  }, //TODO: CHANGE PASSWORD
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 20,
                         ),
-                      ),
-                      SizedBox(
-                        width: 160,
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.arrow_forward_ios,color: Colors.black,size: 23,),
-                       /* onPressed: () {  //TODO: CHANGE THE USER PASSWORD ( ADAM )
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => PageHome()),
-                          );
-                        },*/
-                      ),
-                    ],
+                        Icon(
+                          Icons.lock_open,
+                          color: Colors.black,
+                          size: 23,
+                        ),
+                        SizedBox(
+                          width: 18,
+                        ),
+                        Text(
+                          'Password',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 203,
+                        ),
+                        Icon(Icons.arrow_forward_ios,color: Colors.black,size: 23,),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 7,
               ),
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20 ),
@@ -211,7 +201,7 @@ class _PageSettingsState extends State<PageSettings> {
                       ),
                     ),
                     SizedBox(
-                      width: 27,
+                      width: 56,
                     ),
                     Switch(
                       value: isSwitched1,
@@ -249,7 +239,7 @@ class _PageSettingsState extends State<PageSettings> {
                       ),
                     ),
                     SizedBox(
-                      width: 125,
+                      width: 153,
                     ),
                     Switch(
                       value: isSwitched2,

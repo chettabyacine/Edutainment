@@ -1,19 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:edutainment/utils/theme_constants.dart';
-import 'package:random_color/random_color.dart';
-
-void main(){
-  runApp(TestApp());
-}
-class TestApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: PageGlobalRank(),
-    );
-  }
-}
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:edutainment/screens/home/page.dart';
+import 'package:edutainment/screens/settings/page.dart';
+import 'package:edutainment/screens/global_rank/local_widgets/WidgetUserScore.dart';
 
 class PageGlobalRank extends StatefulWidget {
   PublicUser currentUser = PublicUser(score: 350, userName: 'ilyash', rank: 1, userID: 'IH');
@@ -32,15 +23,45 @@ class _PageGlobalRankState extends State<PageGlobalRank> {
   void initState() {
     userScores = [
       SizedBox(height: 40),
-      WidgetUserScore(user: publicUsers[0]),
-      WidgetUserScore(user: publicUsers[1]),
-      WidgetUserScore(user: publicUsers[2]),
-      WidgetUserScore(user: publicUsers[2]),
-      WidgetUserScore(user: publicUsers[2]),
-      SizedBox(height: 490),
     ];
+    for (int i = 0; i< publicUsers.length; i++){
+      userScores.add( WidgetUserScore(user: publicUsers[i]));
+    }
+    userScores.add(SizedBox(height: 490));
     super.initState();
   }
+
+  int _selectedIndex = 1;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      switch (index) {
+        case 0:
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PageHome()),
+          );
+          break;
+        case 1:
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PageGlobalRank()),
+          );
+          break;
+        case 2:
+        //TODO: Go to settings page
+          break;
+        case 3:
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => PageSettings(email: 'jy_ghodbane@esi.dz',prenom: 'Islam',nom: 'Ghodbane',profile: Colors.red,)));
+          break;
+        default:
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,10 +70,24 @@ class _PageGlobalRankState extends State<PageGlobalRank> {
 
         //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 40),
+          Container(
+            alignment: Alignment.topLeft,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back_ios,color: Color(0xFFdbdbdb),size: 40.0,),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PageHome()),
+                );
+              },
+            ),
+          ),
+          SizedBox(height: 10),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.ideographic,
             children: [
+              Expanded(child: SizedBox(width: 5,),),
               Text(
                 currentUser.score.toString() ?? '0',
                 style: TextStyle(
@@ -71,6 +106,7 @@ class _PageGlobalRankState extends State<PageGlobalRank> {
                   color: kWhiteColor,
                 ),
               ),
+              Expanded(child: SizedBox(width: 5,),),
             ],
           ),
           SizedBox(height: 40),
@@ -85,6 +121,37 @@ class _PageGlobalRankState extends State<PageGlobalRank> {
           ),
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.grey[500],
+            ),
+            label: 'Home',
+            activeIcon: Icon(
+              Icons.home,
+              color: Color(0xFF3347FF),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset('assets/icon rank.svg'),
+            label: 'Rang',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset('assets/icon stats.svg'),
+            label: 'Statistiques',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings ,color: Colors.grey[500],),
+            label: 'Paramètres',
+            activeIcon: Icon(Icons.settings , color: Color(0xFF3347FF),),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Color(0xFF3347FF),
+        onTap: _onItemTapped,
+      ),
     );
   }
 }
@@ -96,81 +163,4 @@ class PublicUser{
   String userID;
 
   PublicUser({@required this.score, @required this.userName, @required this.userID, @required this.rank});
-}
-
-class WidgetUserScore extends StatelessWidget {
-  PublicUser user;
-
-  WidgetUserScore({@required this.user});
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 60.0),
-          child: Row(
-            children: [
-              Text(
-               user.rank.toString() ?? '',
-                style: TextStyle(
-                  color: Color(0xFF1B1B1C),
-                  fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18.0,
-                ),
-              ),
-              SizedBox(width: 10.0),
-              Expanded(
-                child: Container(
-                  width: 500.0,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFF5F6FB),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 28.0,
-                        backgroundColor: RandomColor().randomColor(colorSaturation: ColorSaturation.highSaturation),
-                        child: Text(
-                          user.userID ?? '',
-                          style: TextStyle(
-                            color: kWhiteColor,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 22.0,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 8.0),
-                      Text(
-                        user.userName ?? '',
-                        style: TextStyle(
-                          color: Color(0xFF1B1B1C),
-                          fontFamily: 'OpenSans',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18.0,
-                        ),
-                      ),
-                      Expanded(child: SizedBox(width: 40.0)),
-                      Text(
-                        user.score.toString() ?? '',
-                        style: TextStyle(
-                          color: Color(0xFF1B1B1C),
-                          fontFamily: 'OpenSans',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 18.0,
-                        ),
-                      ),
-                      SizedBox(width: 15.0),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(height: 10),
-      ],
-    );
-  }
 }

@@ -5,6 +5,7 @@ import '../../utils/theme_constants.dart';
 import '../../utils/constants.dart';
 import 'local_widgets/WidgetHomeButton.dart';
 import 'package:edutainment/screens/settings/page.dart';
+import 'package:edutainment/screens/global_rank/page.dart';
 
 class PageHome extends StatefulWidget {
   static const String _pageName = kPageNameHome;
@@ -26,7 +27,10 @@ class _PageHomeState extends State<PageHome> {
         case 0:
           break;
         case 1:
-          //TODO: Go to ranks page
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PageGlobalRank()),
+          );
           break;
         case 2:
           //TODO: Go to statistics page

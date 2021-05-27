@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:edutainment/utils/theme_constants.dart';
+import 'package:random_color/random_color.dart';
 
 void main(){
   runApp(TestApp());
@@ -26,19 +27,34 @@ class _PageGlobalRankState extends State<PageGlobalRank> {
   List<PublicUser> publicUsers;
   PublicUser currentUser;
   _PageGlobalRankState({this.publicUsers,@required this.currentUser});
+  List<Widget> userScores;
+  @override
+  void initState() {
+    userScores = [
+      SizedBox(height: 40),
+      WidgetUserScore(user: publicUsers[0]),
+      WidgetUserScore(user: publicUsers[1]),
+      WidgetUserScore(user: publicUsers[2]),
+      WidgetUserScore(user: publicUsers[2]),
+      WidgetUserScore(user: publicUsers[2]),
+      SizedBox(height: 490),
+    ];
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kVioletColor,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      body: ListView(
+
+        //crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 50),
+          SizedBox(height: 40),
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                currentUser.score.toString(),
+                currentUser.score.toString() ?? '0',
                 style: TextStyle(
                   fontSize: 48.0,
                   fontFamily: 'OpenSans',
@@ -57,18 +73,14 @@ class _PageGlobalRankState extends State<PageGlobalRank> {
               ),
             ],
           ),
-          SizedBox(height: 50),
+          SizedBox(height: 40),
           Container(
-            color: Colors.white,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(25.0), topRight: Radius.circular(25.0)),
+            ),
             child: Column(
-              children: [
-                SizedBox(height: 40),
-                WidgetUserScore(user: publicUsers[0]),
-                SizedBox(height: 5),
-                WidgetUserScore(user: publicUsers[1]),
-                SizedBox(height: 5),
-                WidgetUserScore(user: publicUsers[2]),
-              ],
+              children: userScores ?? [SizedBox(height: 525)]
             ),
           ),
         ],
@@ -92,62 +104,72 @@ class WidgetUserScore extends StatelessWidget {
   WidgetUserScore({@required this.user});
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
       children: [
-        Text(
-         user.rank.toString() ?? '',
-          style: TextStyle(
-            color: Color(0xFF1B1B1C),
-            fontFamily: 'OpenSans',
-            fontWeight: FontWeight.w500,
-            fontSize: 18.0,
-          ),
-        ),
-        SizedBox(width: 10.0),
-        Container(
-          decoration: BoxDecoration(
-            color: Color(0xFFF5F6FB),
-            borderRadius: BorderRadius.circular(50),
-          ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 60.0),
           child: Row(
             children: [
-              CircleAvatar(
-                radius: 30.0,
-                backgroundColor: kVioletColor,
-                child: Text(
-                  user.userID ?? '',
-                  style: TextStyle(
-                    color: kWhiteColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 22.0,
+              Text(
+               user.rank.toString() ?? '',
+                style: TextStyle(
+                  color: Color(0xFF1B1B1C),
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18.0,
+                ),
+              ),
+              SizedBox(width: 10.0),
+              Expanded(
+                child: Container(
+                  width: 500.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF5F6FB),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 28.0,
+                        backgroundColor: RandomColor().randomColor(colorSaturation: ColorSaturation.highSaturation),
+                        child: Text(
+                          user.userID ?? '',
+                          style: TextStyle(
+                            color: kWhiteColor,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 22.0,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 8.0),
+                      Text(
+                        user.userName ?? '',
+                        style: TextStyle(
+                          color: Color(0xFF1B1B1C),
+                          fontFamily: 'OpenSans',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      Expanded(child: SizedBox(width: 40.0)),
+                      Text(
+                        user.score.toString() ?? '',
+                        style: TextStyle(
+                          color: Color(0xFF1B1B1C),
+                          fontFamily: 'OpenSans',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      SizedBox(width: 15.0),
+                    ],
                   ),
                 ),
               ),
-              SizedBox(width: 8.0),
-              Text(
-                user.userName ?? '',
-                style: TextStyle(
-                  color: Color(0xFF1B1B1C),
-                  fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18.0,
-                ),
-              ),
-              SizedBox(width: 40.0),
-              Text(
-                user.score.toString() ?? '',
-                style: TextStyle(
-                  color: Color(0xFF1B1B1C),
-                  fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18.0,
-                ),
-              ),
-              SizedBox(width: 15.0),
             ],
           ),
         ),
+        SizedBox(height: 10),
       ],
     );
   }

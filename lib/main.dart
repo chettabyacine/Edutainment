@@ -48,13 +48,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kVioletColor,
       ),
-      initialRoute: PageSettings.getPageName(),
+      initialRoute: PageEntryPoint.getPageName(),
       routes: {
         PageSignUp.getPageName(): (context) => PageSignUp(),
         PageLogIn.getPageName(): (context) => PageLogIn(),
         PageHome.getPageName(): (context) => PageHome(),
         PageEntryPoint.getPageName(): (context) => PageEntryPoint(),
-        PageScore.getPageName(): (context) => PageScore(),
+        PageScore.getPageName(): (context) => PageScore(domain: DomainNames.geometry, stars: 2,),
         PageCalculsGame.getPageName(): (context) => PageCalculsGame(
               levelCalculs: leveCalculs1,
             ),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "139985926670",
+    "project_id": "edutainment-9a59a",
+    "storage_bucket": "edutainment-9a59a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139985926670:android:5a953b0c6908e710731a5f",
+        "android_client_info": {
+          "package_name": "dz.esi.edutainment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139985926670-b1lr2g7tv11girp6h96nacrbl0b824cl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIX_Zx_rpoaLPXeuB27T_APgISvrJJvC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139985926670-b1lr2g7tv11girp6h96nacrbl0b824cl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

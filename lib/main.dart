@@ -1,7 +1,13 @@
 import 'package:edutainment/models/classes/AnswerCalculs.dart';
+import 'package:edutainment/models/classes/Domain.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:edutainment/models/classes/QuestionCalculs.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
+import 'package:edutainment/screens/question_qcm_image_text/page.dart';
+import 'package:edutainment/screens/question_qcm_text_image/page.dart';
+import 'package:edutainment/screens/question_qcm_text_text/page.dart';
+import 'package:edutainment/screens/road/page.dart';
 import 'package:flutter/material.dart';
 import 'screens/log_in/page.dart';
 import 'screens/sign_up/page.dart';
@@ -10,6 +16,7 @@ import 'screens/home/page.dart';
 import 'utils/constants.dart';
 import 'utils/theme_constants.dart';
 import 'screens/score/page.dart';
+import 'screens/settings/page.dart';
 
 void main() {
   runApp(MyApp());
@@ -60,10 +67,15 @@ class MyApp extends StatelessWidget {
         PageLogIn.getPageName(): (context) => PageLogIn(),
         PageHome.getPageName(): (context) => PageHome(),
         PageEntryPoint.getPageName(): (context) => PageEntryPoint(),
-        PageScore.getPageName(): (context) => PageScore(),
+        PageScore.getPageName(): (context) => PageScore(domain: DomainNames.geometry, stars: 2,),
         PageCalculsGame.getPageName(): (context) => PageCalculsGame(
               levelCalculs: leveCalculs1,
             ),
+        PageSettings.getPageName(): (context) => PageSettings( email: 'ja_manaa@esi.dz', prenom: 'Adam', nom: 'Manaa',profile: Colors.blue,),
+        PageRoad.getPageName(): (context) => PageRoad(),
+        PageQuestionQcmTextText.getPageName(): (context) => PageQuestionQcmTextText(),
+        PageQuestionQcmImageText.getPageName(): (context) => PageQuestionQcmImageText(),
+        PageQuestionQcmTextImage.getPageName(): (context) => PageQuestionQcmTextImage(),
       },
     );
   }

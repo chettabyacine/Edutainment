@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'AnswerCalculs.dart';
 import 'Level.dart';
 import 'QuestionCalculs.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LevelCalculs extends Level {
   List<QuestionCalculs> _waitingQuestions;
@@ -21,6 +23,7 @@ class LevelCalculs extends Level {
       List<QuestionCalculs> waitingQuestions,
       int duration,
       Color color,
+      int currentQuestion,
       int timeLeft})
       : super(
           id: id,
@@ -31,10 +34,42 @@ class LevelCalculs extends Level {
           numberOfStars: numberOfStars,
           indexOfDataBase: indexOfDataBase,
           color: color,
+          currentQuestion: currentQuestion,
         ) {
     this._waitingQuestions = waitingQuestions;
     this._timeLeft = timeLeft;
     this._duration = duration;
+  }
+
+  List<Widget> getStars() {
+    List<Widget> list = [];
+    for (int i = 1; i <= 3; i++) {
+      i <= getNumbreOfStars()
+          ? list.add(SvgPicture.asset('assets/star full.svg'))
+          : list.add(SvgPicture.asset('assets/star empty.svg'));
+    }
+    return list;
+  }
+
+  void nextQuestion() {
+    if (getCurrentQuestionIndex() >= _waitingQuestions.length) return;
+    setCurrentQuestionIndex(getCurrentQuestionIndex() + 1);
+  }
+
+  QuestionCalculs currentQuestion() {
+    print(getCurrentQuestionIndex());
+    return _waitingQuestions.elementAt(getCurrentQuestionIndex());
+  }
+
+  void onAnsweredCorrectly() {
+    _correctlyAnswered.add(currentQuestion());
+    nextQuestion();
+    incrementCurrentScore();
+  }
+
+  void onAnsweredIncorrectly() {
+    _incorrectlyAnswered.add(currentQuestion());
+    nextQuestion();
   }
 
   List<QuestionCalculs> getWaitingQuestions() {
@@ -82,6 +117,7 @@ class LevelCalculs extends Level {
   }
 
   void addIncorrectAnswer(QuestionCalculs questionCalculs) {
+    print('${questionCalculs.getNumberA()}');
     _incorrectlyAnswered.add(questionCalculs);
   }
 }

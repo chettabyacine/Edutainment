@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 
-class WidgetCalculsTheNumber extends StatelessWidget {
+class WidgetCalculsTheNumber extends StatefulWidget {
   const WidgetCalculsTheNumber({
     this.number,
   });
-
   final String number;
+
+  @override
+  _WidgetCalculsTheNumberState createState() => _WidgetCalculsTheNumberState();
+}
+
+class _WidgetCalculsTheNumberState extends State<WidgetCalculsTheNumber> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +26,7 @@ class WidgetCalculsTheNumber extends StatelessWidget {
         ),
       ),
       child: Text(
-        number,
+        widget.number,
         style: TextStyle(
           color: kBlueColor,
           fontWeight: FontWeight.w900,

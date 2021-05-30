@@ -1,38 +1,45 @@
+import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:flutter/material.dart';
 import 'package:edutainment/models/classes/AnswerCalculs.dart';
 import 'package:edutainment/utils/theme_constants.dart';
-import 'package:edutainment/models/data_state_managment/DataCalculsGame.dart';
-import 'package:provider/provider.dart';
 
-class WidgetCalculsAnswerButton extends StatelessWidget {
-  WidgetCalculsAnswerButton({@required this.text});
+class WidgetCalculsAnswerButton extends StatefulWidget {
+  WidgetCalculsAnswerButton({@required this.text, @required this.levelCalculs});
   final String text;
+  final LevelCalculs levelCalculs;
+
+  @override
+  _WidgetCalculsAnswerButtonState createState() =>
+      _WidgetCalculsAnswerButtonState();
+}
+
+class _WidgetCalculsAnswerButtonState extends State<WidgetCalculsAnswerButton> {
   AnswerCalculs userAnswer() {
-    if (text.compareTo("=") == 0) return AnswerCalculs.equals;
-    if (text.compareTo("<") == 0) return AnswerCalculs.less;
-    if (text.compareTo(">") == 0) return AnswerCalculs.greater;
-    return null;
+    if (widget.text.compareTo("=") == 0) return AnswerCalculs.equals;
+    if (widget.text.compareTo("<") == 0) return AnswerCalculs.less;
+    if (widget.text.compareTo(">") == 0) return AnswerCalculs.greater;
+    return AnswerCalculs.none;
   }
 
   @override
   Widget build(BuildContext context) {
-    final data = Provider.of<DataCalculsGame>(context);
     return Container(
       child: TextButton(
         onPressed: () {
-          data.levelCalculs
-              .getWaitingQuestions()
-              .first
-              .setUserAnswerCalculs(userAnswer());
-          if (userAnswer() == data.correctAnswer()) {
-            data.correctlyAnswered();
-          } else {
-            data.incorrectlyAnswered();
-          }
+          setState(() {
+            if (userAnswer().index ==
+                widget.levelCalculs
+                    .getWaitingQuestions()
+                    .first
+                    .getCorrectAnswer()
+                    .index) {
+              widget.levelCalculs.incrementCurrentScore();
+            } else {}
+          });
         },
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Text(
-          text,
+          widget.text,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 22,

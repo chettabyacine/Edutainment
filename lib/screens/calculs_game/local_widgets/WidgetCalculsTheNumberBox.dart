@@ -1,12 +1,19 @@
+import 'package:edutainment/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 import 'WidgetCalculsTheNumber.dart';
 
-class WidgetCalculsTheNumberBox extends StatelessWidget {
+class WidgetCalculsTheNumberBox extends StatefulWidget {
   const WidgetCalculsTheNumberBox({
-    this.number,
+    this.numbe,
   });
-  final String number;
+  final String numbe;
 
+  @override
+  _WidgetCalculsTheNumberBoxState createState() =>
+      _WidgetCalculsTheNumberBoxState();
+}
+
+class _WidgetCalculsTheNumberBoxState extends State<WidgetCalculsTheNumberBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,8 +26,24 @@ class WidgetCalculsTheNumberBox extends StatelessWidget {
           ),
           Expanded(
             flex: 5,
-            child: WidgetCalculsTheNumber(
-              number: number,
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Color(0xffD0E5F7),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: kBlueColor,
+                  width: 1.6,
+                  style: BorderStyle.solid,
+                ),
+              ),
+              child: Text(
+                "khra",
+                style: TextStyle(
+                  color: kBlueColor,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
             ),
           ),
           Expanded(

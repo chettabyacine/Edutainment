@@ -19,7 +19,7 @@ class AppBarWidget extends StatelessWidget {
           Positioned(
             top: height - 380,
             child: Container(
-              child: SvgPicture.asset('assets/upper shape.svg'),
+              child: SvgPicture.asset('assets/Upper shape.svg'),
             ),
           ),
           Positioned(

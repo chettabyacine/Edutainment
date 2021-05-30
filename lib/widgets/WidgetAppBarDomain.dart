@@ -6,7 +6,8 @@ class WidgetAppBarDomain extends StatelessWidget {
   final double height;
   final String title;
   final int domain;
-  WidgetAppBarDomain({this.domain, this.height, this.title});
+  final bool isHome;
+  WidgetAppBarDomain({this.domain, this.height, this.title, this.isHome});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,17 @@ class WidgetAppBarDomain extends StatelessWidget {
       domain: domain,
       title: title,
       height: height,
+      isHome: isHome,
     );
   }
 }
 
 // ignore: non_constant_identifier_names
 StatelessWidget AppBarDomain(
-    {final double height, final String title, final int domain}) {
+    {final double height,
+    final String title,
+    final int domain,
+    final bool isHome}) {
   return Container(
     height: height,
     child: Stack(
@@ -29,7 +34,9 @@ StatelessWidget AppBarDomain(
         Positioned(
           top: height - 380,
           child: Container(
-            child: SvgPicture.asset('assets/Upper shape $domain.svg'),
+            child: isHome
+                ? SvgPicture.asset('assets/Upper shape.svg')
+                : SvgPicture.asset('assets/Upper shape ${domain}.svg'),
           ),
         ),
         Positioned(

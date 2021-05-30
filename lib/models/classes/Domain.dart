@@ -1,17 +1,19 @@
 import 'DomainNames.dart';
 import 'Level.dart';
-class Domain{
+import 'package:flutter/material.dart';
 
-  DomainNames _name ;
-  int _colour;
-  List<Level> _levels ;
-  int _currentLevel ;
+class Domain {
+  DomainNames _name;
+  Color _colour;
+  List<Level> _levels;
+  int _currentLevel;
 
-  Domain(DomainNames name, int colour, List<Level> levels , int currentLevel) {
+  Domain(
+      {DomainNames name, Color colour, List<Level> levels, int currentLevel}) {
     this._name = name;
     this._colour = colour;
-    this._levels = levels ;
-    this._currentLevel = currentLevel ;
+    this._levels = levels;
+    this._currentLevel = currentLevel;
   }
 
   List<Level> getlevels() {
@@ -30,11 +32,11 @@ class Domain{
     this._currentLevel = currentlevel;
   }
 
-  int getcolour() {
+  Color getcolour() {
     return this._colour;
   }
 
-  void setcolour(int colour) {
+  void setcolour(Color colour) {
     this._colour = colour;
   }
 

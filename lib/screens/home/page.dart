@@ -1,9 +1,11 @@
+import 'package:edutainment/models/classes/Domain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../widgets/WidgetAppBar.dart';
 import '../../utils/theme_constants.dart';
 import '../../utils/constants.dart';
 import 'local_widgets/WidgetHomeButton.dart';
+import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
 
 class PageHome extends StatefulWidget {
   static const String _pageName = kPageNameHome;
@@ -39,6 +41,10 @@ class _PageHomeState extends State<PageHome> {
     });
   }
 
+  Domain domain = Domain(
+    colour: kVioletColor,
+  );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -46,10 +52,10 @@ class _PageHomeState extends State<PageHome> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            AppBarWidget(
+            WidgetAppBarDomain(
               title: kProjectName,
-              logo: SvgPicture.asset(''),
               height: 120,
+              isHome: true,
             ),
             Expanded(
               child: Column(

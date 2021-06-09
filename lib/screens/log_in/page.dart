@@ -33,7 +33,7 @@ class _PageLogInState extends State<PageLogIn> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            AppBarWidget(
+            WidgetAppBar(
               height: 250.0,
               logo: SvgPicture.asset('assets/bird.svg'),
               title: kProjectName,

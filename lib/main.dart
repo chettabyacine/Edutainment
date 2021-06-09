@@ -1,5 +1,4 @@
 import 'package:edutainment/models/classes/AnswerCalculs.dart';
-import 'package:edutainment/models/classes/Domain.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:edutainment/models/classes/QuestionCalculs.dart';
@@ -67,15 +66,16 @@ class MyApp extends StatelessWidget {
         PageLogIn.getPageName(): (context) => PageLogIn(),
         PageHome.getPageName(): (context) => PageHome(),
         PageEntryPoint.getPageName(): (context) => PageEntryPoint(),
-        PageScore.getPageName(): (context) => PageScore(domain: DomainNames.geometry, stars: 2,),
-        PageCalculsGame.getPageName(): (context) => PageCalculsGame(
-              levelCalculs: leveCalculs1,
-            ),
-        PageSettings.getPageName(): (context) => PageSettings( email: 'ja_manaa@esi.dz', prenom: 'Adam', nom: 'Manaa',profile: Colors.blue,),
+        PageScore.getPageName(): (context) => PageScore(),
+        PageCalculsGame.getPageName(): (context) => PageCalculsGame(),
+        PageSettings.getPageName(): (context) => PageSettings(),
         PageRoad.getPageName(): (context) => PageRoad(),
-        PageQuestionQcmTextText.getPageName(): (context) => PageQuestionQcmTextText(),
-        PageQuestionQcmImageText.getPageName(): (context) => PageQuestionQcmImageText(),
-        PageQuestionQcmTextImage.getPageName(): (context) => PageQuestionQcmTextImage(),
+        PageQuestionQcmTextText.getPageName(): (context) =>
+            PageQuestionQcmTextText(),
+        PageQuestionQcmImageText.getPageName(): (context) =>
+            PageQuestionQcmImageText(),
+        PageQuestionQcmTextImage.getPageName(): (context) =>
+            PageQuestionQcmTextImage(),
       },
     );
   }

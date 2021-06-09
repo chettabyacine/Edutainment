@@ -2,14 +2,15 @@ import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:flutter/material.dart';
 
 class BottomText extends StatelessWidget {
+  final String text;
   final DomainNames domain;
-  BottomText({this.domain});
+  BottomText({this.domain, this.text});
   @override
   Widget build(BuildContext context) {
     return Text(
-      'vous etes là!',
+      text,
       style: TextStyle(
-        fontSize: 11,
+        fontSize: 12,
         color: domainColor[domain],
         //fontWeight: FontWeight.w900,
       ),

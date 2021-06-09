@@ -2,6 +2,7 @@ import 'package:edutainment/utils/theme_constants.dart';
 import 'package:flutter/material.dart';
 
 enum DomainNames { calculs, animals, geometry, evaluation }
+
 Map<DomainNames, int> domainIndex = {
   DomainNames.calculs: 1,
   DomainNames.animals: 2,

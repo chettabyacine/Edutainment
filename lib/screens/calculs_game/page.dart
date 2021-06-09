@@ -192,7 +192,7 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
               } else {
                 widget.levelCalculs.nextQuestion();
               }
-              widget.levelCalculs.computeStars();
+              //widget.levelCalculs.computeStars();
             });
           }
         },

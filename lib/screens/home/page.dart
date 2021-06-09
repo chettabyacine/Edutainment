@@ -34,7 +34,16 @@ class _PageHomeState extends State<PageHome> {
           //TODO: Go to statistics page
           break;
         case 3:
-          //TODO: Go to settings page
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PageSettings(
+                      email: 'jy_ghodbane@esi.dz',
+                      prenom: 'Islam',
+                      nom: 'Ghodbane',
+                      profile: Colors.red,
+                    )),
+          );
           break;
         default:
           break;
@@ -49,10 +58,11 @@ class _PageHomeState extends State<PageHome> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
-            AppBarWidget(
-              title: kProjectName,
-              logo: SvgPicture.asset(''),
-              height: 120,
+            WidgetAppBarDomain(
+              title: 'Edutainment',
+              height: 140,
+              isHome: true,
+              domain: 0,
             ),
             Expanded(
               child: Column(

@@ -113,7 +113,7 @@ class LevelCalculs extends Level {
   }
 
   void addCorrectAnswer(QuestionCalculs questionCalculs) {
-    this._correctlyAnswered.add(questionCalculs);
+    _correctlyAnswered.add(questionCalculs);
   }
 
   void addIncorrectAnswer(QuestionCalculs questionCalculs) {

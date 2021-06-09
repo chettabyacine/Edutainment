@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 
-
-class AppBarDynamicWidget extends StatelessWidget {
+class WidgetAppBarDynamic extends StatelessWidget {
   final double height;
   final String title;
   final int domaine;
 
-  AppBarDynamicWidget({this.title,  this.height,this.domaine});
+  WidgetAppBarDynamic({this.title, this.height, this.domaine});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class AppBarDynamicWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
-                      children:[
+                      children: [
                         Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
@@ -40,7 +39,8 @@ class AppBarDynamicWidget extends StatelessWidget {
                               color: Colors.white,
                               size: 30.0,
                             ),
-                            onPressed: () { //TODO : CHANGE THE ROUTE
+                            onPressed: () {
+                              //TODO : CHANGE THE ROUTE
                               //Navigator.pushNamed(context, PageHome.getPageName());
                               //TODO : deal with navigation (islam)
                             },

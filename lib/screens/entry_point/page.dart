@@ -22,7 +22,7 @@ class PageEntryPoint extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppBarWidget(
+                WidgetAppBar(
                   height: 170.0,
                   logo: SvgPicture.asset('assets/bird.svg'),
                   title: kProjectName,

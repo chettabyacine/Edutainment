@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../utils/theme_constants.dart';
 
-class AppBarWidget extends StatelessWidget {
+class WidgetAppBar extends StatelessWidget {
   final double height;
   final SvgPicture logo;
   final String title;
 
-  AppBarWidget({this.title, this.logo, this.height});
+  WidgetAppBar({this.title, this.logo, this.height});
 
   @override
   Widget build(BuildContext context) {

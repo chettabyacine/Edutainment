@@ -1,7 +1,11 @@
+import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
+import 'package:edutainment/screens/road/page.dart';
 import 'package:flutter/material.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
+import 'package:edutainment/screens/road/page.dart';
 
 class HomeButton extends StatelessWidget {
   final String text;
@@ -15,17 +19,33 @@ class HomeButton extends StatelessWidget {
       onPressed: () {
         switch (text) {
           case 'Calculs':
-            //TODO: Go to PageNiveauxCalculs
-            Navigator.pushNamed(context, PageCalculsGame.getPageName());
+            Navigator.pushNamed(
+              context,
+              PageRoad.getPageName(),
+              arguments: DomainNames.calculs,
+            );
+
             break;
           case 'Géométrie':
-            //TODO: Go to PageNiveauxGeometry
+            Navigator.pushNamed(
+              context,
+              PageRoad.getPageName(),
+              arguments: DomainNames.geometry,
+            );
             break;
           case 'Animaux':
-            //TODO: Go to PageNiveauxAnimals
+            Navigator.pushNamed(
+              context,
+              PageRoad.getPageName(),
+              arguments: DomainNames.animals,
+            );
             break;
           case 'Evaluation':
-            //TODO: Go to PageEvaluation
+            Navigator.pushNamed(
+              context,
+              PageRoad.getPageName(),
+              arguments: DomainNames.evaluation,
+            );
             break;
           default:
             break;

@@ -18,6 +18,9 @@ class PageRoad extends StatefulWidget {
     return _pageName;
   }
 
+  DomainNames domain;
+  PageRoad({this.domain});
+
   @override
   _PageRoadState createState() => _PageRoadState();
 }
@@ -30,36 +33,6 @@ class _PageRoadState extends State<PageRoad> {
     super.initState();
     buttonList = [
       //TODO : MAKE LIST DYNAMIC (islam)
-      // LevelButton(
-      //   levelNumber: 1,
-      //   isOnTheRight: true,
-      //   bottom: ThreeStars(
-      //     isOnTheRight: true,
-      //     numberOfColored: 2,
-      //   ),
-      //   domain: widget.domain,
-      // ),
-      // SizedBox(
-      //   height: 20,
-      // ),
-      // LevelButton(
-      //   levelNumber: 2,
-      //   isOnTheRight: false,
-      //   bottom: ThreeStars(
-      //     isOnTheRight: false,
-      //     numberOfColored: 3,
-      //   ),
-      //   domain: widget.domain,
-      // ),
-      // SizedBox(
-      //   height: 20,
-      // ),
-      // LevelButton(
-      //   levelNumber: 3,
-      //   isOnTheRight: true,
-      //   bottom: BottomText(),
-      //   domain: widget.domain,
-      // ),
     ];
   }
 
@@ -82,6 +55,7 @@ class _PageRoadState extends State<PageRoad> {
                 title: '${domainString[domain]}', // to change
                 domain: domainIndex[domain],
                 height: 140,
+                isHome: false,
               ),
               Expanded(
                 child: Padding(
@@ -92,6 +66,7 @@ class _PageRoadState extends State<PageRoad> {
                       LevelButton(
                         levelNumber: 1,
                         isOnTheRight: true,
+                        stars: 2,
                         state: LevelStates.passed,
                         bottom: ThreeStars(
                           isOnTheRight: true,
@@ -105,6 +80,7 @@ class _PageRoadState extends State<PageRoad> {
                       LevelButton(
                         levelNumber: 2,
                         isOnTheRight: false,
+                        stars: 3,
                         state: LevelStates.passed,
                         bottom: ThreeStars(
                           isOnTheRight: false,

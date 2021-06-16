@@ -31,7 +31,7 @@ class WidgetAppBarDynamic extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Align(
+                        /*Align(
                           alignment: Alignment.topLeft,
                           child: IconButton(
                             icon: Icon(
@@ -45,7 +45,7 @@ class WidgetAppBarDynamic extends StatelessWidget {
                               //TODO : deal with navigation (islam)
                             },
                           ),
-                        ),
+                        ),*/
                       ],
                     ),
                     Row(

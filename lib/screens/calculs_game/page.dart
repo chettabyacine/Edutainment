@@ -1,5 +1,7 @@
 import 'package:edutainment/models/classes/AnswerCalculs.dart';
+import 'package:edutainment/models/classes/Level.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
+import 'package:edutainment/models/routing/arguments.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class PageCalculsGame extends StatefulWidget {
   static const String _pageName = kPageCalculsGame;
-  LevelCalculs levelCalculs;
-  PageCalculsGame({this.levelCalculs});
 
   static String getPageName() {
     return _pageName;
@@ -21,8 +21,12 @@ class PageCalculsGame extends StatefulWidget {
 }
 
 class _PageCalculsGameState extends State<PageCalculsGame> {
+  LevelCalculs levelCalculs;
   Widget photo = SvgPicture.asset('assets/bird.svg');
   Widget build(BuildContext context) {
+    final Arguments args = ModalRoute.of(context).settings.arguments;
+    levelCalculs = args.levelCalculs;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -49,7 +53,7 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                 child: Container(),
               ),
               WidgetTimeBar(
-                level: widget.levelCalculs,
+                level: levelCalculs,
               ),
               SizedBox(
                 height: 10,
@@ -61,10 +65,10 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      "Score: ${widget.levelCalculs.getCurrentScore()}",
+                      "Score: ${levelCalculs.getCurrentScore()}",
                     ),
                     Row(
-                      children: widget.levelCalculs.getStars(),
+                      children: levelCalculs.getStars(),
                     )
                   ],
                 ),
@@ -88,14 +92,12 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                     child: Column(
                       children: [
                         WidgetNumber(
-                            number: widget.levelCalculs
-                                .currentQuestion()
-                                .getNumberA()),
+                            number:
+                                levelCalculs.currentQuestion().getNumberA()),
                         WidgetAnswerButton(),
                         WidgetNumber(
-                            number: widget.levelCalculs
-                                .currentQuestion()
-                                .getNumberB()),
+                            number:
+                                levelCalculs.currentQuestion().getNumberB()),
                       ],
                     ),
                   ),
@@ -176,21 +178,19 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
     return Container(
       child: TextButton(
         onPressed: () {
-          if (widget.levelCalculs.getWaitingQuestions() == null ||
-              widget.levelCalculs.getWaitingQuestions().isEmpty)
+          if (levelCalculs.getWaitingQuestions() == null ||
+              levelCalculs.getWaitingQuestions().isEmpty)
             return;
           else {
             setState(() {
-              widget.levelCalculs
-                  .currentQuestion()
-                  .setUserAnswerCalculs(userAnswer);
+              levelCalculs.currentQuestion().setUserAnswerCalculs(userAnswer);
               if (userAnswer ==
-                  widget.levelCalculs.currentQuestion().getCorrectAnswer()) {
-                widget.levelCalculs.nextQuestion();
-                widget.levelCalculs
-                    .setCurrentScore(widget.levelCalculs.getCurrentScore() + 1);
+                  levelCalculs.currentQuestion().getCorrectAnswer()) {
+                levelCalculs.nextQuestion();
+                levelCalculs
+                    .setCurrentScore(levelCalculs.getCurrentScore() + 1);
               } else {
-                widget.levelCalculs.nextQuestion();
+                levelCalculs.nextQuestion();
               }
               //widget.levelCalculs.computeStars();
             });

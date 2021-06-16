@@ -24,36 +24,6 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    QuestionCalculs q1 = QuestionCalculs(
-        "khtaaa", 1, "numberA-1", "numberB-1", "+*", AnswerCalculs.equals);
-    QuestionCalculs q2 = QuestionCalculs(
-        "khs", 5, "numberA-2", "numberB-2", "+*", AnswerCalculs.equals);
-    QuestionCalculs q3 = QuestionCalculs(
-        "zmer", 6, "numberA-3", "numberB-3", "+*", AnswerCalculs.equals);
-    QuestionCalculs q4 = QuestionCalculs(
-        "zmer", 6, "numberA-4", "numberB-4", "+*", AnswerCalculs.equals);
-    QuestionCalculs q5 = QuestionCalculs(
-        "zmer", 6, "numberA-5", "numberB-5", "+*", AnswerCalculs.equals);
-    QuestionCalculs q6 = QuestionCalculs(
-        "zmer", 6, "numberA-6", "numberB-6", "+*", AnswerCalculs.equals);
-
-    LevelCalculs leveCalculs1 = LevelCalculs(
-      duration: 30000,
-      color: kBlueColor,
-      waitingQuestions: [
-        q1,
-        q2,
-        q3,
-        q4,
-        q5,
-        q6,
-      ],
-      currentScore: 0,
-      numberOfStars: 0,
-      highestScore: 2,
-      currentQuestion: 0,
-    ); //todo: will get this from database (yacine)
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: kProjectName,

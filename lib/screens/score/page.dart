@@ -1,6 +1,8 @@
+import 'package:edutainment/models/routing/arguments.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
 import 'package:edutainment/screens/question_qcm_text_image/page.dart';
 import 'package:edutainment/screens/question_qcm_text_text/page.dart';
+import 'package:edutainment/screens/road/page.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:edutainment/widgets/WidgetJouerMaintenantButton.dart';
@@ -28,24 +30,24 @@ class _PageScoreState extends State<PageScore> {
 
   @override
   Widget build(BuildContext context) {
-    final DomainNames domain = ModalRoute.of(context).settings.arguments;
-    final int stars = ModalRoute.of(context).settings.arguments;
+    final Arguments args = ModalRoute.of(context).settings.arguments;
     return SafeArea(
       child: Scaffold(
         body: Container(
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/background ${domainIndex[domain]}.jpg"),
+              image: AssetImage(
+                  "assets/background ${domainIndex[args.domain]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
               WidgetAppBarDynamic(
-                title: domainString[domain], // to change
+                title: domainString[args.domain], // to change
                 height: 135.0,
-                domaine: domainIndex[domain],
+                domaine: domainIndex[args.domain],
               ),
               /******************* */
               SizedBox(
@@ -71,9 +73,9 @@ class _PageScoreState extends State<PageScore> {
                       0.9,
                     ],
                     colors: [
-                      scoreColor[domain][0],
-                      scoreColor[domain][1],
-                      scoreColor[domain][2],
+                      scoreColor[args.domain][0],
+                      scoreColor[args.domain][1],
+                      scoreColor[args.domain][2],
                     ],
                   ),
                   borderRadius: BorderRadius.circular(20),
@@ -93,7 +95,7 @@ class _PageScoreState extends State<PageScore> {
                     SizedBox(
                       height: 10,
                     ),
-                    if (stars == 0)
+                    if (args.stars == 0)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -102,7 +104,7 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if (stars == 1)
+                    if (args.stars == 1)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -111,7 +113,7 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if (stars == 2)
+                    if (args.stars == 2)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -120,7 +122,7 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if (stars == 3)
+                    if (args.stars == 3)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -152,7 +154,7 @@ class _PageScoreState extends State<PageScore> {
           ),
         ),
         bottomNavigationBar: WidgetJouerMaintenantButton(
-          domain: domain,
+          domain: args.domain,
         ),
       ),
     );

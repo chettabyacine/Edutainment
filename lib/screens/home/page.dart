@@ -37,12 +37,8 @@ class _PageHomeState extends State<PageHome> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => PageSettings(
-                      email: 'jy_ghodbane@esi.dz',
-                      prenom: 'Islam',
-                      nom: 'Ghodbane',
-                      profile: Colors.red,
-                    )),
+              builder: (context) => PageSettings(),
+            ),
           );
           break;
         default:

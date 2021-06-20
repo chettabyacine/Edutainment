@@ -115,37 +115,45 @@ class _PageSignUpState extends State<PageSignUp> {
 
   void signUpUser() async {
     //Opération d'inscription (Traitement en BDD)
-    name = 'Ilyash'; email = 'hammouda.i.1as7@gmail.com'; password1 ='12345'; password2 = '12345';
+    name = 'Kias'; email = 'jm_kias@esi.dz'; password1 ='123457'; password2 = '123457';
     if ((name != null) && (!(name?.isEmpty ?? true)) && (email != null) && (!(email?.isEmpty ?? true)) && (password1 != null) && (!(password1?.isEmpty ?? true)) && (password2 != null) && (!(password2?.isEmpty) ?? true)) {
       if(!EmailValidator.validate(email)){
         //"invalid email"
         globalKey.currentState.showSnackBar(
-            SnackBar(content: WidgetSnackBarText("L'email entré n'est pas valide"), backgroundColor: kVioletColor)
+            SnackBar(content: WidgetSnackBarText("L'email entré n'est pas valide!"), backgroundColor: kVioletColor)
         );
       } else {
         if (password1 != password2) {
           //Les deux mots de passe ne sont pas identiques
           globalKey.currentState.showSnackBar(
-              SnackBar(content: WidgetSnackBarText("Les deux mots de passe doivent etre identiques"), backgroundColor: kVioletColor)
+              SnackBar(content: WidgetSnackBarText("Les deux mots de passe doivent etre identiques!"), backgroundColor: kVioletColor)
           );
-          print("Les deux mots de passe doivent etre identiques");
         } else {
           if (password1.length < 6){
             //Le mot de passe contient au moins 6 lettres
             globalKey.currentState.showSnackBar(
-                SnackBar(content: WidgetSnackBarText("Le mot de passe doit contenir au moins 6 lettres"), backgroundColor: kVioletColor,)
+                SnackBar(content: WidgetSnackBarText("Le mot de passe doit contenir au moins 6 lettres!"), backgroundColor: kVioletColor,)
             );
-            Text("Le mot de passe doit contenir au moins 6 lettres");
           } else {
-            _userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password1);
+            try {
+              _userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password1);
+              Navigator.pushNamed(context, PageHome.getPageName());
+            } on FirebaseAuthException catch (e) {
+              if (e.code == 'email-already-in-use') {
+                globalKey.currentState.showSnackBar(
+                    SnackBar(content: WidgetSnackBarText("Cet email est déjà utilisé!"), backgroundColor: kVioletColor,));
+              }
+            } catch (e) {
+              print(e);
+            }
+            }
           }
         }
-      }
     } else {
       if ((name?.isEmpty ?? true) || (email?.isEmpty ?? true) || (password1?.isEmpty ?? true) || (password2?.isEmpty ?? true)) {
         //L'utilisateur n'a pas rempli tous les champs
         globalKey.currentState.showSnackBar(
-            SnackBar(content: WidgetSnackBarText("Vous devez remplir tous les champs"), backgroundColor: kVioletColor,)
+            SnackBar(content: WidgetSnackBarText("Vous devez remplir tous les champs!"), backgroundColor: kVioletColor,)
         );
       }
     };

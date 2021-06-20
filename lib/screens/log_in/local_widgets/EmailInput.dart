@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 
 class EmailInput extends StatelessWidget {
+  final Function onChanged;
+
+  EmailInput({this.onChanged});
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
       keyboardType: TextInputType.emailAddress,
       obscureText: false,
       style: kSignUpLabelTextStyle,

@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 
 class PasswordInput extends StatelessWidget {
+  final Function onChanged;
+
+  PasswordInput({this.onChanged});
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
       obscureText: true,
       style: kSignUpLabelTextStyle,
       decoration: InputDecoration(

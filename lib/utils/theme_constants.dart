@@ -26,6 +26,13 @@ const kSignUpTextFieldStyle = TextStyle(
   fontSize: 14.0,
 );
 
+const kSnackBarTextStyle = TextStyle(
+  color: kWhiteColor,
+  fontFamily: 'Open Sans',
+  fontWeight: kFontWeight1,
+  fontSize: 14.0,
+);
+
 const kSignUpLabelTextStyle = TextStyle(
   fontFamily: 'Open Sans',
   color: Color(0xFF000000),

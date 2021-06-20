@@ -13,6 +13,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   random_color: ^1.0.5
+  email_validator: ^2.0.1
+  commons: ^0.7.8+3
+
 
 
 dev_dependencies:

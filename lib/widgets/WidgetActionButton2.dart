@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 import 'package:flutter/gestures.dart';
 
-class WidgetActionButton extends StatelessWidget {
-  WidgetActionButton(
+class WidgetActionButton2 extends StatelessWidget {
+  WidgetActionButton2(
       {@required this.text,
-       @required this.destination,
       @required this.isFilled,
       this.onPressed});
-  final String text, destination;
+  final String text;
   final bool isFilled;
   final Function onPressed;
 
@@ -18,9 +17,7 @@ class WidgetActionButton extends StatelessWidget {
         textAlign: TextAlign.center,
         text: TextSpan(
           recognizer: TapGestureRecognizer()
-            ..onTap = () {
-              Navigator.pushNamed(context, destination);
-            },
+            ..onTap = onPressed,
           text: text,
           style: isFilled
               ? kActionButtonTextStyleFilled

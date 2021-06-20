@@ -1,3 +1,4 @@
+import 'package:edutainment/screens/entry_point/page.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,8 @@ import '../../utils/constants.dart';
 import '../../widgets/WidgetAppBarDomain.dart';
 import 'package:edutainment/screens/home/page.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:edutainment/screens/home/page.dart';
 
 class PageSettings extends StatefulWidget {
   static const String _pageName = kPageSettings;
@@ -27,6 +30,8 @@ class PageSettings extends StatefulWidget {
 }
 
 class _PageSettingsState extends State<PageSettings> {
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   bool isSwitched1=false;
   bool isSwitched2=false;
@@ -285,7 +290,7 @@ class _PageSettingsState extends State<PageSettings> {
               ),
               Container(
                 child: TextButton(
-                  onPressed: () {  }, //TODO : LOGOUT FROM THE ACCOUNT
+                  onPressed: LogOutDialog, //TODO : LOGOUT FROM THE ACCOUNT
                   child: Row(
                     children: [
                       SizedBox(
@@ -377,6 +382,44 @@ class _PageSettingsState extends State<PageSettings> {
           onTap: _onItemTapped,
         ),
       ),
+    );
+  }
+  Future<void> LogOutDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user can dissmiss when clicking outside the dialog box
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Déconnexion', style: kDialogTitleStyle,),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text("En cliquant sur 'ok' vous allez vous déconnecter de votre compte", style: kDialogContentStyle,),
+                Text('Êtes-vous sûr de vouloir quitter?', style: kDialogContentStyle,),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('ok', style: TextStyle(color: kWhiteColor, fontFamily: 'Open Sans'),),
+              onPressed: () async {
+                //Log Out
+                _auth.signOut();
+                Navigator.pushNamed(context, PageEntryPoint.getPageName());
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(kVioletColor)
+              ),
+            ),
+            TextButton(
+              child: const Text('annuler   ', style: TextStyle(color: kVioletColor, fontFamily: 'Open Sans'),),
+              onPressed: () {
+                Navigator.pop(context, 'annuler');
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

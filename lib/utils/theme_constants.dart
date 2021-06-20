@@ -67,3 +67,17 @@ const kActionButtonTextStyleEmpty = TextStyle(
   fontWeight: kFontWeight1,
   letterSpacing: 1,
 );
+
+const kDialogTitleStyle = TextStyle(
+  fontFamily: 'Open Sans',
+  fontSize: 20.0,
+  color: Colors.black,
+  fontWeight: FontWeight.w700,
+);
+
+const kDialogContentStyle = TextStyle(
+  fontFamily: 'Open Sans',
+  fontSize: 14.0,
+  color: Colors.black,
+  fontWeight: FontWeight.w500,
+);

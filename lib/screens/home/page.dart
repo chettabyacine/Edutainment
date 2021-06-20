@@ -34,7 +34,10 @@ class _PageHomeState extends State<PageHome> {
           //TODO: Go to statistics page
           break;
         case 3:
-          //TODO: Go to settings page
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PageSettings(email: 'ji_hamouda@esi.dz',prenom: 'Ilyes',nom: 'Hamouda',profile: Colors.green,)),
+          );
           break;
         default:
           break;

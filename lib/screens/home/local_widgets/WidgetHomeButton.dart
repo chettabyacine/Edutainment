@@ -1,4 +1,8 @@
+import 'package:edutainment/models/classes/AnswerCalculs.dart';
+import 'package:edutainment/models/classes/Domain.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
+import 'package:edutainment/models/classes/LevelCalculs.dart';
+import 'package:edutainment/models/classes/QuestionCalculs.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
 import 'package:edutainment/screens/road/page.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +15,8 @@ class HomeButton extends StatelessWidget {
   final String text;
   final Color colour;
   final SvgPicture icon;
-  HomeButton({this.text, this.colour, this.icon});
+  final Domain domain;
+  HomeButton({this.text, this.colour, this.icon, @required this.domain});
 
   @override
   Widget build(BuildContext context) {
@@ -19,32 +24,36 @@ class HomeButton extends StatelessWidget {
       onPressed: () {
         switch (text) {
           case 'Calculs':
+            domain.setname(DomainNames.calculs);
             Navigator.pushNamed(
               context,
               PageRoad.getPageName(),
-              arguments: DomainNames.calculs,
+              arguments: domain,
             );
 
             break;
           case 'Géométrie':
+            domain.setname(DomainNames.geometry);
             Navigator.pushNamed(
               context,
               PageRoad.getPageName(),
-              arguments: DomainNames.geometry,
+              arguments: domain,
             );
             break;
           case 'Animaux':
+            domain.setname(DomainNames.animals);
             Navigator.pushNamed(
               context,
               PageRoad.getPageName(),
-              arguments: DomainNames.animals,
+              arguments: domain,
             );
             break;
           case 'Evaluation':
+            domain.setname(DomainNames.evaluation);
             Navigator.pushNamed(
               context,
               PageRoad.getPageName(),
-              arguments: DomainNames.evaluation,
+              arguments: domain,
             );
             break;
           default:

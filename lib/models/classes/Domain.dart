@@ -1,26 +1,34 @@
 import 'DomainNames.dart';
-import 'Level.dart';
 import 'package:flutter/material.dart';
 
 class Domain {
   DomainNames _name;
   Color _colour;
-  List<Level> _levels;
+  List<dynamic> _levels;
   int _currentLevel;
 
   Domain(
-      {DomainNames name, Color colour, List<Level> levels, int currentLevel}) {
+      {DomainNames name,
+      Color colour,
+      List<dynamic> levels,
+      @required int currentLevel}) {
     this._name = name;
     this._colour = colour;
     this._levels = levels;
     this._currentLevel = currentLevel;
   }
 
-  List<Level> getlevels() {
+  void incrementLevelIndex() {
+    if (this._levels.length - 1 > _currentLevel) {
+      this._currentLevel++;
+    }
+  }
+
+  List<dynamic> getlevels() {
     return this._levels;
   }
 
-  void setlevels(List<Level> levels) {
+  void setlevels(List<dynamic> levels) {
     this._levels = levels;
   }
 

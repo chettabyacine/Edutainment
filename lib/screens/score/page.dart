@@ -1,3 +1,4 @@
+import 'package:edutainment/models/classes/Domain.dart';
 import 'package:edutainment/models/routing/arguments.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
 import 'package:edutainment/screens/question_qcm_text_image/page.dart';
@@ -30,7 +31,8 @@ class _PageScoreState extends State<PageScore> {
 
   @override
   Widget build(BuildContext context) {
-    final Arguments args = ModalRoute.of(context).settings.arguments;
+    final Arguments args =
+        ModalRoute.of(context).settings.arguments as Arguments;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -38,16 +40,16 @@ class _PageScoreState extends State<PageScore> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  "assets/background ${domainIndex[args.domain]}.jpg"),
+                  "assets/background ${domainIndex[args.domain.getname()]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
               WidgetAppBarDynamic(
-                title: domainString[args.domain], // to change
+                title: domainString[args.domain.getname()], // to change
                 height: 135.0,
-                domaine: domainIndex[args.domain],
+                domaine: domainIndex[args.domain.getname()],
               ),
               /******************* */
               SizedBox(
@@ -72,11 +74,7 @@ class _PageScoreState extends State<PageScore> {
                       0.6,
                       0.9,
                     ],
-                    colors: [
-                      scoreColor[args.domain][0],
-                      scoreColor[args.domain][1],
-                      scoreColor[args.domain][2],
-                    ],
+                    colors: scoreColor[args.domain.getname()],
                   ),
                   borderRadius: BorderRadius.circular(20),
                   // color: Colors.lightBlueAccent, //TODO: to change
@@ -95,7 +93,11 @@ class _PageScoreState extends State<PageScore> {
                     SizedBox(
                       height: 10,
                     ),
-                    if (args.stars == 0)
+                    if (args.domain
+                            .getlevels()
+                            .elementAt(args.indexOfLevel)
+                            .getNumbreOfStars() ==
+                        0)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -104,7 +106,11 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if (args.stars == 1)
+                    if (args.domain
+                            .getlevels()
+                            .elementAt(args.indexOfLevel)
+                            .getNumbreOfStars() ==
+                        1)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -113,7 +119,11 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if (args.stars == 2)
+                    if (args.domain
+                            .getlevels()
+                            .elementAt(args.indexOfLevel)
+                            .getNumbreOfStars() ==
+                        2)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -122,7 +132,11 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if (args.stars == 3)
+                    if (args.domain
+                            .getlevels()
+                            .elementAt(args.indexOfLevel)
+                            .getNumbreOfStars() ==
+                        3)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -155,6 +169,8 @@ class _PageScoreState extends State<PageScore> {
         ),
         bottomNavigationBar: WidgetJouerMaintenantButton(
           domain: args.domain,
+          indexOfLevel: args.indexOfLevel,
+          isScorePage: true,
         ),
       ),
     );

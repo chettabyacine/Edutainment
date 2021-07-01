@@ -18,7 +18,7 @@ class PageRoad extends StatefulWidget {
     return _pageName;
   }
 
-  DomainNames domain;
+  Domain domain;
   PageRoad({this.domain});
 
   @override
@@ -27,33 +27,76 @@ class PageRoad extends StatefulWidget {
 
 class _PageRoadState extends State<PageRoad> {
   //TODO : FIND A WAY TO CREATE THE ACTUAL ROAD
-  List<Widget> buttonList = [];
+
+  List<Widget> getRoadButtons({Domain domain}) {
+    List<Widget> result = [];
+    Widget widget;
+    const Widget sizedBox = SizedBox(height: 20);
+    for (int i = 0; i < domain.getlevels().length; i++) {
+      if (i < domain.getcurrentlevel()) {
+        widget = LevelButton(
+          levelNumber: i + 1,
+          isOnTheRight: i.isOdd,
+          stars: domain.getlevels().elementAt(i).getNumbreOfStars(),
+          state: LevelStates.passed,
+          bottom: ThreeStars(
+            isOnTheRight: i.isOdd,
+            numberOfColored: domain.getlevels().elementAt(i).getNumbreOfStars(),
+          ),
+          domain: domain,
+        );
+      } else if (i == domain.getcurrentlevel()) {
+        widget = LevelButton(
+          levelNumber: i + 1,
+          isOnTheRight: i.isOdd,
+          stars: domain.getlevels().elementAt(i).getNumbreOfStars(),
+          state: LevelStates.current,
+          bottom: ThreeStars(
+            isOnTheRight: i.isOdd,
+            numberOfColored: 0,
+          ),
+          domain: domain,
+        );
+      }
+      if (i > domain.getcurrentlevel()) {
+        widget = LevelButton(
+          levelNumber: i + 1,
+          isOnTheRight: i.isOdd,
+          state: LevelStates.waiting,
+          bottom: BottomText(text: ''),
+          domain: domain,
+        );
+      }
+      result.add(widget);
+      result.add(sizedBox);
+    }
+    return result;
+  }
+
   @override
   void initState() {
     super.initState();
-    buttonList = [
-      //TODO : MAKE LIST DYNAMIC (islam)
-    ];
   }
 
   @override
   Widget build(BuildContext context) {
-    final DomainNames domain = ModalRoute.of(context).settings.arguments;
+    final Domain domain = ModalRoute.of(context).settings.arguments as Domain;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/background ${domainIndex[domain]}.jpg"),
+              image: AssetImage(
+                  "assets/background ${domainIndex[domain.getname()]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
               WidgetAppBarDomain(
-                title: '${domainString[domain]}', // to change
-                domain: domainIndex[domain],
+                title: '${domainString[domain.getname()]}', // to change
+                domain: domainIndex[domain.getname()],
                 height: 140,
                 isHome: false,
               ),
@@ -62,56 +105,7 @@ class _PageRoadState extends State<PageRoad> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 80, vertical: 50),
                   child: ListView(
-                    children: [
-                      LevelButton(
-                        levelNumber: 1,
-                        isOnTheRight: true,
-                        stars: 2,
-                        state: LevelStates.passed,
-                        bottom: ThreeStars(
-                          isOnTheRight: true,
-                          numberOfColored: 2,
-                        ),
-                        domain: domain,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      LevelButton(
-                        levelNumber: 2,
-                        isOnTheRight: false,
-                        stars: 3,
-                        state: LevelStates.passed,
-                        bottom: ThreeStars(
-                          isOnTheRight: false,
-                          numberOfColored: 3,
-                        ),
-                        domain: domain,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      LevelButton(
-                        levelNumber: 3,
-                        isOnTheRight: true,
-                        state: LevelStates.current,
-                        bottom: BottomText(
-                          text: 'Vous êtes là!',
-                          domain: domain,
-                        ),
-                        domain: domain,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      LevelButton(
-                        levelNumber: 4,
-                        isOnTheRight: false,
-                        state: LevelStates.waiting,
-                        bottom: BottomText(text: ''),
-                        domain: domain,
-                      ),
-                    ],
+                    children: getRoadButtons(domain: domain),
                   ),
                 ),
               ),
@@ -119,7 +113,11 @@ class _PageRoadState extends State<PageRoad> {
           ),
         ),
         //TODO: refactor the bottom button
-        bottomNavigationBar: WidgetJouerMaintenantButton(domain: domain),
+        bottomNavigationBar: WidgetJouerMaintenantButton(
+          domain: domain,
+          indexOfLevel: domain.getcurrentlevel(),
+          isScorePage: false,
+        ),
       ),
     );
   }

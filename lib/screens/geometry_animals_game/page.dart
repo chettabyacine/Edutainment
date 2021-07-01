@@ -1,4 +1,7 @@
+import 'package:edutainment/models/classes/Domain.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
+import 'package:edutainment/models/routing/arguments.dart';
+import 'package:edutainment/screens/score/page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -9,8 +12,6 @@ import 'package:edutainment/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'level1/LevelBrain.dart';
-
-LevelBrain levelBrain = LevelBrain();
 
 int score = 0;
 
@@ -37,10 +38,7 @@ class PageLevelAnimalsOrGeometry extends StatefulWidget {
 
   //widget containing the question in all of its possible formats and the answer in all of its formats
 
-  @required
-  final DomainNames domain;
-
-  PageLevelAnimalsOrGeometry({this.domain});
+  PageLevelAnimalsOrGeometry();
 
   @override
   _PageLevelAnimalsOrGeometryState createState() =>
@@ -67,9 +65,15 @@ class _PageLevelAnimalsOrGeometryState
     }
   }
 
-  Widget chooseAnswerWidget(bool usesInput) {
+  Widget chooseAnswerWidget(
+      {bool usesInput,
+      LevelBrain levelBrain,
+      Domain domain,
+      int indexOfLevel}) {
+    bool endOfLevel = false;
+    Column column;
     if (!usesInput) {
-      return Column(
+      column = Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +89,13 @@ class _PageLevelAnimalsOrGeometryState
 
                     //sleep(waiting);
 
-                    levelBrain.nextQuestion();
+                    endOfLevel = levelBrain.nextQuestion();
+                    if (endOfLevel) {
+                      Arguments args =
+                          Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                      Navigator.pushNamed(context, PageScore.getPageName(),
+                          arguments: args);
+                    }
                   });
                 },
                 child: levelBrain
@@ -110,7 +120,13 @@ class _PageLevelAnimalsOrGeometryState
                         .questionBank[levelBrain.questionNumber]
                         .checkAnswer(1));
 
-                    levelBrain.nextQuestion();
+                    endOfLevel = levelBrain.nextQuestion();
+                    if (endOfLevel) {
+                      Arguments args =
+                          Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                      Navigator.pushNamed(context, PageScore.getPageName(),
+                          arguments: args);
+                    }
                   });
                 },
                 child: levelBrain
@@ -140,7 +156,13 @@ class _PageLevelAnimalsOrGeometryState
                         .questionBank[levelBrain.questionNumber]
                         .checkAnswer(2));
 
-                    levelBrain.nextQuestion();
+                    endOfLevel = levelBrain.nextQuestion();
+                    if (endOfLevel) {
+                      Arguments args =
+                          Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                      Navigator.pushNamed(context, PageScore.getPageName(),
+                          arguments: args);
+                    }
                   });
                 },
                 child: levelBrain
@@ -165,7 +187,13 @@ class _PageLevelAnimalsOrGeometryState
                         .questionBank[levelBrain.questionNumber]
                         .checkAnswer(3));
 
-                    levelBrain.nextQuestion();
+                    endOfLevel = levelBrain.nextQuestion();
+                    if (endOfLevel) {
+                      Arguments args =
+                          Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                      Navigator.pushNamed(context, PageScore.getPageName(),
+                          arguments: args);
+                    }
                   });
                 },
                 child: levelBrain
@@ -185,8 +213,7 @@ class _PageLevelAnimalsOrGeometryState
         ],
       );
     } else {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      column = Column(
         children: [
           Container(
             width: 280.0,
@@ -217,12 +244,20 @@ class _PageLevelAnimalsOrGeometryState
                       .checkAnswer(userAnswer));
 
                   answerInputController.clear();
+                  endOfLevel = levelBrain.nextQuestion();
+                  if (endOfLevel) {
+                    Arguments args =
+                        Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                    Navigator.pushNamed(context, PageScore.getPageName(),
+                        arguments: args);
+                  }
                 });
               },
               child: Text('Verifier!'))
         ],
       );
     }
+    return column;
   }
 
   Widget chooseBirdReaction(Answered answered) {
@@ -237,6 +272,11 @@ class _PageLevelAnimalsOrGeometryState
 
   @override
   Widget build(BuildContext context) {
+    final Arguments args =
+        ModalRoute.of(context).settings.arguments as Arguments;
+    final int index = args.indexOfLevel;
+    final Domain domain = args.domain;
+    final LevelBrain levelBrain = args.domain.getlevels()[index - 1];
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -244,17 +284,16 @@ class _PageLevelAnimalsOrGeometryState
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  "assets/background ${domainIndex[widget.domain]}.jpg"),
+                  "assets/background ${domainIndex[domain.getname()]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
               WidgetAppBarDomain(
-                title: domainString[widget.domain], // to change
-
-                domain: domainIndex[widget.domain],
-
+                title: domainString[domain.getname()], // to change
+                isHome: false,
+                domain: domainIndex[domain.getname()],
                 height: 140,
               ),
               SizedBox(
@@ -268,7 +307,7 @@ class _PageLevelAnimalsOrGeometryState
                     style: TextStyle(
                       fontFamily: 'Open Sans',
                       fontWeight: FontWeight.bold,
-                      color: domainColor[widget.domain],
+                      color: domainColor[domain.getname()],
                     ),
                   ),
                   SizedBox(
@@ -300,7 +339,11 @@ class _PageLevelAnimalsOrGeometryState
                 height: 60,
               ),
               chooseAnswerWidget(
-                  levelBrain.questionBank[levelBrain.questionNumber].usesInput),
+                  usesInput: levelBrain
+                      .questionBank[levelBrain.questionNumber].usesInput,
+                  levelBrain: levelBrain,
+                  domain: domain,
+                  indexOfLevel: index),
               Expanded(
                   child: Padding(
                 padding: EdgeInsets.only(right: 70),

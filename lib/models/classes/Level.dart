@@ -112,15 +112,15 @@ class Level {
   }
 
   void computeStars() {
-    if (_currentScore.toDouble() < 0.5 * _averageScore.toDouble()) {
+    if (2 * _currentScore < _averageScore) {
       setNumbreOfStars(0);
       return;
     }
-    if (_currentScore.toDouble() < 0.8 * _averageScore.toDouble()) {
+    if (10 * _currentScore < 8 * _averageScore) {
       setNumbreOfStars(1);
       return;
     }
-    if (_currentScore.toDouble() < _averageScore.toDouble()) {
+    if (_currentScore < _averageScore) {
       setNumbreOfStars(2);
       return;
     }

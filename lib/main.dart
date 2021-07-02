@@ -1,9 +1,11 @@
 import 'package:edutainment/models/classes/AnswerCalculs.dart';
 import 'package:edutainment/models/classes/Domain.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
+import 'package:edutainment/models/classes/Level.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:edutainment/models/classes/QuestionCalculs.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
+import 'package:edutainment/screens/geometry_animals_game/page.dart';
 import 'package:edutainment/screens/question_qcm_image_text/page.dart';
 import 'package:edutainment/screens/question_qcm_text_image/page.dart';
 import 'package:edutainment/screens/question_qcm_text_text/page.dart';
@@ -17,47 +19,14 @@ import 'utils/constants.dart';
 import 'utils/theme_constants.dart';
 import 'screens/score/page.dart';
 import 'screens/settings/page.dart';
-import 'package:firebase_core/firebase_core.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    QuestionCalculs q1 = QuestionCalculs(
-        "khtaaa", 1, "numberA-1", "numberB-1", "+*", AnswerCalculs.equals);
-    QuestionCalculs q2 = QuestionCalculs(
-        "khs", 5, "numberA-2", "numberB-2", "+*", AnswerCalculs.equals);
-    QuestionCalculs q3 = QuestionCalculs(
-        "zmer", 6, "numberA-3", "numberB-3", "+*", AnswerCalculs.equals);
-    QuestionCalculs q4 = QuestionCalculs(
-        "zmer", 6, "numberA-4", "numberB-4", "+*", AnswerCalculs.equals);
-    QuestionCalculs q5 = QuestionCalculs(
-        "zmer", 6, "numberA-5", "numberB-5", "+*", AnswerCalculs.equals);
-    QuestionCalculs q6 = QuestionCalculs(
-        "zmer", 6, "numberA-6", "numberB-6", "+*", AnswerCalculs.equals);
-
-    LevelCalculs leveCalculs1 = LevelCalculs(
-      duration: 30000,
-      color: kBlueColor,
-      waitingQuestions: [
-        q1,
-        q2,
-        q3,
-        q4,
-        q5,
-        q6,
-      ],
-      currentScore: 0,
-      numberOfStars: 0,
-      highestScore: 2,
-      //currentQuestion: 0,
-    ); //todo: will get this from database (yacine)
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: kProjectName,
@@ -70,15 +39,18 @@ class MyApp extends StatelessWidget {
         PageLogIn.getPageName(): (context) => PageLogIn(),
         PageHome.getPageName(): (context) => PageHome(),
         PageEntryPoint.getPageName(): (context) => PageEntryPoint(),
-        PageScore.getPageName(): (context) => PageScore(domain: DomainNames.geometry, stars: 2,),
-        PageCalculsGame.getPageName(): (context) => PageCalculsGame(
-              levelCalculs: leveCalculs1,
-            ),
-        PageSettings.getPageName(): (context) => PageSettings( email: 'ja_manaa@esi.dz', prenom: 'Adam', nom: 'Manaa',profile: Colors.blue,),
+        PageScore.getPageName(): (context) => PageScore(),
+        PageCalculsGame.getPageName(): (context) => PageCalculsGame(),
+        PageSettings.getPageName(): (context) => PageSettings(),
         PageRoad.getPageName(): (context) => PageRoad(),
-        PageQuestionQcmTextText.getPageName(): (context) => PageQuestionQcmTextText(),
-        PageQuestionQcmImageText.getPageName(): (context) => PageQuestionQcmImageText(),
-        PageQuestionQcmTextImage.getPageName(): (context) => PageQuestionQcmTextImage(),
+        PageQuestionQcmTextText.getPageName(): (context) =>
+            PageQuestionQcmTextText(),
+        PageQuestionQcmImageText.getPageName(): (context) =>
+            PageQuestionQcmImageText(),
+        PageQuestionQcmTextImage.getPageName(): (context) =>
+            PageQuestionQcmTextImage(),
+        PageLevelAnimalsOrGeometry.getPageName(): (context) =>
+            PageLevelAnimalsOrGeometry(),
       },
     );
   }

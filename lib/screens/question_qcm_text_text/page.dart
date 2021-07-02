@@ -1,3 +1,5 @@
+import 'package:edutainment/models/classes/Domain.dart';
+import 'package:edutainment/models/routing/arguments.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +9,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class PageQuestionQcmTextText extends StatefulWidget {
   static const String _pageName = kPageQuestionQcmTextText;
-  @required
-  DomainNames domain;
-  PageQuestionQcmTextText({this.domain});
 
   @override
   _PageQuestionQcmTextTextState createState() =>
@@ -22,23 +21,26 @@ class PageQuestionQcmTextText extends StatefulWidget {
 class _PageQuestionQcmTextTextState extends State<PageQuestionQcmTextText> {
   @override
   Widget build(BuildContext context) {
+    final Arguments args =
+        ModalRoute.of(context).settings.arguments as Arguments;
+    final Domain domain = args.domain;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(
-                  "assets/background ${domainIndex[widget.domain]}.jpg"),
+              image: AssetImage("assets/background ${domainIndex[domain]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
               WidgetAppBarDomain(
-                title: domainString[widget.domain], // to change
-                domain: domainIndex[widget.domain],
+                title: domainString[domain.getname()], // to change
+                domain: domainIndex[domain.getname()],
                 height: 140,
+                isHome: false,
               ),
               SizedBox(
                 height: 10,
@@ -51,7 +53,7 @@ class _PageQuestionQcmTextTextState extends State<PageQuestionQcmTextText> {
                     style: TextStyle(
                       fontFamily: 'Open Sans',
                       fontWeight: FontWeight.bold,
-                      color: domainColor[widget.domain],
+                      color: domainColor[domain.getname()],
                     ),
                   ),
                   SizedBox(
@@ -109,7 +111,7 @@ class _PageQuestionQcmTextTextState extends State<PageQuestionQcmTextText> {
                     child: Text(
                       'Ronaldo',
                       style: TextStyle(
-                        color: domainColor[widget.domain],
+                        color: domainColor[domain.getname()],
                       ),
                     ),
                     style: ButtonStyle(
@@ -132,7 +134,7 @@ class _PageQuestionQcmTextTextState extends State<PageQuestionQcmTextText> {
                     child: Text(
                       'Zizou',
                       style: TextStyle(
-                        color: domainColor[widget.domain],
+                        color: domainColor[domain.getname()],
                       ),
                     ),
                     style: ButtonStyle(
@@ -160,7 +162,7 @@ class _PageQuestionQcmTextTextState extends State<PageQuestionQcmTextText> {
                     child: Text(
                       'Messi',
                       style: TextStyle(
-                        color: domainColor[widget.domain],
+                        color: domainColor[domain.getname()],
                       ),
                     ),
                     style: ButtonStyle(
@@ -183,7 +185,7 @@ class _PageQuestionQcmTextTextState extends State<PageQuestionQcmTextText> {
                     child: Text(
                       'Gwardiola',
                       style: TextStyle(
-                        color: domainColor[widget.domain],
+                        color: domainColor[domain.getname()],
                       ),
                     ),
                     style: ButtonStyle(

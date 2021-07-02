@@ -1,16 +1,19 @@
 import 'package:edutainment/models/classes/AnswerCalculs.dart';
+import 'package:edutainment/models/classes/Level.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
+import 'package:edutainment/models/routing/arguments.dart';
+import 'package:edutainment/screens/score/page.dart';
 import 'package:edutainment/utils/theme_constants.dart';
 import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:edutainment/models/classes/Domain.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
 
 class PageCalculsGame extends StatefulWidget {
   static const String _pageName = kPageCalculsGame;
-  LevelCalculs levelCalculs;
-  PageCalculsGame({this.levelCalculs});
 
   static String getPageName() {
     return _pageName;
@@ -21,8 +24,14 @@ class PageCalculsGame extends StatefulWidget {
 }
 
 class _PageCalculsGameState extends State<PageCalculsGame> {
+  LevelCalculs levelCalculs;
+  int currentIndex = 0;
   Widget photo = SvgPicture.asset('assets/bird.svg');
+
   Widget build(BuildContext context) {
+    final Arguments args =
+        ModalRoute.of(context).settings.arguments as Arguments;
+    levelCalculs = args.domain.getlevels()[args.domain.getcurrentlevel()];
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -49,7 +58,8 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                 child: Container(),
               ),
               WidgetTimeBar(
-                level: widget.levelCalculs,
+                domain: args.domain,
+                indexOfLevel: args.indexOfLevel,
               ),
               SizedBox(
                 height: 10,
@@ -61,10 +71,14 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      "Score: ${widget.levelCalculs.getCurrentScore()}",
+                      "Score: ${levelCalculs.getCurrentScore()}",
+                      style: TextStyle(color: Colors.teal),
                     ),
                     Row(
-                      children: widget.levelCalculs.getStars(),
+                      children: [
+                        Container(),
+                      ],
+                      // children: levelCalculs.getStars(),
                     )
                   ],
                 ),
@@ -88,14 +102,12 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                     child: Column(
                       children: [
                         WidgetNumber(
-                            number: widget.levelCalculs
-                                .currentQuestion()
-                                .getNumberA()),
+                            number:
+                                levelCalculs.currentQuestion().getNumberA()),
                         WidgetAnswerButton(),
                         WidgetNumber(
-                            number: widget.levelCalculs
-                                .currentQuestion()
-                                .getNumberB()),
+                            number:
+                                levelCalculs.currentQuestion().getNumberB()),
                       ],
                     ),
                   ),
@@ -122,7 +134,8 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
   /** WIDGETS */
   /** **************************************************** */
 
-  Widget WidgetTimeBar({LevelCalculs level}) {
+  Widget WidgetTimeBar({@required Domain domain, @required int indexOfLevel}) {
+    LevelCalculs level = domain.getlevels().elementAt(indexOfLevel);
     return LinearPercentIndicator(
       width: MediaQuery.of(context).size.width - 100,
       animation: true,
@@ -133,10 +146,9 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
       linearStrokeCap: LinearStrokeCap.roundAll,
       progressColor: Color(0xffE4B94A),
       backgroundColor: Color(0x10000000),
-      restartAnimation: true,
       onAnimationEnd: () {
-        //todo: level ends
-        Navigator.pop(context);
+        Arguments args = Arguments(domain: domain, indexOfLevel: indexOfLevel);
+        Navigator.pushNamed(context, PageScore.getPageName(), arguments: args);
       },
     );
   }
@@ -176,23 +188,28 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
     return Container(
       child: TextButton(
         onPressed: () {
-          if (widget.levelCalculs.getWaitingQuestions() == null ||
-              widget.levelCalculs.getWaitingQuestions().isEmpty)
+          if (levelCalculs.getWaitingQuestions() == null ||
+              levelCalculs.getWaitingQuestions().isEmpty)
             return;
           else {
             setState(() {
-              widget.levelCalculs
-                  .currentQuestion()
-                  .setUserAnswerCalculs(userAnswer);
+              levelCalculs.currentQuestion().setUserAnswerCalculs(userAnswer);
               if (userAnswer ==
-                  widget.levelCalculs.currentQuestion().getCorrectAnswer()) {
-                widget.levelCalculs.nextQuestion();
-                widget.levelCalculs
-                    .setCurrentScore(widget.levelCalculs.getCurrentScore() + 1);
+                  levelCalculs.currentQuestion().getCorrectAnswer()) {
+                if (levelCalculs.getWaitingQuestions().length - 1 >
+                    currentIndex) {
+                  levelCalculs.nextQuestion();
+                  levelCalculs
+                      .setCurrentScore(levelCalculs.getCurrentScore() + 1);
+                }
               } else {
-                widget.levelCalculs.nextQuestion();
+                if (levelCalculs.getWaitingQuestions().length - 1 >
+                    currentIndex) {
+                  levelCalculs.nextQuestion();
+                }
               }
-              widget.levelCalculs.computeStars();
+              currentIndex++;
+              //levelCalculs.computeStars();
             });
           }
         },

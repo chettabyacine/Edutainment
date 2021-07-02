@@ -1,19 +1,21 @@
+import 'package:edutainment/models/classes/Domain.dart';
+import 'package:edutainment/models/routing/arguments.dart';
+import 'package:edutainment/screens/calculs_game/page.dart';
+import 'package:edutainment/screens/question_qcm_text_image/page.dart';
+import 'package:edutainment/screens/question_qcm_text_text/page.dart';
+import 'package:edutainment/screens/road/page.dart';
 import 'package:edutainment/utils/theme_constants.dart';
+import 'package:edutainment/models/classes/DomainNames.dart';
+import 'package:edutainment/widgets/WidgetJouerMaintenantButton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../utils/constants.dart';
-import '../../widgets/WidgetJouerMaintenantButton.dart';
-import '../../widgets/AppBarDynamicWidget.dart';
-import 'package:edutainment/models/classes/DomainNames.dart';
+import '../../widgets/WidgetAppBarDomain.dart';
+import 'package:edutainment/widgets/WidgetAppBarDynamic.dart';
 
 class PageScore extends StatefulWidget {
   static const String _pageName = kPageNameScore;
-
-  @required DomainNames domain;
-  @required int stars;
-  PageScore({this.domain,this.stars});
-
   static String getPageName() {
     return _pageName;
   }
@@ -29,23 +31,27 @@ class _PageScoreState extends State<PageScore> {
 
   @override
   Widget build(BuildContext context) {
+    final Arguments args =
+        ModalRoute.of(context).settings.arguments as Arguments;
     return SafeArea(
       child: Scaffold(
         body: Container(
           constraints: BoxConstraints.expand(),
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/background ${domainIndex[widget.domain]}.jpg"),
+              image: AssetImage(
+                  "assets/background ${domainIndex[args.domain.getname()]}.jpg"),
               fit: BoxFit.cover,
             ),
           ),
           child: Column(
             children: [
-              AppBarDynamicWidget(
-                title: domainString[widget.domain], // to change
-                height: 135,
-                domaine: domainIndex[widget.domain],
+              WidgetAppBarDynamic(
+                title: domainString[args.domain.getname()], // to change
+                height: 135.0,
+                domaine: domainIndex[args.domain.getname()],
               ),
+              /******************* */
               SizedBox(
                 height: 70,
               ),
@@ -57,7 +63,7 @@ class _PageScoreState extends State<PageScore> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: Offset(0, 3), //TODO: changes position of shadow
                     ),
                   ],
                   gradient: LinearGradient(
@@ -68,14 +74,10 @@ class _PageScoreState extends State<PageScore> {
                       0.6,
                       0.9,
                     ],
-                    colors: [
-                      scoreColor[widget.domain][0],
-                      scoreColor[widget.domain][1],
-                      scoreColor[widget.domain][2],
-                    ],
+                    colors: scoreColor[args.domain.getname()],
                   ),
                   borderRadius: BorderRadius.circular(20),
-                  // color: Colors.lightBlueAccent, // to change
+                  // color: Colors.lightBlueAccent, //TODO: to change
                 ),
                 width: 300.0,
                 height: 180.0,
@@ -91,7 +93,11 @@ class _PageScoreState extends State<PageScore> {
                     SizedBox(
                       height: 10,
                     ),
-                    if( widget.stars == 0)
+                    if (args.domain
+                            .getlevels()
+                            .elementAt(args.indexOfLevel)
+                            .getNumbreOfStars() ==
+                        0)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -100,7 +106,11 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if( widget.stars == 1)
+                    if (args.domain
+                            .getlevels()
+                            .elementAt(args.indexOfLevel)
+                            .getNumbreOfStars() ==
+                        1)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -109,7 +119,11 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if( widget.stars == 2)
+                    if (args.domain
+                            .getlevels()
+                            .elementAt(args.indexOfLevel)
+                            .getNumbreOfStars() ==
+                        2)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -118,7 +132,11 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if( widget.stars == 3)
+                    if (args.domain
+                            .getlevels()
+                            .elementAt(args.indexOfLevel)
+                            .getNumbreOfStars() ==
+                        3)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -149,10 +167,12 @@ class _PageScoreState extends State<PageScore> {
             ],
           ),
         ),
-        bottomNavigationBar: WidgetJouerMaintenantButton(domain: widget.domain,),
+        bottomNavigationBar: WidgetJouerMaintenantButton(
+          domain: args.domain,
+          indexOfLevel: args.indexOfLevel,
+          isScorePage: true,
+        ),
       ),
     );
   }
 }
-
-

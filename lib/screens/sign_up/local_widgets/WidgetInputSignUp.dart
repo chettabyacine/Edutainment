@@ -7,7 +7,7 @@ class InputWidget extends StatelessWidget {
   final String label;
   final IconData icon;
 
-  InputWidget({this.data, this.icon, this.label});
+  InputWidget({this.icon, this.label});
 
   @override
   Widget build(BuildContext context) {

@@ -19,8 +19,12 @@ import 'utils/constants.dart';
 import 'utils/theme_constants.dart';
 import 'screens/score/page.dart';
 import 'screens/settings/page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

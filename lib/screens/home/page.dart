@@ -38,7 +38,11 @@ class _PageHomeState extends State<PageHome> {
         case 0:
           break;
         case 1:
-          //TODO: Go to ranks page
+          //Rank page
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PageGlobalRank()),
+          );
           break;
         case 2:
           //TODO: Go to statistics page

@@ -11,6 +11,12 @@ import 'local_widgets/WidgetInputSignUp.dart';
 import 'package:edutainment/widgets/WidgetFooterPasswordForgot.dart';
 import 'package:edutainment/widgets/WidgetFooterText.dart';
 import 'local_widgets/ClassUser.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:email_validator/email_validator.dart';
+import 'package:commons/commons.dart';
+import 'package:edutainment/widgets/WidgetActionButton2.dart';
+import 'package:edutainment/widgets/WidgetSnackBarText.dart';
 
 class PageSignUp extends StatefulWidget {
   static const String _pageName = kPageNameSignUp;
@@ -25,90 +31,135 @@ class PageSignUp extends StatefulWidget {
 class _PageSignUpState extends State<PageSignUp> {
   String name, email, password1, password2;
   String birthDay = 'Date de naissance';
-  bool _checkbox = false;
+  bool _checkbox = false, emailValid;
   SignUpUser user;
-
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseUser _user;
+  UserCredential _userCredential;
+  final globalKey = GlobalKey<ScaffoldState>();
+  var inputEmail = InputWidget(
+    icon: Icons.email,
+    label: 'Adresse email',
+  );
+  var inputName = InputWidget(
+    icon: Icons.person,
+    label: 'Nom',
+  );
+  var inputPassword1 = InputWidget(
+    icon: Icons.lock,
+    label: 'Mot de passe',
+  );
+  var inputPassword2 = InputWidget(
+    icon: Icons.lock,
+    label: 'Confirmer mot de passe',
+  );
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            WidgetAppBar(
-              height: 170.0,
-              logo: SvgPicture.asset('assets/bird.svg'),
-              title: kProjectName,
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 28.0,
-                  ),
-                  InputWidget(
-                    data: name,
-                    icon: Icons.person,
-                    label: 'Nom Prénom',
-                  ),
-                  DateInput(context),
-                  InputWidget(
-                    data: email,
-                    icon: Icons.email,
-                    label: 'Adresse email',
-                  ),
-                  InputWidget(
-                    data: password1,
-                    icon: Icons.lock,
-                    label: 'Mot de passe',
-                  ),
-                  InputWidget(
-                    data: password2,
-                    icon: Icons.lock,
-                    label: 'Confirmer mot de passe',
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
-                    child: WidgetCheckBox(),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      //TODO: Opération d'inscription (Traitement en BDD)
-                      user = SignUpUser(
-                        name: name,
-                        birthDay: birthDay,
-                        email: email,
-                        password1: password1,
-                        password2: password2,
-                      );
-                      Navigator.pushNamed(context, PageHome.getPageName());
-                    },
-                    child: WidgetActionButton(
-                      text: 'S\'inscrire',
-                      destination: PageHome.getPageName(),
-                      isFilled: true,
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Container(),
-                  ),
-                  FooterText(
-                      text1: 'Vous avez déja un compte? ',
-                      text2: 'S\'identifier',
-                      destination: PageLogIn.getPageName()),
-                  FooterPasswordForgot(),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                ],
+        child: Scaffold(
+          key: globalKey,
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Colors.white,
+          body: Column(
+            children: [
+              WidgetAppBar(
+                height: 170.0,
+                logo: SvgPicture.asset('assets/bird.svg'),
+                title: kProjectName,
               ),
-            ),
-          ],
+              Expanded(
+                child: ListView(
+                  children: [
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    inputName,
+                    DateInput(context),
+                    inputEmail,
+                    inputPassword1,
+                    inputPassword2,
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 0),
+                      child: WidgetCheckBox(),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: WidgetActionButton2(
+                        text: 'S\'inscrire',
+                        isFilled: true,
+                        onPressed: signUpUser,
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                    FooterText(
+                        text1: 'Vous avez déja un compte? ',
+                        text2: 'S\'identifier',
+                        destination: PageLogIn.getPageName()),
+                    FooterPasswordForgot(),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+  }
+
+  void signUpUser() async {
+    //Opération d'inscription (Traitement en BDD)
+    name = inputName.data; email = inputEmail.data; password1 = inputPassword1.data; password2 = inputPassword2.data;
+    if ((name != null) && (!(name?.isEmpty ?? true)) && (email != null) && (!(email?.isEmpty ?? true)) && (password1 != null) && (!(password1?.isEmpty ?? true)) && (password2 != null) && (!(password2?.isEmpty) ?? true) && (birthDay != null) && (!(birthDay?.isEmpty) ?? true)) {
+      if(!EmailValidator.validate(email)){
+        //"invalid email"
+        globalKey.currentState.showSnackBar(
+            SnackBar(content: WidgetSnackBarText("L'email entré n'est pas valide!"), backgroundColor: kVioletColor)
+        );
+      } else {
+        if (password1 != password2) {
+          //Les deux mots de passe ne sont pas identiques
+          globalKey.currentState.showSnackBar(
+              SnackBar(content: WidgetSnackBarText("Les deux mots de passe doivent etre identiques!"), backgroundColor: kVioletColor)
+          );
+        } else {
+          if (password1.length < 6){
+            //Le mot de passe contient au moins 6 lettres
+            globalKey.currentState.showSnackBar(
+                SnackBar(content: WidgetSnackBarText("Le mot de passe doit contenir au moins 6 lettres!"), backgroundColor: kVioletColor,)
+            );
+          } if (_checkbox == false){
+            //n'a pas accepté la reglementation
+            globalKey.currentState.showSnackBar(
+                SnackBar(content: WidgetSnackBarText("Vous devez accepter la règlementation!"), backgroundColor: kVioletColor,)
+            );
+          } else {
+            try {
+              _userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password1);
+              Navigator.pushNamed(context, PageHome.getPageName());
+            } on FirebaseAuthException catch (e) {
+              if (e.code == 'email-already-in-use') {
+                globalKey.currentState.showSnackBar(
+                    SnackBar(content: WidgetSnackBarText("Cet email est déjà utilisé!"), backgroundColor: kVioletColor,));
+              }
+            } catch (e) {
+              print(e);
+            }
+          }
+          }
+        }
+    } else {
+      if ((name?.isEmpty ?? true) || (email?.isEmpty ?? true) || (password1?.isEmpty ?? true) || (password2?.isEmpty ?? true)) {
+        //L'utilisateur n'a pas rempli tous les champs
+        globalKey.currentState.showSnackBar(
+            SnackBar(content: WidgetSnackBarText("Vous devez remplir tous les champs!"), backgroundColor: kVioletColor,)
+        );
+      }
+    };
   }
 
   ListTile WidgetCheckBox() {

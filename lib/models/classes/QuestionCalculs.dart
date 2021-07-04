@@ -7,8 +7,8 @@ class QuestionCalculs extends Question {
   AnswerCalculs _correctAnswer;
   AnswerCalculs _userAnswer;
 
-  QuestionCalculs(String content, int complexity, String numberA,
-      String numberB, String usedOperators, AnswerCalculs correctAnswer)
+  QuestionCalculs({String content, int complexity, String numberA,
+      String numberB, String usedOperators, AnswerCalculs correctAnswer})
       : super(content:content, complexity:complexity) {
     this._numberA = numberA;
     this._numberB = numberB;

@@ -4,6 +4,8 @@ import 'AnswerCalculs.dart';
 import 'Level.dart';
 import 'QuestionCalculs.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:edutainment/models/DB/QuestionCalculesDBModel.dart';
+import 'package:edutainment/models/DB/QuestionDB.dart';
 
 class LevelCalculs extends Level {
   List<QuestionCalculs> _waitingQuestions;
@@ -119,5 +121,11 @@ class LevelCalculs extends Level {
   void addIncorrectAnswer(QuestionCalculs questionCalculs) {
     print('${questionCalculs.getNumberA()}');
     _incorrectlyAnswered.add(questionCalculs);
+  }
+  Future fillQuestionBank(int level) async {
+    final List<QuestionCalculesDBModel> list = await QuestionDB.instance.readLevelCalcules(level);
+    for (QuestionCalculesDBModel questionCalcules in list){
+      _waitingQuestions.add(questionCalcules.convertToRealQuestion());
+    }
   }
 }

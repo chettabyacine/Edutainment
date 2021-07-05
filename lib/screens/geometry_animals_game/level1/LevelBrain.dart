@@ -23,7 +23,7 @@ class LevelBrain extends Level {
   Future fillQuestionBank(int level) async {
     final List<QuestionGeometryDBModel> list = await QuestionDB.instance.readLevelGeometry(level);
     for (QuestionGeometryDBModel questionGeometry in list){
-      questionBank.add(questionGeometry.convertToRealQuestion());
+      if (questionGeometry.level==level) questionBank.add(questionGeometry.convertToRealQuestion());
     }
   }
 }

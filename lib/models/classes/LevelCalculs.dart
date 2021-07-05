@@ -125,7 +125,7 @@ class LevelCalculs extends Level {
   Future fillQuestionBank(int level) async {
     final List<QuestionCalculesDBModel> list = await QuestionDB.instance.readLevelCalcules(level);
     for (QuestionCalculesDBModel questionCalcules in list){
-      _waitingQuestions.add(questionCalcules.convertToRealQuestion());
+     if(questionCalcules.level==level) _waitingQuestions.add(questionCalcules.convertToRealQuestion());
     }
   }
 }

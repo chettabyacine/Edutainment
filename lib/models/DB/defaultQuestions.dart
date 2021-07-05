@@ -131,6 +131,12 @@ final List<QuestionGeometryDBModel> defaultGeometry = [
   QuestionGeometryDBModel(level: 3,type: 1,usesInput: false,questionText: 'Le périmètre est?',answers: '10 cm,20 cm,14 cm,8 cm',correctIndex: 2,imagePath:'assets/geometric shapes/2D shapes for calculations/triangle 6-3-4.svg'),
   QuestionGeometryDBModel(level: 3,type: 1,usesInput: false,questionText: 'La surface est?',answers: '10 cm²,9 cm²,15 cm²,18 cm²',correctIndex: 1,imagePath:'assets/geometric shapes/2D shapes for calculations/rectangle 6-3.svg' ),
   QuestionGeometryDBModel(level: 3,type: 1,usesInput: false,questionText: 'Le périmètre est?',answers: '20 cm,12 cm,15 cm,19 cm',correctIndex: 0,imagePath:'assets/geometric shapes/2D shapes for calculations/parallelogramme 7-2-3.svg' ),
+  QuestionGeometryDBModel(level: 3,type: 3,usesInput: true,questionText: 'Le surface est?',answers: '6cm²,6,6 cm²',correctIndex: -1,imagePath:'assets/geometric shapes/2D shapes for calculations/triangle 5-4-3.svg' ),
+  QuestionGeometryDBModel(level: 3,type: 3,usesInput: true,questionText: 'La surface est?',answers: '25cm²,25,25 cm',correctIndex: -1,imagePath:'assets/geometric shapes/2D shapes for calculations/caree 5.svg' ),
+  QuestionGeometryDBModel(level: 3,type: 1,usesInput: false,questionText: 'Le périmètre est?',answers: '120 mm,10 cm,3 cm,7 mm',correctIndex: 0,imagePath:'assets/geometric shapes/2D shapes for calculations/hexagone 2.svg' ),
+  QuestionGeometryDBModel(level: 3,type: 3,usesInput: true,questionText: 'La surface est?',answers: '3cm²,3,3 cm²',correctIndex: -1,imagePath:'assets/geometric shapes/2D shapes for calculations/trapeze 4-2-1.svg' ),
+  QuestionGeometryDBModel(level: 3,type: 1,usesInput: true,questionText: 'La surface est?',answers: '10cm²,10,10 cm',correctIndex: -1,imagePath:'assets/geometric shapes/2D shapes for calculations/triangle 6-5-4.svg' ),
+
 
 ];
 final List<QuestionAnimalsDBModel> defaultAnimals = [

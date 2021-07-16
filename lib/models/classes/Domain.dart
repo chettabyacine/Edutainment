@@ -19,9 +19,7 @@ class Domain {
   }
 
   void incrementLevelIndex() {
-    if (this._levels.length - 1 > _currentLevel) {
-      this._currentLevel++;
-    }
+    this._currentLevel++;
   }
 
   List<dynamic> getlevels() {

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'AnswerCalculs.dart';
 import 'Level.dart';
 import 'QuestionCalculs.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:edutainment/models/DB/QuestionCalculesDBModel.dart';
-import 'package:edutainment/models/DB/QuestionDB.dart';
+import 'package:edutainment/services/QuestionCalculesDBModel.dart';
+import 'package:edutainment/services/LocalDB.dart';
 
 class LevelCalculs extends Level {
   List<QuestionCalculs> _waitingQuestions;
@@ -122,10 +120,13 @@ class LevelCalculs extends Level {
     print('${questionCalculs.getNumberA()}');
     _incorrectlyAnswered.add(questionCalculs);
   }
+
   Future fillQuestionBank(int level) async {
-    final List<QuestionCalculesDBModel> list = await QuestionDB.instance.readLevelCalcules(level);
-    for (QuestionCalculesDBModel questionCalcules in list){
-     if(questionCalcules.level==level) _waitingQuestions.add(questionCalcules.convertToRealQuestion());
+    final List<QuestionCalculesDBModel> list =
+        await LocalDB.instance.readLevelCalculs(level);
+    for (QuestionCalculesDBModel questionCalcules in list) {
+      if (questionCalcules.level == level)
+        _waitingQuestions.add(questionCalcules.convertToRealQuestion());
     }
   }
 }

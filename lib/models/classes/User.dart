@@ -1,19 +1,29 @@
 import 'Domain.dart';
 import 'Statistics.dart';
-class User {
-   int _id;
-   String _name;
-   String _emailString;
-   String _password;
-   int _globalRank;
-   List<Domain> _domains;
-   DateTime _birthDate;
-   DateTime _signUpDate;
-   Statistics _statistics;
-   bool _private;
 
-  User({int id, String name, String emailString, String password, int globalRank, DateTime birthDate , DateTime signUpDate,
-   List<Domain> domains , Statistics statistics , bool private} ) {
+class User2 {
+  int _id;
+  String _name;
+  String _emailString;
+  String _password;
+  int _globalRank;
+  List<Domain> _domains;
+  DateTime _birthDate;
+  DateTime _signUpDate;
+  Statistics _statistics;
+  bool _private;
+
+  User2(
+      {int id,
+      String name,
+      String emailString,
+      String password,
+      int globalRank,
+      DateTime birthDate,
+      DateTime signUpDate,
+      List<Domain> domains,
+      Statistics statistics,
+      bool private}) {
     this._id = id;
     this._name = name;
     this._emailString = emailString;
@@ -21,12 +31,12 @@ class User {
     this._globalRank = globalRank;
     this._domains = domains;
     this._birthDate = birthDate;
-    this._signUpDate= signUpDate;
-    this._statistics = statistics ;
-    this._private = private ;
+    this._signUpDate = signUpDate;
+    this._statistics = statistics;
+    this._private = private;
   }
 
-  int getId(int Id ) {
+  int getId() {
     return this._id;
   }
 
@@ -34,7 +44,7 @@ class User {
     this._id = id;
   }
 
-  String getName(String name ) {
+  String getName(String name) {
     return this._name;
   }
 
@@ -46,7 +56,7 @@ class User {
     return this._emailString;
   }
 
-  void setEmailString(String  emailString) {
+  void setEmailString(String emailString) {
     this._emailString = emailString;
   }
 
@@ -54,8 +64,8 @@ class User {
     return this._password;
   }
 
-  void setPassword(String password ) {
-    this._password = password ;
+  void setPassword(String password) {
+    this._password = password;
   }
 
   int getGlobalRank() {
@@ -89,28 +99,25 @@ class User {
   void setPrivate(bool private) {
     this._private = private;
   }
-  DateTime getSignUpDate(){
+
+  DateTime getSignUpDate() {
     return this._signUpDate;
   }
-  void setSignUpDate(DateTime signUpDate){
-    this._signUpDate=signUpDate;
+
+  void setSignUpDate(DateTime signUpDate) {
+    this._signUpDate = signUpDate;
   }
 
-  List<Domain> getDomains(){
+  List<Domain> getDomains() {
     return this._domains;
   }
-  void setDomains(List<Domain> domains){
-    this._domains=domains;
+
+  void setDomains(List<Domain> domains) {
+    this._domains = domains;
   }
 
   //TODO : DEFINE THESE FUNCTIONS???
-   void chooseDomain(){
-
-   }
-   void Deconnexion(){
-
-   }
-   void Synchroniser(){
-
-   }
+  void chooseDomain() {}
+  void deconnexion() {}
+  void synchroniser() {}
 }

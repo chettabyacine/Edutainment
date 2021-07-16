@@ -29,10 +29,11 @@ dev_dependencies:
   firebase_core: ^0.5.0
   firebase_auth: ^0.18.1
   cloud_firestore: ^0.14.0
-  audioplayers: ^0.10.0
+  audioplayers: ^0.9.0
   sqflite: ^2.0.0+3
   path: any
   flutter_staggered_grid_view: ^0.4.0-nullsafety.3
+  charts_flutter: ^0.9.0
 
 flutter:
   uses-material-design: true
@@ -41,6 +42,8 @@ flutter:
     - assets/geometric shapes/2D shapes filled/
     - assets/geometric shapes/2D shapes non filled/
     - assets/geometric shapes/2D shapes for calculations/
+    - assets/animals/images/
+    - assets/animals/sounds/
 
   fonts:
     - family: Acme

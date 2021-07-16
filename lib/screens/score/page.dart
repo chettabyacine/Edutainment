@@ -1,10 +1,6 @@
 import 'package:edutainment/models/classes/Domain.dart';
+import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:edutainment/models/routing/arguments.dart';
-import 'package:edutainment/screens/calculs_game/page.dart';
-import 'package:edutainment/screens/question_qcm_text_image/page.dart';
-import 'package:edutainment/screens/question_qcm_text_text/page.dart';
-import 'package:edutainment/screens/road/page.dart';
-import 'package:edutainment/utils/theme_constants.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:edutainment/widgets/WidgetJouerMaintenantButton.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,14 +21,23 @@ class PageScore extends StatefulWidget {
 }
 
 class _PageScoreState extends State<PageScore> {
-  //TODO: MAKE LIST DYNAMIC
-  List<Icon> ScoreList =
-      kIcons; //TODO: elle est dans les constantes !! à supprimer !! (yacine)
-
+  List<String> scoreMessage = [
+    "Mal joué",
+    "Vous pouvez vous amélioter",
+    "Bien joué",
+    "Vous êtes excellent",
+    "ERREUR"
+  ];
   @override
   Widget build(BuildContext context) {
     final Arguments args =
         ModalRoute.of(context).settings.arguments as Arguments;
+    int numberOfStars;
+    if (args.score < 3) numberOfStars = 0;
+    if (3 <= args.score && args.score < 6) numberOfStars = 1;
+    if (6 <= args.score && args.score < 9) numberOfStars = 2;
+    if (9 <= args.score) numberOfStars = 3;
+    print("number of stars = ${numberOfStars}");
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -93,11 +98,7 @@ class _PageScoreState extends State<PageScore> {
                     SizedBox(
                       height: 10,
                     ),
-                    if (args.domain
-                            .getlevels()
-                            .elementAt(args.indexOfLevel)
-                            .getNumbreOfStars() ==
-                        0)
+                    if (args.score < 3)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -106,11 +107,7 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if (args.domain
-                            .getlevels()
-                            .elementAt(args.indexOfLevel)
-                            .getNumbreOfStars() ==
-                        1)
+                    if (3 <= args.score && args.score < 6)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -119,11 +116,7 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if (args.domain
-                            .getlevels()
-                            .elementAt(args.indexOfLevel)
-                            .getNumbreOfStars() ==
-                        2)
+                    if (6 <= args.score && args.score < 9)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -132,11 +125,7 @@ class _PageScoreState extends State<PageScore> {
                           SvgPicture.asset('assets/star empty.svg'),
                         ],
                       ),
-                    if (args.domain
-                            .getlevels()
-                            .elementAt(args.indexOfLevel)
-                            .getNumbreOfStars() ==
-                        3)
+                    if (9 <= args.score)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -149,7 +138,9 @@ class _PageScoreState extends State<PageScore> {
                       height: 10,
                     ),
                     Text(
-                      'Bien joué !! Vous avez pu répondre à 13 questions correctement dans 30 seconds.',
+                      args.domain.getname() == DomainNames.calculs
+                          ? "${scoreMessage[numberOfStars]} !! Vous avez pu répondre à ${args.score} questions correctement dans ${((args.domain.getlevels().elementAt(args.indexOfLevel)) as LevelCalculs).getDuration() ~/ 1000} seconds."
+                          : "${scoreMessage[numberOfStars]} !! Vous avez pu répondre à ${args.score} questions correctement!",
                       style: TextStyle(
                         color: Colors.white,
                       ),
@@ -161,7 +152,7 @@ class _PageScoreState extends State<PageScore> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 70),
                 child: Wrap(
-                  children: ScoreList,
+                  children: args.list,
                 ),
               ),
             ],
@@ -171,6 +162,9 @@ class _PageScoreState extends State<PageScore> {
           domain: args.domain,
           indexOfLevel: args.indexOfLevel,
           isScorePage: true,
+          goToCongratulations:
+              (args.domain.getlevels().length <= args.indexOfLevel + 1),
+          failed: args.failed,
         ),
       ),
     );

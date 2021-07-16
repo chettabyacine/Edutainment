@@ -8,6 +8,7 @@ class QuestionQCM extends QuestionAnimalsOrGeometry {
   QuestionQCM(
       {this.choices, this.correctIndex, bool usesInput, Widget questionWidget})
       : super(usesInput: usesInput, questionWidget: questionWidget);
+
   bool checkAnswer(int userIndex) {
     return (userIndex == correctIndex);
   }

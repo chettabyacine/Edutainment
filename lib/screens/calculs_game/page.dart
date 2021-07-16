@@ -1,5 +1,4 @@
 import 'package:edutainment/models/classes/AnswerCalculs.dart';
-import 'package:edutainment/models/classes/Level.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:edutainment/models/routing/arguments.dart';
 import 'package:edutainment/screens/score/page.dart';
@@ -10,7 +9,6 @@ import '../../utils/constants.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:edutainment/models/classes/Domain.dart';
-import 'package:edutainment/models/classes/DomainNames.dart';
 
 class PageCalculsGame extends StatefulWidget {
   static const String _pageName = kPageCalculsGame;
@@ -27,11 +25,13 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
   LevelCalculs levelCalculs;
   int currentIndex = 0;
   Widget photo = SvgPicture.asset('assets/bird.svg');
+  List<Icon> list = [];
 
   Widget build(BuildContext context) {
     final Arguments args =
         ModalRoute.of(context).settings.arguments as Arguments;
     levelCalculs = args.domain.getlevels()[args.domain.getcurrentlevel()];
+    print("index of level in page calculs : ${args.indexOfLevel}");
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -132,7 +132,7 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
 
   /****************************************************** */
   /** WIDGETS */
-  /** **************************************************** */
+  /// **************************************************** */
 
   Widget WidgetTimeBar({@required Domain domain, @required int indexOfLevel}) {
     LevelCalculs level = domain.getlevels().elementAt(indexOfLevel);
@@ -147,7 +147,13 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
       progressColor: Color(0xffE4B94A),
       backgroundColor: Color(0x10000000),
       onAnimationEnd: () {
-        Arguments args = Arguments(domain: domain, indexOfLevel: indexOfLevel);
+        Arguments args = Arguments(
+          domain: domain,
+          indexOfLevel: indexOfLevel,
+          score: levelCalculs.currentScore,
+          list: list,
+          failed: false,
+        );
         Navigator.pushNamed(context, PageScore.getPageName(), arguments: args);
       },
     );
@@ -199,10 +205,17 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
                 if (levelCalculs.getWaitingQuestions().length - 1 >
                     currentIndex) {
                   levelCalculs.nextQuestion();
-                  levelCalculs
-                      .setCurrentScore(levelCalculs.getCurrentScore() + 1);
+                  levelCalculs.currentScore++;
+                  list.add(Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  ));
                 }
               } else {
+                list.add(Icon(
+                  Icons.close,
+                  color: Colors.red,
+                ));
                 if (levelCalculs.getWaitingQuestions().length - 1 >
                     currentIndex) {
                   levelCalculs.nextQuestion();

@@ -2,28 +2,17 @@ import 'package:edutainment/models/classes/Domain.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:edutainment/models/routing/arguments.dart';
 import 'package:edutainment/screens/score/page.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
-
 import 'package:edutainment/utils/constants.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'level1/LevelBrain.dart';
-
-int score = 0;
 
 String userAnswer;
 
-int remainingLives = 3;
-
 enum Answered {
   nothing,
-
   correct,
-
   incorrect,
 }
 
@@ -52,24 +41,43 @@ class PageLevelAnimalsOrGeometry extends StatefulWidget {
 class _PageLevelAnimalsOrGeometryState
     extends State<PageLevelAnimalsOrGeometry> {
   final answerInputController = TextEditingController();
+  LevelBrain levelBrain = LevelBrain();
+  List<Icon> list = [];
 
-  void updateScore(bool checkScore) {
+  void updateScore(
+      {bool checkScore,
+      @required Domain domain,
+      @required int indexOfLevel,
+      @required int score,
+      @required @required List<Icon> list}) {
     if (checkScore) {
-      score++;
-
+      levelBrain.currentScore++;
       answered = Answered.correct;
     } else {
-      remainingLives--;
-
-      answered = Answered.incorrect;
+      if (levelBrain.remainingLives > 1) {
+        levelBrain.remainingLives--;
+        answered = Answered.incorrect;
+      } else {
+        answered = Answered.incorrect;
+        Arguments args = Arguments(
+          domain: domain,
+          indexOfLevel: indexOfLevel,
+          list: list,
+          score: score,
+          failed: true,
+        );
+        Navigator.pushNamed(context, PageScore.getPageName(), arguments: args);
+      }
     }
   }
 
   Widget chooseAnswerWidget(
       {bool usesInput,
       LevelBrain levelBrain,
-      Domain domain,
-      int indexOfLevel}) {
+      @required Domain domain,
+      @required int indexOfLevel,
+      @required int score,
+      @required List<Icon> list}) {
     bool endOfLevel = false;
     Column column;
     if (!usesInput) {
@@ -81,18 +89,37 @@ class _PageLevelAnimalsOrGeometryState
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    updateScore(levelBrain
-                        .questionBank[levelBrain.questionNumber]
-                        .checkAnswer(0));
-
-                    //Duration waiting = Duration(seconds: 2);
-
-                    //sleep(waiting);
-
+                    updateScore(
+                        checkScore: levelBrain
+                            .questionBank[levelBrain.questionNumber]
+                            .checkAnswer(0),
+                        domain: domain,
+                        indexOfLevel: indexOfLevel,
+                        score: score,
+                        list: list);
+                    if (levelBrain.questionBank[levelBrain.questionNumber]
+                        .checkAnswer(0)) {
+                      list.add(Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ));
+                    } else {
+                      list.add(
+                        Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
+                      );
+                    }
                     endOfLevel = levelBrain.nextQuestion();
                     if (endOfLevel) {
-                      Arguments args =
-                          Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                      Arguments args = Arguments(
+                        domain: domain,
+                        indexOfLevel: indexOfLevel,
+                        score: levelBrain.currentScore,
+                        list: list,
+                        failed: false,
+                      );
                       Navigator.pushNamed(context, PageScore.getPageName(),
                           arguments: args);
                     }
@@ -116,14 +143,37 @@ class _PageLevelAnimalsOrGeometryState
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    updateScore(levelBrain
-                        .questionBank[levelBrain.questionNumber]
-                        .checkAnswer(1));
-
+                    updateScore(
+                        checkScore: levelBrain
+                            .questionBank[levelBrain.questionNumber]
+                            .checkAnswer(1),
+                        domain: domain,
+                        indexOfLevel: indexOfLevel,
+                        score: score,
+                        list: list);
+                    if (levelBrain.questionBank[levelBrain.questionNumber]
+                        .checkAnswer(1)) {
+                      list.add(Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ));
+                    } else {
+                      list.add(
+                        Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
+                      );
+                    }
                     endOfLevel = levelBrain.nextQuestion();
                     if (endOfLevel) {
-                      Arguments args =
-                          Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                      Arguments args = Arguments(
+                        domain: domain,
+                        indexOfLevel: indexOfLevel,
+                        score: levelBrain.currentScore,
+                        list: list,
+                        failed: false,
+                      );
                       Navigator.pushNamed(context, PageScore.getPageName(),
                           arguments: args);
                     }
@@ -152,14 +202,37 @@ class _PageLevelAnimalsOrGeometryState
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    updateScore(levelBrain
-                        .questionBank[levelBrain.questionNumber]
-                        .checkAnswer(2));
-
+                    updateScore(
+                        checkScore: levelBrain
+                            .questionBank[levelBrain.questionNumber]
+                            .checkAnswer(2),
+                        domain: domain,
+                        indexOfLevel: indexOfLevel,
+                        score: score,
+                        list: list);
+                    if (levelBrain.questionBank[levelBrain.questionNumber]
+                        .checkAnswer(2)) {
+                      list.add(Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ));
+                    } else {
+                      list.add(
+                        Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
+                      );
+                    }
                     endOfLevel = levelBrain.nextQuestion();
                     if (endOfLevel) {
-                      Arguments args =
-                          Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                      Arguments args = Arguments(
+                        domain: domain,
+                        indexOfLevel: indexOfLevel,
+                        score: levelBrain.currentScore,
+                        list: list,
+                        failed: false,
+                      );
                       Navigator.pushNamed(context, PageScore.getPageName(),
                           arguments: args);
                     }
@@ -183,14 +256,37 @@ class _PageLevelAnimalsOrGeometryState
               ElevatedButton(
                 onPressed: () {
                   setState(() {
-                    updateScore(levelBrain
-                        .questionBank[levelBrain.questionNumber]
-                        .checkAnswer(3));
-
+                    updateScore(
+                        checkScore: levelBrain
+                            .questionBank[levelBrain.questionNumber]
+                            .checkAnswer(3),
+                        domain: domain,
+                        indexOfLevel: indexOfLevel,
+                        score: score,
+                        list: list);
+                    if (levelBrain.questionBank[levelBrain.questionNumber]
+                        .checkAnswer(3)) {
+                      list.add(Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ));
+                    } else {
+                      list.add(
+                        Icon(
+                          Icons.close,
+                          color: Colors.red,
+                        ),
+                      );
+                    }
                     endOfLevel = levelBrain.nextQuestion();
                     if (endOfLevel) {
-                      Arguments args =
-                          Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                      Arguments args = Arguments(
+                        domain: domain,
+                        indexOfLevel: indexOfLevel,
+                        score: levelBrain.currentScore,
+                        list: list,
+                        failed: false,
+                      );
                       Navigator.pushNamed(context, PageScore.getPageName(),
                           arguments: args);
                     }
@@ -240,14 +336,38 @@ class _PageLevelAnimalsOrGeometryState
           TextButton(
               onPressed: () {
                 setState(() {
-                  updateScore(levelBrain.questionBank[levelBrain.questionNumber]
-                      .checkAnswer(userAnswer));
-
+                  updateScore(
+                      checkScore: levelBrain
+                          .questionBank[levelBrain.questionNumber]
+                          .checkAnswer(userAnswer),
+                      domain: domain,
+                      indexOfLevel: indexOfLevel,
+                      score: score,
+                      list: list);
                   answerInputController.clear();
+                  if (levelBrain.questionBank[levelBrain.questionNumber]
+                      .checkAnswer(userAnswer)) {
+                    list.add(Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ));
+                  } else {
+                    list.add(
+                      Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                    );
+                  }
                   endOfLevel = levelBrain.nextQuestion();
                   if (endOfLevel) {
-                    Arguments args =
-                        Arguments(domain: domain, indexOfLevel: indexOfLevel);
+                    Arguments args = Arguments(
+                      domain: domain,
+                      indexOfLevel: indexOfLevel,
+                      score: levelBrain.currentScore,
+                      list: list,
+                      failed: false,
+                    );
                     Navigator.pushNamed(context, PageScore.getPageName(),
                         arguments: args);
                   }
@@ -276,9 +396,10 @@ class _PageLevelAnimalsOrGeometryState
         ModalRoute.of(context).settings.arguments as Arguments;
     final int index = args.indexOfLevel;
     final Domain domain = args.domain;
-    final LevelBrain levelBrain = args.domain.getlevels()[index - 1];
+    levelBrain = args.domain.getlevels()[index];
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         body: Container(
           decoration: BoxDecoration(
@@ -303,7 +424,7 @@ class _PageLevelAnimalsOrGeometryState
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'Score: $score',
+                    'Score: ${levelBrain.currentScore}',
                     style: TextStyle(
                       fontFamily: 'Open Sans',
                       fontWeight: FontWeight.bold,
@@ -317,15 +438,21 @@ class _PageLevelAnimalsOrGeometryState
                     children: [
                       Icon(
                         Icons.favorite,
-                        color: remainingLives >= 1 ? Colors.red : Colors.black,
+                        color: levelBrain.remainingLives >= 1
+                            ? Colors.red
+                            : Colors.black,
                       ),
                       Icon(
                         Icons.favorite,
-                        color: remainingLives >= 2 ? Colors.red : Colors.black,
+                        color: levelBrain.remainingLives >= 2
+                            ? Colors.red
+                            : Colors.black,
                       ),
                       Icon(
                         Icons.favorite,
-                        color: remainingLives >= 3 ? Colors.red : Colors.black,
+                        color: levelBrain.remainingLives >= 3
+                            ? Colors.red
+                            : Colors.black,
                       ),
                     ],
                   ),
@@ -343,7 +470,9 @@ class _PageLevelAnimalsOrGeometryState
                       .questionBank[levelBrain.questionNumber].usesInput,
                   levelBrain: levelBrain,
                   domain: domain,
-                  indexOfLevel: index),
+                  indexOfLevel: index,
+                  score: levelBrain.currentScore,
+                  list: list),
               Expanded(
                   child: Padding(
                 padding: EdgeInsets.only(right: 70),

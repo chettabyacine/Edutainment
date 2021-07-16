@@ -1,12 +1,10 @@
-import 'package:edutainment/models/classes/QuestionCalculs.dart';
 import 'package:flutter/material.dart';
 
 class Level {
   int _id;
   int _userId;
-  int _domainIndex;
   int _highestScore;
-  int _currentScore;
+  int currentScore;
   int _numberOfStars;
   int _indexOfDataBase;
   int _currentQuestionIndex;
@@ -25,9 +23,8 @@ class Level {
       int currentQuestion}) {
     this._id = id;
     this._userId = userId;
-    this._domainIndex = domainIndex;
     this._highestScore = highestScore;
-    this._currentScore = currentScore;
+    this.currentScore = currentScore;
     this._numberOfStars = numberOfStars;
     this._indexOfDataBase = indexOfDataBase;
     this._color = color;
@@ -38,7 +35,7 @@ class Level {
     return this._currentQuestionIndex;
   }
 
-  int setCurrentQuestionIndex(int value) {
+  void setCurrentQuestionIndex(int value) {
     this._currentQuestionIndex = value;
   }
 
@@ -67,11 +64,11 @@ class Level {
   }
 
   int getCurrentScore() {
-    return this._currentScore;
+    return this.currentScore;
   }
 
   void setCurrentScore(int currentScore) {
-    this._currentScore = currentScore;
+    this.currentScore = currentScore;
   }
 
   int getNumbreOfStars() {
@@ -107,20 +104,20 @@ class Level {
   }
 
   void incrementCurrentScore() {
-    this._currentScore++;
+    this.currentScore++;
     computeStars();
   }
 
   void computeStars() {
-    if (2 * _currentScore < _averageScore) {
+    if (2 * currentScore < _averageScore) {
       setNumbreOfStars(0);
       return;
     }
-    if (10 * _currentScore < 8 * _averageScore) {
+    if (10 * currentScore < 8 * _averageScore) {
       setNumbreOfStars(1);
       return;
     }
-    if (_currentScore < _averageScore) {
+    if (currentScore < _averageScore) {
       setNumbreOfStars(2);
       return;
     }

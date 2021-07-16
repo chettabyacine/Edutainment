@@ -24,6 +24,7 @@ class HomeButton extends StatelessWidget {
       onPressed: () {
         switch (text) {
           case 'Calculs':
+            print(PageRoad.getPageName());
             domain.setname(DomainNames.calculs);
             Navigator.pushNamed(
               context,

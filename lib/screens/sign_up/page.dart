@@ -17,6 +17,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:commons/commons.dart';
 import 'package:edutainment/widgets/WidgetActionButton2.dart';
 import 'package:edutainment/widgets/WidgetSnackBarText.dart';
+import 'package:edutainment/services/user_db.dart';
 
 class PageSignUp extends StatefulWidget {
   static const String _pageName = kPageNameSignUp;
@@ -32,9 +33,8 @@ class _PageSignUpState extends State<PageSignUp> {
   String name, email, password1, password2;
   String birthDay = 'Date de naissance';
   bool _checkbox = false, emailValid;
-  SignUpUser user;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  FirebaseUser _user;
+  User _user;
   UserCredential _userCredential;
   final globalKey = GlobalKey<ScaffoldState>();
   var inputEmail = InputWidget(
@@ -53,6 +53,7 @@ class _PageSignUpState extends State<PageSignUp> {
     icon: Icons.lock,
     label: 'Confirmer mot de passe',
   );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -140,6 +141,8 @@ class _PageSignUpState extends State<PageSignUp> {
           } else {
             try {
               _userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password1);
+              _user = _userCredential.user;
+              await UserDB(uid: _user.uid).initializeUserData(name);
               Navigator.pushNamed(context, PageHome.getPageName());
             } on FirebaseAuthException catch (e) {
               if (e.code == 'email-already-in-use') {

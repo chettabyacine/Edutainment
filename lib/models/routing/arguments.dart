@@ -1,11 +1,16 @@
-import 'package:edutainment/models/classes/DomainNames.dart';
-import 'package:edutainment/models/classes/LevelAnimals.dart';
-import 'package:edutainment/models/classes/LevelCalculs.dart';
-import 'package:edutainment/models/classes/LevelGeometry.dart';
 import 'package:edutainment/models/classes/Domain.dart';
+import 'package:flutter/material.dart';
 
 class Arguments {
   final Domain domain;
   final int indexOfLevel;
-  Arguments({this.domain, this.indexOfLevel});
+  final int score;
+  List<Icon> list;
+  final bool failed;
+  Arguments(
+      {@required this.domain,
+      @required this.indexOfLevel,
+      @required this.score,
+      @required this.list,
+      this.failed});
 }

@@ -1,16 +1,12 @@
 import 'package:edutainment/models/classes/Domain.dart';
 import 'package:edutainment/models/routing/arguments.dart';
 import 'package:edutainment/screens/geometry_animals_game/page.dart';
-import 'package:edutainment/screens/global_rank/page.dart';
 import 'package:edutainment/screens/home/page.dart';
 import 'package:edutainment/screens/score/page.dart';
 import 'package:flutter/material.dart';
 import 'package:edutainment/models/classes/DomainNames.dart';
 import 'package:edutainment/utils/enums.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
-import 'package:edutainment/screens/question_qcm_text_text/page.dart';
-import 'package:edutainment/screens/question_qcm_text_image/page.dart';
-import 'package:edutainment/screens/question_qcm_image_text/page.dart';
 
 class LevelButton extends StatelessWidget {
   final int levelNumber;
@@ -30,7 +26,8 @@ class LevelButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Arguments args = Arguments(domain: domain, indexOfLevel: levelNumber);
+    final Arguments args = Arguments(
+        domain: domain, indexOfLevel: levelNumber, list: [], score: 0);
     final Domain domainArgument = args.domain;
     return Column(
       crossAxisAlignment:
@@ -47,7 +44,8 @@ class LevelButton extends StatelessWidget {
                   context,
                   domainArgument.getname() == DomainNames.calculs
                       ? PageCalculsGame.getPageName()
-                      : (domainArgument.getname() == DomainNames.geometry
+                      : ((domainArgument.getname() == DomainNames.geometry ||
+                              domainArgument.getname() == DomainNames.animals)
                           ? PageLevelAnimalsOrGeometry.getPageName()
                           : PageHome.getPageName()),
                   arguments: args,
@@ -64,7 +62,7 @@ class LevelButton extends StatelessWidget {
                     width: 3, color: domainColor[domainArgument.getname()])
                 : null,
           ),
-          child: Text('$levelNumber'),
+          child: Text('${levelNumber + 1}'),
         ),
         this.bottom,
       ],

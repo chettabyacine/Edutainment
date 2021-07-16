@@ -35,7 +35,7 @@ class _PageRoadState extends State<PageRoad> {
     for (int i = 0; i < domain.getlevels().length; i++) {
       if (i < domain.getcurrentlevel()) {
         widget = LevelButton(
-          levelNumber: i + 1,
+          levelNumber: i,
           isOnTheRight: i.isOdd,
           stars: domain.getlevels().elementAt(i).getNumbreOfStars(),
           state: LevelStates.passed,
@@ -47,7 +47,7 @@ class _PageRoadState extends State<PageRoad> {
         );
       } else if (i == domain.getcurrentlevel()) {
         widget = LevelButton(
-          levelNumber: i + 1,
+          levelNumber: i,
           isOnTheRight: i.isOdd,
           stars: domain.getlevels().elementAt(i).getNumbreOfStars(),
           state: LevelStates.current,
@@ -60,7 +60,7 @@ class _PageRoadState extends State<PageRoad> {
       }
       if (i > domain.getcurrentlevel()) {
         widget = LevelButton(
-          levelNumber: i + 1,
+          levelNumber: i,
           isOnTheRight: i.isOdd,
           state: LevelStates.waiting,
           bottom: BottomText(text: ''),
@@ -117,6 +117,9 @@ class _PageRoadState extends State<PageRoad> {
           domain: domain,
           indexOfLevel: domain.getcurrentlevel(),
           isScorePage: false,
+          failed: false,
+          goToCongratulations:
+              (domain.getlevels().length == domain.getcurrentlevel()),
         ),
       ),
     );

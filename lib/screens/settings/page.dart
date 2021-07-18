@@ -30,21 +30,22 @@ class PageSettings extends StatefulWidget {
   }
 
   @override
-  _PageSettingsState createState() => _PageSettingsState();
+  _PageSettingsState createState() => _PageSettingsState(userName: nom, email: email);
 }
 
 class _PageSettingsState extends State<PageSettings> {
   bool isSwitched1 = false;
   bool isSwitched2 = false;
   int _selectedIndex = 3;
-  String userName = "";
+  String userName;
+  String userIconText;
   User user = FirebaseAuth.instance.currentUser;
   String email;
   Color profile = kVioletColor;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   int userScore = 8;
   List<QueryDocumentSnapshot> userDocs = [];
-  _PageSettingsState();
+  _PageSettingsState({this.email, this.userName});
 
   void _onItemTapped(int index) {
     setState(() async {
@@ -88,12 +89,7 @@ class _PageSettingsState extends State<PageSettings> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-    user = _auth.currentUser;
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -123,7 +119,7 @@ class _PageSettingsState extends State<PageSettings> {
                   //Photo de profile
                   CircleAvatar(
                     child: Text(
-                      'Y' ?? '',
+                      '${userName[0]}',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 30,
@@ -137,7 +133,7 @@ class _PageSettingsState extends State<PageSettings> {
                   ),
                   //The user's name
                   Text(
-                    'Yacine',
+                    userName,
                     style: TextStyle(
                       fontSize: 26,
                       color: Colors.black,

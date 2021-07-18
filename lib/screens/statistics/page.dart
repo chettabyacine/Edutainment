@@ -13,7 +13,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:edutainment/services/user_db.dart';
 
-// TODO AJOUTIW '  charts_flutter: ^0.9.0  '  HADA FI pubspec.yaml
 
 class PageStatistics extends StatefulWidget {
   static const String _pageName = kPageStatistics;
@@ -33,9 +32,8 @@ class PageStatistics extends StatefulWidget {
     return _pageName;
   }
 
-  //TODO get publicUsers and currentUser from the database
   @override
-  _PageStatisticsState createState() => _PageStatisticsState();
+  _PageStatisticsState createState() => _PageStatisticsState(userScore: currentScore);
 }
 
 class _PageStatisticsState extends State<PageStatistics> {
@@ -147,6 +145,8 @@ class _PageStatisticsState extends State<PageStatistics> {
   int userScore;
   List<QueryDocumentSnapshot> userDocs;
 
+  _PageStatisticsState({this.userScore});
+
   void _onItemTapped(int index) {
     setState(() async {
       userName = await UserDB(uid: user.uid).getUserName();
@@ -172,13 +172,6 @@ class _PageStatisticsState extends State<PageStatistics> {
           );
           break;
         case 2:
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => PageStatistics(
-                      currentScore: 400,
-                    )),
-          );
           break;
         case 3:
           Navigator.push(
@@ -223,7 +216,7 @@ class _PageStatisticsState extends State<PageStatistics> {
               textBaseline: TextBaseline.alphabetic,
               children: [
                 Text(
-                  '85', //TODO HNA CHANGIW LE SCORE TOTAL LES LFO9 ( 9ASDI HADIK 400pts LI LFO9)
+                  userScore.toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontFamily: 'OpenSans',

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
 import 'package:edutainment/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'level1/LevelBrain.dart';
+import 'level1/LevelGeometryOrAnimals.dart';
 
 String userAnswer;
 
@@ -41,7 +41,7 @@ class PageLevelAnimalsOrGeometry extends StatefulWidget {
 class _PageLevelAnimalsOrGeometryState
     extends State<PageLevelAnimalsOrGeometry> {
   final answerInputController = TextEditingController();
-  LevelBrain levelBrain = LevelBrain();
+  LevelGeometryOrAnimals levelBrain = LevelGeometryOrAnimals();
   List<Icon> list = [];
 
   void updateScore(
@@ -73,7 +73,7 @@ class _PageLevelAnimalsOrGeometryState
 
   Widget chooseAnswerWidget(
       {bool usesInput,
-      LevelBrain levelBrain,
+      LevelGeometryOrAnimals levelBrain,
       @required Domain domain,
       @required int indexOfLevel,
       @required int score,

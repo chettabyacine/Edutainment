@@ -8,8 +8,8 @@ import 'package:edutainment/widgets/WidgetQuestionBoxText.dart';
 import '../../../models/classes/QuestionQCM.dart';
 import 'package:flutter/material.dart';
 
-class LevelBrain extends Level {
-  LevelBrain({int numberOfStars, int currentScore})
+class LevelGeometryOrAnimals extends Level {
+  LevelGeometryOrAnimals({int numberOfStars, int currentScore})
       : super(numberOfStars: numberOfStars, currentScore: currentScore) {}
   int questionNumber = 0;
   List<dynamic> questionBank = [];

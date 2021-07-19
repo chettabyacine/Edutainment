@@ -2,7 +2,7 @@ import 'package:edutainment/models/classes/Domain.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:edutainment/models/routing/arguments.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
-import 'package:edutainment/screens/geometry_animals_game/level1/LevelBrain.dart';
+import 'package:edutainment/screens/geometry_animals_game/level1/LevelGeometryOrAnimals.dart';
 import 'package:edutainment/screens/geometry_animals_game/page.dart';
 import 'package:edutainment/screens/log_in/page.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +42,9 @@ class WidgetJouerMaintenantButton extends StatelessWidget {
                 if (failed) {
                   if (domain.getname() == DomainNames.geometry ||
                       domain.getname() == DomainNames.animals) {
-                    (domain.getlevels().elementAt(indexOfLevel) as LevelBrain)
+                    (domain.getlevels().elementAt(indexOfLevel) as LevelGeometryOrAnimals)
                         .remainingLives = 3;
-                    (domain.getlevels().elementAt(indexOfLevel) as LevelBrain)
+                    (domain.getlevels().elementAt(indexOfLevel) as LevelGeometryOrAnimals)
                         .currentScore = 0;
                     args = Arguments(
                         domain: domain,

@@ -208,7 +208,7 @@ final List<QuestionGeometryDBModel> defaultGeometry = [
       usesInput: false,
       questionText: 'Ou est le pentagone?',
       answers: 'ellipse,trapeze,losange,pentagone',
-      correctIndex: 2,
+      correctIndex: 3,
       imagePath: ''),
   QuestionGeometryDBModel(
       level: 1,
@@ -249,7 +249,7 @@ final List<QuestionGeometryDBModel> defaultGeometry = [
       questionText: 'Ou est le triangle isocele?',
       answers:
           'triangle,triangle rectangle,triangle isocele,triangle equilaterale',
-      correctIndex: 1,
+      correctIndex: 2,
       imagePath: ''),
   QuestionGeometryDBModel(
       level: 2,
@@ -374,7 +374,7 @@ final List<QuestionGeometryDBModel> defaultGeometry = [
       type: 1,
       usesInput: false,
       questionText: 'Le périmètre est?',
-      answers: '10 cm,20 cm,14 cm,8 cm',
+      answers: '10 cm,20 cm,13 cm,8 cm',
       correctIndex: 2,
       imagePath:
           'assets/geometric shapes/2D shapes for calculations/triangle 6-3-4.svg'),
@@ -382,36 +382,18 @@ final List<QuestionGeometryDBModel> defaultGeometry = [
       level: 3,
       type: 1,
       usesInput: false,
-      questionText: 'La surface est?',
-      answers: '10 cm²,9 cm²,15 cm²,18 cm²',
-      correctIndex: 1,
-      imagePath:
-          'assets/geometric shapes/2D shapes for calculations/rectangle 6-3.svg'),
-  QuestionGeometryDBModel(
-      level: 3,
-      type: 1,
-      usesInput: false,
-      questionText: 'Le périmètre est?',
-      answers: '20 cm,12 cm,15 cm,19 cm',
-      correctIndex: 0,
-      imagePath:
-          'assets/geometric shapes/2D shapes for calculations/parallelogramme 7-2-3.svg'),
-  QuestionGeometryDBModel(
-      level: 3,
-      type: 3,
-      usesInput: true,
       questionText: 'Le surface est?',
-      answers: '6cm²,6,6 cm²',
-      correctIndex: -1,
+      answers: '6cm²,60mm²,16 cm²,5cm²',
+      correctIndex: 0,
       imagePath:
           'assets/geometric shapes/2D shapes for calculations/triangle 5-4-3.svg'),
   QuestionGeometryDBModel(
       level: 3,
-      type: 3,
-      usesInput: true,
+      type: 1,
+      usesInput: false,
       questionText: 'La surface est?',
-      answers: '25cm²,25,25 cm',
-      correctIndex: -1,
+      answers: '21cm²,25cm²,5cm²,20cm²',
+      correctIndex: 1,
       imagePath:
           'assets/geometric shapes/2D shapes for calculations/caree 5.svg'),
   QuestionGeometryDBModel(
@@ -425,20 +407,20 @@ final List<QuestionGeometryDBModel> defaultGeometry = [
           'assets/geometric shapes/2D shapes for calculations/hexagone 2.svg'),
   QuestionGeometryDBModel(
       level: 3,
-      type: 3,
-      usesInput: true,
+      type: 1,
+      usesInput: false,
       questionText: 'La surface est?',
-      answers: '3cm²,3,3 cm²',
-      correctIndex: -1,
+      answers: '7cm²,4cm²,3cm²,2cm²',
+      correctIndex: 2,
       imagePath:
           'assets/geometric shapes/2D shapes for calculations/trapeze 4-2-1.svg'),
   QuestionGeometryDBModel(
       level: 3,
       type: 1,
-      usesInput: true,
+      usesInput: false,
       questionText: 'La surface est?',
-      answers: '10cm²,10,10 cm',
-      correctIndex: -1,
+      answers: '30cm²,20cm²,24cm²,10cm²',
+      correctIndex: 3,
       imagePath:
           'assets/geometric shapes/2D shapes for calculations/triangle 6-5-4.svg'),
 ];
@@ -489,6 +471,18 @@ final List<QuestionAnimalsDBModel> defaultAnimals = [
       imagePath: 'assets/animals/images/poule.jpg',
       audioPath: ''),
   QuestionAnimalsDBModel(
+      level: 1,
+      type: 1,
+      usesInput: false,
+      questionText: 'Quel est cet animal?',
+      answers: 'pigeon,martinet,moineau,merle noir',
+      correctIndex: 1,
+      imagePath: 'assets/animals/images/martinet.jpg',
+      audioPath: ''),
+
+
+
+  QuestionAnimalsDBModel(
       level: 2,
       type: 1,
       usesInput: false,
@@ -534,6 +528,26 @@ final List<QuestionAnimalsDBModel> defaultAnimals = [
       imagePath: '',
       audioPath: ''),
   QuestionAnimalsDBModel(
+      level: 2,
+      type: 1,
+      usesInput: false,
+      questionText: "Quel est cet animal?",
+      answers: 'hippopotame,elephant,mamouth,bouquetin',
+      correctIndex: 2,
+      imagePath: 'assets/animals/images/mamouth.jpg',
+      audioPath: ''),
+  QuestionAnimalsDBModel(
+      level: 2,
+      type: 4,
+      usesInput: false,
+      questionText: "Le martinet est un...",
+      answers: 'herbivore,omnivore,carnivore,insectivore',
+      correctIndex: 3,
+      imagePath: '',
+      audioPath: ''),
+
+
+  QuestionAnimalsDBModel(
       level: 3,
       type: 4,
       usesInput: false,
@@ -550,6 +564,15 @@ final List<QuestionAnimalsDBModel> defaultAnimals = [
       answers: 'émeu,autruche,kangourou,kiwi',
       correctIndex: 2,
       imagePath: 'assets/animals/images/kangaroo.jpg',
+      audioPath: ''),
+  QuestionAnimalsDBModel(
+      level: 3,
+      type: 4,
+      usesInput: false,
+      questionText: "Parmi ces animaux on ne peut plus trouver...",
+      answers: 'elephant,vache,gazelle,mamouth',
+      correctIndex: 3,
+      imagePath: '',
       audioPath: ''),
   QuestionAnimalsDBModel(
       level: 3,
@@ -577,6 +600,15 @@ final List<QuestionAnimalsDBModel> defaultAnimals = [
       answers: 'mouton,vache,antelope,bison',
       correctIndex: 1,
       imagePath: 'assets/animals/images/vache.jpg',
+      audioPath: ''),
+  QuestionAnimalsDBModel(
+      level: 3,
+      type: 4,
+      usesInput: false,
+      questionText: "On peut pas trouver des martinets en ...",
+      answers: 'afrique,asie,antarctique,amérique latine',
+      correctIndex: 2,
+      imagePath: '',
       audioPath: ''),
 ];
 

@@ -14,7 +14,7 @@ import 'local_widgets/WidgetHomeButton.dart';
 import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
 import 'package:edutainment/screens/settings/page.dart';
 import 'package:edutainment/screens/global_rank/page.dart';
-import 'package:edutainment/screens/geometry_animals_game/level1/LevelBrain.dart';
+import 'package:edutainment/screens/geometry_animals_game/level1/LevelGeometryOrAnimals.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:edutainment/services/user_db.dart';
@@ -85,9 +85,9 @@ class _PageHomeState extends State<PageHome> {
   }
 
 //declaration of the three geometry levels
-  LevelBrain lg1 = LevelBrain(numberOfStars: 0, currentScore: 0);
-  LevelBrain lg2 = LevelBrain(numberOfStars: 0, currentScore: 0);
-  LevelBrain lg3 = LevelBrain(numberOfStars: 0, currentScore: 0);
+  LevelGeometryOrAnimals lg1 = LevelGeometryOrAnimals(numberOfStars: 0, currentScore: 0);
+  LevelGeometryOrAnimals lg2 = LevelGeometryOrAnimals(numberOfStars: 0, currentScore: 0);
+  LevelGeometryOrAnimals lg3 = LevelGeometryOrAnimals(numberOfStars: 0, currentScore: 0);
 //decalaration of the three calcules levels
   LevelCalculs l1 = LevelCalculs(
     domainIndex: 1,
@@ -130,9 +130,9 @@ class _PageHomeState extends State<PageHome> {
       color: kBlueColor,
       id: 1);
   //declaration of the three animals levels
-  LevelBrain la1 = LevelBrain(numberOfStars: 0, currentScore: 0);
-  LevelBrain la2 = LevelBrain(numberOfStars: 0, currentScore: 0);
-  LevelBrain la3 = LevelBrain(numberOfStars: 0, currentScore: 0);
+  LevelGeometryOrAnimals la1 = LevelGeometryOrAnimals(numberOfStars: 0, currentScore: 0);
+  LevelGeometryOrAnimals la2 = LevelGeometryOrAnimals(numberOfStars: 0, currentScore: 0);
+  LevelGeometryOrAnimals la3 = LevelGeometryOrAnimals(numberOfStars: 0, currentScore: 0);
 
   @override
   void initState() {
@@ -237,9 +237,9 @@ class _PageHomeState extends State<PageHome> {
                       SizedBox(width: 10.0),
                       HomeButton(
                         text: 'Evaluation',
-                        colour: kRedColor,
+                        colour: kGreyColor,
                         icon: SvgPicture.asset(
-                          'assets/icon evaluation.svg',
+                          'assets/icon evaluation grey.svg',
                         ),
                         domain: domainCalculs, //todo: change the args
                       ),

@@ -86,7 +86,7 @@ class _PageCongratulationState extends State<PageCongratulation> {
                     style: TextStyle(
                       fontFamily: 'Acme',
                       fontSize: 22.0,
-                      color: Colors.white,
+                      color: kVioletColor,
                       fontWeight: kFontWeight1,
                       letterSpacing: 1,
                     ),

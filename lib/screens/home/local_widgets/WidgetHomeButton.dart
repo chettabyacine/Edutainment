@@ -50,12 +50,6 @@ class HomeButton extends StatelessWidget {
             );
             break;
           case 'Evaluation':
-            domain.setname(DomainNames.evaluation);
-            Navigator.pushNamed(
-              context,
-              PageRoad.getPageName(),
-              arguments: domain,
-            );
             break;
           default:
             break;

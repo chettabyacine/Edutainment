@@ -7,6 +7,7 @@ const kBlueColor = Color(0xFF1490F5);
 const kGreenColor = Color(0xFF2CBAA4);
 const kYellowColor = Color(0xFFEDAE1D);
 const kRedColor = Color(0xFFFF6868);
+const kGreyColor = Color(0xFF7D7D7D);
 
 const double kHeightAppBar = 135;
 

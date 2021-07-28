@@ -16,6 +16,7 @@ const String kPageLevelAnimalsOrGeometry = "PageAnimalsOrGeometryGame";
 const String kPageGlobalRank = "PageGlobalRank";
 const String kPageStatistics = "PageStatistics";
 const String kPageCongratulation = "PageCongratulation";
+const String kPageEvaluationGame = "PageEvaluation";
 
 const List<Icon> kIcons = [
   Icon(

@@ -5,7 +5,7 @@ import 'package:edutainment/services/QuestionGeometryDBModel.dart';
 
 import 'package:edutainment/widgets/WidgetQuestionBoxImage.dart';
 import 'package:edutainment/widgets/WidgetQuestionBoxText.dart';
-import '../../../models/classes/QuestionQCM.dart';
+import '../../models/classes/QuestionQCM.dart';
 import 'package:flutter/material.dart';
 
 class LevelGeometryOrAnimals extends Level {

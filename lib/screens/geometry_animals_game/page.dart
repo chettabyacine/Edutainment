@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
 import 'package:edutainment/utils/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'level1/LevelGeometryOrAnimals.dart';
+import 'LevelGeometryOrAnimals.dart';
 
 String userAnswer;
 
@@ -479,7 +479,7 @@ class _PageLevelAnimalsOrGeometryState
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    SvgPicture.asset('assets/bird.svg'), //TODO:FIX !!!
+                    SvgPicture.asset('assets/bird.svg'),
                   ],
                 ),
               )),

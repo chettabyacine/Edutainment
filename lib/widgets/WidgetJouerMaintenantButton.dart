@@ -2,7 +2,7 @@ import 'package:edutainment/models/classes/Domain.dart';
 import 'package:edutainment/models/classes/LevelCalculs.dart';
 import 'package:edutainment/models/routing/arguments.dart';
 import 'package:edutainment/screens/calculs_game/page.dart';
-import 'package:edutainment/screens/geometry_animals_game/level1/LevelGeometryOrAnimals.dart';
+import 'file:///C:/Android/AndroidStudioProjects/Edutainment/lib/screens/geometry_animals_game/LevelGeometryOrAnimals.dart';
 import 'package:edutainment/screens/geometry_animals_game/page.dart';
 import 'package:edutainment/screens/log_in/page.dart';
 import 'package:flutter/material.dart';

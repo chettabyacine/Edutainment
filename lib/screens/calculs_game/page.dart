@@ -31,7 +31,6 @@ class _PageCalculsGameState extends State<PageCalculsGame> {
     final Arguments args =
         ModalRoute.of(context).settings.arguments as Arguments;
     levelCalculs = args.domain.getlevels()[args.domain.getcurrentlevel()];
-    print("index of level in page calculs : ${args.indexOfLevel}");
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

@@ -14,7 +14,7 @@ import 'local_widgets/WidgetHomeButton.dart';
 import 'package:edutainment/widgets/WidgetAppBarDomain.dart';
 import 'package:edutainment/screens/settings/page.dart';
 import 'package:edutainment/screens/global_rank/page.dart';
-import 'package:edutainment/screens/geometry_animals_game/level1/LevelGeometryOrAnimals.dart';
+import 'file:///C:/Android/AndroidStudioProjects/Edutainment/lib/screens/geometry_animals_game/LevelGeometryOrAnimals.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:edutainment/services/user_db.dart';

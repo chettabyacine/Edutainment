@@ -12,6 +12,7 @@ import 'utils/theme_constants.dart';
 import 'screens/score/page.dart';
 import 'screens/settings/page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:edutainment/screens/evaluation_game/page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kVioletColor,
       ),
-      initialRoute: PageEntryPoint.getPageName(),
+      initialRoute: PageEvaluationGame.getPageName(),
       routes: {
         PageSignUp.getPageName(): (context) => PageSignUp(),
         PageLogIn.getPageName(): (context) => PageLogIn(),
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         PageLevelAnimalsOrGeometry.getPageName(): (context) =>
             PageLevelAnimalsOrGeometry(),
         PageCongratulation.getPageName(): (context) => PageCongratulation(),
+        PageEvaluationGame.getPageName(): (context) => PageEvaluationGame(),
       },
     );
   }

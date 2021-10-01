@@ -1,3 +1,5 @@
+Description: Un jeu d'apprentissage pour les enfants de 8ans à 12ans, qui propose un moyen de visualiser son progrès
+
 # edutainment
 
 A new Flutter application.
